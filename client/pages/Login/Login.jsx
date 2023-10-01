@@ -14,19 +14,25 @@ export default function Login() {
   }
   
   return (
-    <>
-      <div className="contain">
+    <div className="page-with-background">
+
+      <div className="login-page-contain">
           <h2>DevHelp</h2>
-          <div className="contain-input">
+
+          <div className="login-page-contain-input">
             <Input type="text" placeholder="Email"></Input>
             <Input type="password" placeholder="Password"></Input>
           </div>
-          <div className="contain-btn">
-            <button onClick={handleClick}>Sign In</button>
+
+          <div className="login-page-contain-btn">
+            <button onClick={handleClick} className="login-signup-button">Sign In</button>
           </div>
-          <h6>Or Signin With</h6>
-          <hr></hr>
-          <div className="contain-icon">
+
+          <h6 className="login-signup-h6">Or Signin With</h6>
+
+          <hr className="login-page-hr"></hr>
+
+          <div className="login-page-contain-icon">
             <Icon color={ButtonBackground}>
               <FcGoogle />
             </Icon>
@@ -34,17 +40,20 @@ export default function Login() {
               <FaGithub />
             </Icon>
           </div>
-          <h5>
-            <span>
+
+          <h5 className="login-signup-links">
+            <span className="link-for-signup-login">
             <Link to="/">Forgot Password?</Link>
             </span>
           </h5>
-          <h5>Don't have an account? {" "} 
-            <span>
+
+          <h5 className="login-signup-links">Don't have an account? {" "} 
+            <span className="link-for-signup-login">
               <Link to="/signup">Sign Up</Link>
             </span>
           </h5>
+
       </div>
-    </>
+    </div>
   );
 }

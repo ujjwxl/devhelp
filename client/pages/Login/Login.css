@@ -2,7 +2,23 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Ubuntu&display=swap");
 
-.contain{
+.page-with-background {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Raleway", sans-serif;
+    font-family: "Ubuntu", sans-serif;
+    background-image: url("bg_login.png");
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-page-contain{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -20,27 +36,11 @@
     letter-spacing: 0.4rem;
 }
 
-body {
-  font-family: "Montserrat", sans-serif;
-  font-family: "Raleway", sans-serif;
-  font-family: "Ubuntu", sans-serif;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.contain h2{
+.login-page-contain h2{
     margin: 3rem 0 2rem 0;
 }
 
-.contain-input{
+.login-page-contain-input{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -49,7 +49,7 @@ body {
     width: 100%;
 }
 
-.contain-btn{
+.login-page-contain-btn{
     margin: 1rem 0 0.8rem 0;
     width: 100%;
     display: flex;
@@ -57,7 +57,7 @@ body {
     justify-content: center;
 }
 
-button{
+.login-signup-button {
     background: linear-gradient(to right, #14163c 0%, #03217b 79%);
     text-transform: uppercase;
     letter-spacing: 0.2rem;
@@ -69,24 +69,20 @@ button{
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #40403f;
-  }
-
-h5, p{
+.login-signup-links {
     letter-spacing: 0.2rem;
     margin-top: 15px;
     margin-bottom: 10px;
 
 }
 
-h6{
+.login-signup-h6 {
     letter-spacing: 0.3rem;
     margin-top: 15px;
     margin-bottom: 10px;
 }
 
-hr{
+.login-page-hr {
     width: 90%;
     height: 0.3rem;
     border-radius: 0.8rem;
@@ -97,15 +93,15 @@ hr{
     backdrop-filter: blur(25px);
 }
 
-.contain-icon{
+.login-page-contain-icon{
     display: flex;
     justify-content: space-evenly;
     margin: 1rem 0 1rem 0;
     width: 80%;
 }
 
-span a{
+/* span a{
     letter-spacing: 0.1rem;
     font-weight: bolder;
     color: rgb(96, 107, 230);
-}
+} */
