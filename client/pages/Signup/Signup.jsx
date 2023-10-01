@@ -66,8 +66,6 @@ export default function Signup() {
         
         <h6 className="login-signup-h6">Or SignUp With</h6>
 
-        <hr className="login-page-hr"></hr>
-
         <div className="signup-page-container-icon">
           <Icon color={ButtonBackground}>
             <FcGoogle />
