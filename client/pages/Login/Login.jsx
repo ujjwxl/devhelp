@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 import { FaGithub} from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./Login.css";
@@ -9,9 +10,43 @@ import Icon from "../../components/Login/Icon";
 export default function Login() {
   const ButtonBackground = "linear-gradient(45deg, #0C1015, #0C1015)";
   const navigate=useNavigate();
-  const handleClick = async()=>{
-    navigate("/");
-  }
+  // const handleClick = async()=>{
+  //   navigate("/");
+  // }
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        await axios.post('http://localhost:5000/auth/login', {
+            email, password
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    console.log('Login succesful')
+                    const token = res.data.token;
+                    const userName = res.data.name;
+                    const lastName = res.data.lastname;
+                    const userId = res.data.userId;
+                    sessionStorage.setItem('token', token);
+                    sessionStorage.setItem('id', userId);
+                    sessionStorage.setItem('name', userName);
+                    sessionStorage.setItem('lastname', lastName);
+                    navigate('/');
+                }
+            })
+            .catch(e => {
+                alert("Invalid login details! Please try again")
+                //   console.log(e);
+            })
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
   
   return (
     <div className="page-with-background">
@@ -20,12 +55,12 @@ export default function Login() {
           <h2>DevHelp</h2>
 
           <div className="login-page-contain-input">
-            <Input type="text" placeholder="Email"></Input>
-            <Input type="password" placeholder="Password"></Input>
+            <Input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></Input>
+            <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></Input>
           </div>
 
           <div className="login-page-contain-btn">
-            <button onClick={handleClick} className="login-signup-button">Sign In</button>
+            <button onClick={handleSubmit} className="login-signup-button">Sign In</button>
           </div>
 
           <h6 className="login-signup-h6">Or Signin With</h6>
