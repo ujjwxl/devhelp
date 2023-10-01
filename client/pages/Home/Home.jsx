@@ -6,6 +6,7 @@ export default function Home(){
         <>
             <h1>DevHelp</h1>
             <p>The perfect place for developers to list their abandoned projects</p>
+            
         </>
         
     )

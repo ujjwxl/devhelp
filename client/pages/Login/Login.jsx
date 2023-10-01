@@ -4,11 +4,14 @@ import { FaGithub} from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./Login.css";
 import Input from "../../components/Login/Input";
-import Button from "../../components/Login/Button";
 import Icon from "../../components/Login/Icon";
 
 export default function Login() {
   const ButtonBackground = "linear-gradient(45deg, #0C1015, #0C1015)";
+  const navigate=useNavigate();
+  const handleClick = async()=>{
+    navigate("/");
+  }
   
   return (
     <>
@@ -19,7 +22,7 @@ export default function Login() {
             <Input type="password" placeholder="Password"></Input>
           </div>
           <div className="contain-btn">
-            <button>Sign In</button>
+            <button onClick={handleClick}>Sign In</button>
           </div>
           <h6>Or Signin With</h6>
           <hr></hr>

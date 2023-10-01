@@ -4,7 +4,6 @@ import { FaGithub} from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./Signup.css";
 import Input from "../../components/Login/Input";
-import Button from "../../components/Login/Button";
 import Icon from "../../components/Login/Icon";
 
 export default function Signup() {
@@ -20,7 +19,7 @@ export default function Signup() {
             <Input type="password" placeholder="Password"></Input>
           </div>
           <div className="container-btn">
-            <Button content="Sign Up"></Button>
+            <button>Sign Up</button>
           </div>
           <h6>Or SignUp With</h6>
           <hr></hr>
