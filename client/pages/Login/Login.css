@@ -38,6 +38,7 @@
 
 .login-page-contain h2{
     margin: 3rem 0 2rem 0;
+    padding-bottom: 30px;
 }
 
 .login-page-contain-input{
@@ -55,10 +56,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 .login-signup-button {
-    background: linear-gradient(to right, #14163c 0%, #03217b 79%);
+    background: linear-gradient(to right, #03217b 0%, #14163c 79%);
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     width: 65%;
@@ -67,7 +70,19 @@
     color: white;
     border-radius: 2rem;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
+
+.login-signup-button:hover {
+    letter-spacing: 0.25rem;
+    background: rgb(0, 0, 0);
+    transform: scale(1.02);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7); /* Neon glow effect */
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Neon text glow effect */
+}
+
 
 .login-signup-links {
     letter-spacing: 0.2rem;
@@ -76,10 +91,11 @@
 
 }
 
-.login-signup-h6 {
+.login-h6 {
     letter-spacing: 0.3rem;
     margin-top: 8px;
     margin-bottom: 10px;
+    padding-top: 45px;
 }
 
 .login-page-hr {
@@ -105,3 +121,12 @@
     font-weight: bolder;
     color: rgb(96, 107, 230);
 } */
+
+.login-page-contain form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+}

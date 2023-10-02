@@ -54,6 +54,12 @@ body {
     justify-content: center;
 }
 
+.signup-h6 {
+    letter-spacing: 0.3rem;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
 /* h5, p{
     letter-spacing: 0.2rem;
     margin-top: 15px;
@@ -84,4 +90,5 @@ body {
     letter-spacing: 0.1rem;
     font-weight: bolder;
     color: rgb(96, 107, 230);
+    text-decoration: none;
 }

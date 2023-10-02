@@ -50,7 +50,7 @@ export default function Signup() {
       <div className="signup-page-container">
 
         <h2>DevHelp</h2>
-        
+      
         <div className="signup-page-container-input">
           <Input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstName(e.target.value)}></Input>
           <Input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setlastName(e.target.value)}></Input>
@@ -58,13 +58,14 @@ export default function Signup() {
           <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></Input>
           <Input type="password" placeholder="Confirm Password" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)}></Input>
         </div>
+        
 
         <div className="signup-page-container-btn">
           <button onClick={handleSubmit} className="login-signup-button">Sign Up</button>
         </div>
-
         
-        <h6 className="login-signup-h6">Or SignUp With</h6>
+        
+        <h6 className="signup-h6">Or SignUp With</h6>
 
         <div className="signup-page-container-icon">
           <Icon color={ButtonBackground}>

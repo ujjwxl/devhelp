@@ -21,6 +21,7 @@ const StyledInput = styled.input`
   color: #3c354e;
   font-size: 1rem;
   font-weight: bold;
+  transition: transform 0.2s ease-in-out;
   &:focus {
     display: inline-block;
     box-shadow: 0 0 0 0.2rem #b9abe0;
@@ -31,5 +32,8 @@ const StyledInput = styled.input`
     color: #b9abe099;
     font-weight: 100;
     font-size: 1rem;
+  }
+  &:hover {
+    transform: scale(1.02);
   }
 `;

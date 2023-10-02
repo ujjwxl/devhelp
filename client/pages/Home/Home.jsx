@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./Home.css";
 import Spline from '@splinetool/react-spline';
 import Loading from "../../components/Login/Loading";
 
 export default function Home() {
+    const navigate=useNavigate();
 
     const [loading, setLoading] = useState(true);
 
@@ -13,6 +14,11 @@ export default function Home() {
             setLoading(false);
         }, 3000);
     }, []);
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+        navigate('/login');
+    }
 
     return (
         <div className="App">
@@ -40,7 +46,7 @@ export default function Home() {
                                 The perfect place for developers to list their abandoned projects. <br></br>
                                 Join the largest community of developers and see your ideas come to life.
                             </p>
-                            <button className="home-about-section-button">Get Started</button>
+                            <button className="home-about-section-button" onClick={handleClick}>Get Started</button>
                         </div>
 
                     </div>
