@@ -26,7 +26,7 @@ export default function Home() {
                 <Loading />
             ) : (
                 // Render your main content when loading is complete
-                <div className="home-page">
+                <div className="home-page page-with-background">
                     <div className="home-page-overlay">
 
                         <div className='navbar-component'>

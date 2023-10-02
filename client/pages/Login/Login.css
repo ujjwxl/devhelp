@@ -6,7 +6,8 @@
     font-family: "Montserrat", sans-serif;
     font-family: "Raleway", sans-serif;
     font-family: "Ubuntu", sans-serif;
-    background-image: url("bg_login.png");
+    /* background-image: url("bg_login.png"); */
+    background-image: url("background-image.png");
     margin: 0;
     padding: 0;
     box-sizing: border-box;

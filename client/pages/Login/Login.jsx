@@ -1,11 +1,11 @@
-  import React, { useState } from "react";
-  import { Link, useNavigate} from "react-router-dom";
-  import axios from "axios";
-  import { FaGithub} from "react-icons/fa";
-  import { FcGoogle } from "react-icons/fc";
-  import "./Login.css";
-  import Input from "../../components/Login/Input";
-  import Icon from "../../components/Login/Icon";
+import React, { useState } from "react";
+import { Link, useNavigate} from "react-router-dom";
+import axios from "axios";
+import { FaGithub} from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import "./Login.css";
+import Input from "../../components/Login/Input";
+import Icon from "../../components/Login/Icon";
 
   export default function Login() {
     const ButtonBackground = "linear-gradient(45deg, #0C1015, #0C1015)";
@@ -94,7 +94,7 @@
               </span>
             </h5>
 
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
