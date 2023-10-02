@@ -75,6 +75,16 @@ body {
     color: white;
     border-radius: 2rem;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+.home-about-section-button:hover {
+    letter-spacing: 0.25rem;
+    background: rgb(28, 28, 28);
+    transform: scale(1.02);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7); /* Neon glow effect */
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Neon text glow effect */
 }
 
 .home-page-footer p {
