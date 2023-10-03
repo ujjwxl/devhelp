@@ -3,3 +3,11 @@
 .main-home {
     display: flex;
 }
+
+.home-side-bar {
+    width: 20%;
+}
+
+.home-work-space {
+    width: 80%;
+}

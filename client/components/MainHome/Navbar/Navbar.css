@@ -1,11 +1,14 @@
 .nav {
-    background-color: #d9d9d9c9;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    background-color: #d9d9d9;
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3); */
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 15px 0;
+    position: fixed;
+    height: 5%;
+    /* reduced navbar height to make for fixed navbar */
   }
   
   .nav h1 {

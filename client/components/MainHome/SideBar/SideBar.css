@@ -1,12 +1,16 @@
 .sidebar {
-    background-color: #f6f8faf7;
-    width: 40vh;
+    background-color: #f6f8fa;
+    /* width: 40vh; */
+    width: 20%;
     height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
     transition: color 0.3s ease-in-out, transform 0.2s ease-in-out; 
+    /* margin-top: 20%; */
+    position: fixed;
+    margin-top: 66px;
   }
   
   .sidebar-button {
@@ -14,7 +18,7 @@
     margin: 0px;
     padding: 10px 20px;
     border: none;
-    background-color: #f6f8faf7;
+    background-color: #f6f8fa;
     color: #000000;
     font-family: "McLaren", cursive;
     font-size: 18px;
@@ -25,7 +29,7 @@
   }
   
   .sidebar-button:hover {
-    background-color: #8e8c8c72;
+    background-color: #8e8c8c;
     transform: scale(1.1);
   }
   

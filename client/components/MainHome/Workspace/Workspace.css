@@ -1,9 +1,11 @@
 .workspace{
-    height: 100%;
-    /* width: 100%; */
+    background-color: rgb(193, 10, 10);
+    /* height: 100px; */
+    /* width: 100px; */
     background-color: white;
+    /* height: 93vh; */
+    height: 100%;
+    /* margin-top: 5%; */
+    margin-top: 66px;
 }
 
-.workspace h1 {
-    color: white;
-}
