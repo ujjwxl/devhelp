@@ -14,7 +14,7 @@ const StyledIcon = styled.div`
   border-radius: 4rem;
   color: white;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out; 
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.1); /* Increase size on hover */
@@ -23,7 +23,7 @@ const StyledIcon = styled.div`
   svg {
     width: 1.5rem;
     height: 1.5rem;
-    transition: transform 0.2s ease-in-out; 
+    transition: transform 0.2s ease-in-out;
   }
 
   &:hover svg {

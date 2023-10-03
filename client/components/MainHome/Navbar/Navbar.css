@@ -1,0 +1,92 @@
+.nav {
+    background-color: #d9d9d9c9;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+  }
+  
+  .nav h1 {
+    color: #000000;
+    font-family: "McLaren", cursive;
+    font-weight: 200;
+    margin: 0 0 0 30px;
+  }
+  .nav a{
+    color: #000000;
+    font-family: "McLaren", cursive;
+    font-weight: 200;
+    margin: 0 0 0 30px;
+    text-decoration: none;
+    font-size: 35px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+    margin-left: 0px; 
+  }
+  
+  .search-bar input {
+    padding: 8px 30px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: -70px;
+    outline: none;
+  }
+  
+  .search-bar button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 10px;
+    cursor: pointer;
+    outline: none;
+    margin-right: 20px; 
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+  }
+  
+  .search-bar button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); 
+
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-notification {
+    margin-left: 20px; 
+    font-size: 25px; 
+    color: #dfd515; 
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+  }
+  
+  .icon-notification:hover {
+    color: #007bff; 
+    transform: scale(1.1); 
+
+  }
+
+  .icon-profile {
+    margin-left: 20px; 
+    font-size: 25px; 
+    color: #080808; 
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  .icon-profile:hover {
+    color: #007bff; 
+    transform: scale(1.1); 
+  }
+  

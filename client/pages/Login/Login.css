@@ -77,7 +77,7 @@
 }
 
 .login-signup-button:hover {
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.4rem;
     background: rgb(0, 0, 0);
     transform: scale(1.02);
     box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7); /* Neon glow effect */
