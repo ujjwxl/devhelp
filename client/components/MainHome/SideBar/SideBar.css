@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #f6f8fa;
+    background-color: #cfd0d1;
     /* width: 40vh; */
     width: 20%;
     height: 90vh;
@@ -18,7 +18,7 @@
     margin: 0px;
     padding: 10px 20px;
     border: none;
-    background-color: #f6f8fa;
+    background-color: #cfd0d1;
     color: #000000;
     font-family: "McLaren", cursive;
     font-size: 18px;
