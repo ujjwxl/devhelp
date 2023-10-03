@@ -1,6 +1,9 @@
 .workspace{
-    background-color: rgb(193, 10, 10);
-    height: 100px;
-    width: 100px;
-    
+    height: 100%;
+    /* width: 100%; */
+    background-color: white;
+}
+
+.workspace h1 {
+    color: white;
 }

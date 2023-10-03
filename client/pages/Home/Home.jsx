@@ -12,7 +12,7 @@ export default function Home() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 2000);
     }, []);
 
     const handleClick = async (e) => {
