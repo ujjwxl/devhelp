@@ -37,3 +37,16 @@ export const addProject = async (req, res) => {
     console.error(error);
   }
 };
+
+export const getAllProjects = async (req, res) => {
+  
+  projectModel
+    .find()
+    .then((projects) => {
+      res.status(200).json(projects.reverse());
+    })
+    .catch((error) => {
+      console.error("Error fetching projects:", error);
+      res.status(500).json({ error: "Failed to fetch projects" });
+    });
+};

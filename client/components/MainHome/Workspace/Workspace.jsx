@@ -9,9 +9,9 @@ export default function Workspace() {
       <p className='ws-p'>Featured Projects</p>
       <div className='ws-card'>
         <Card></Card>
+        {/* <Card></Card>
         <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        <Card></Card> */}
       </div>
     </div>
   )
