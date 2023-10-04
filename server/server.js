@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import multer from 'multer'
 import cors from 'cors'
 import AuthRoute from './routes/AuthRoute.js'
+import ProjectRoute from './routes/ProjectRoute.js'
 
 dotenv.config();
 
@@ -26,3 +27,4 @@ app.listen(process.env.PORT,()=>{
 })
 
 app.use('/auth',AuthRoute)
+app.use('/project', ProjectRoute)
