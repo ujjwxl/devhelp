@@ -1,26 +1,29 @@
-  import React from 'react';
-  import './Navbar.css';
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-  import { faSearch, faBell, faUser } from '@fortawesome/free-solid-svg-icons'; 
+import React from "react";
+import "./Navbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 
-  export default function Navbar() {
-    return (
-      <div className='nav'>
-        <a href='/home'>DevHelp</a>
-        <div className="search-bar">
+export default function Navbar() {
+  return (
+    <div className="nav">
+      <a href="/home">DevHelp</a>
+      <div className="nav-r">
+        <div className="search">
           <input type="text" placeholder="Search..." />
-          <button>
+          <a href="/">
             <FontAwesomeIcon icon={faSearch} />
-          </button>
-          <div className="icons">
-            <div className="icon-notification">
-              <FontAwesomeIcon icon={faBell} />
-            </div>
-            <div className="icon-profile">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
+          </a>
+        </div>
+
+        <div className="icons">
+          <div className="icon-notification">
+            <FontAwesomeIcon icon={faBell} />
+          </div>
+          <div className="icon-profile">
+            <FontAwesomeIcon icon={faUser} />
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}

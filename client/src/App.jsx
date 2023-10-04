@@ -7,7 +7,6 @@ import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import Signup from "../pages/Signup/Signup"
 import MainHome from "../pages/MainHome/MainHome";
-import Workspace from "../components/MainHome/Workspace/Workspace";
 import AddProject from "../pages/AddProject/AddProject";
 
 function App() {
