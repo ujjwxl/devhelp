@@ -39,7 +39,7 @@ import Icon from "../../components/Login/Icon";
                       sessionStorage.setItem('firstname', firstname);
                       sessionStorage.setItem('lastname', lastName);
                       sessionStorage.setItem('profile_picture', profilePicture);
-                      navigate('/');
+                      navigate('/home');
                   }
               })
               .catch(e => {

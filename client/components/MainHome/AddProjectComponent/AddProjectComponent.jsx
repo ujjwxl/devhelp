@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './AddProjectComponent.css'
 import axios from 'axios'
 
 const AddProjectComponent = () => {
@@ -7,6 +8,7 @@ const AddProjectComponent = () => {
   const [projectDescription, setProjectDescription] = useState('');
   const [projectGithub, setProjectGithub] = useState('');
   const [projectPercent, setProjectPercent] = useState('');
+  const [projectNotes, setProjectNotes] = useState('');
   const [technologyOne, setTechnologyOne] = useState('');
   const [technologyTwo, setTechnologyTwo] = useState('');
   const [technologyThree, setTechnologyThree] = useState('');
@@ -25,6 +27,7 @@ const AddProjectComponent = () => {
         projectDescription,
         projectGithub,
         projectPercent,
+        projectNotes,
         technologyOne,
         technologyTwo,
         technologyThree,
@@ -45,15 +48,28 @@ const AddProjectComponent = () => {
 
   return (
     <div className='workspace'>
+      
+      <h2 className='add-project-heading'>Add your project</h2>
+
       <form action="POST" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Add a project name" className="add-project" onChange={(e) => setProjectName(e.target.value)} /> <br />
-        <input type="text" placeholder="Add project description" className="add-project" onChange={(e) => setProjectDescription(e.target.value)} /> <br />
-        <input type="text" placeholder="Add github link" className="add-project" onChange={(e) => setProjectGithub(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>Give your project a name</h3>
+        <input type="text" placeholder="Include name in this format : my-project" className="add-project" onChange={(e) => setProjectName(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>Add a little description about your project</h3>
+        <textarea cols={50} rows={8} type="text" placeholder="Keep it short and catchy" className="add-project-description" onChange={(e) => setProjectDescription(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>Add GitHub repo link</h3>
+        <input type="text" placeholder="Add GithHub link : github.com/user/repo" className="add-project" onChange={(e) => setProjectGithub(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>How much of the project has already been completed?</h3>
         <input type="text" placeholder="Add project completion percent" className="add-project" onChange={(e) => setProjectPercent(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>Give detailed description about your project, like challenges <br/> or features to be added</h3>
+        <textarea cols={50} rows={20} type="text" placeholder="Add project notes like challenges, completed, etc" className="add-project-notes" onChange={(e) => setProjectNotes(e.target.value)} /> <br />
+        <h3 className='add-project-input-details'>Include three major tech stacks that you have used</h3>
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyOne(e.target.value)} /> <br />
+
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyTwo(e.target.value)} /> <br />
+
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyThree(e.target.value)} /> <br />
-        <button type='submit'>Add project</button>
+
+        <button type='submit' className='add-project-button'>Add project</button>
       </form> 
     </div>
   )

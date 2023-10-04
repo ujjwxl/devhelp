@@ -1,0 +1,48 @@
+
+.add-project-heading {
+    text-align: center;
+}
+
+.add-project {
+    width: 50%;
+    height: 40px;
+    font-size: 1.1rem;
+    background-color: gainsboro;
+    margin-left: 25%;
+    border-radius: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.add-project-description {
+    background-color: gainsboro;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    /* margin-bottom: 10px; */
+    /* height: 700%; */
+}
+
+.add-project-notes {
+    background-color: gainsboro;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.add-project-button {
+    width: 30%;
+    height: 40px;
+    background-color: burlywood;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 35%;
+    margin-bottom: 20px;
+}
+
+.add-project-input-details {
+    margin-left: 25%;
+}
