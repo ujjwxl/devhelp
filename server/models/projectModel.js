@@ -37,9 +37,15 @@ const abandonedProjectSchema = new mongoose.Schema({
   projectNotes: {
     type: String,
   },
-  technologiesUsed: {
-    type: [String],
+  technologiesUsedOne: {
+    type: String,
   },
+  technologiesUsedTwo: {
+    type: String,
+  },
+  technologiesUsedThree: {
+    type: String,
+  }
 });
 
 const projectModel = mongoose.model('projects', abandonedProjectSchema);

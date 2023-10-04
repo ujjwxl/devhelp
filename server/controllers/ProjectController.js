@@ -6,6 +6,13 @@ export const addProject = async (req, res) => {
     projectDescription,
     projectGithub,
     projectPercent,
+    technologyOne,
+    technologyTwo,
+    technologyThree,
+    firstname,
+    lastname,
+    username,
+    profile_picture
   } = req.body;
 
   try {
@@ -14,6 +21,13 @@ export const addProject = async (req, res) => {
       projectDescription,
       projectGithubLink: projectGithub,
       completionPercent: projectPercent,
+      technologiesUsedOne: technologyOne,
+      technologiesUsedTwo: technologyTwo,
+      technologiesUsedThree: technologyThree,
+      developerFirstName: firstname,
+      developerLastName: lastname,
+      developerProfilePicture: profile_picture,
+      developerUserId: username
     });
 
     await newProject.save();

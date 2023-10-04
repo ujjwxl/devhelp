@@ -11,6 +11,7 @@ export default function Signup() {
 
   const [firstname, setFirstName] = useState('');
   const [lastname, setlastName] = useState('');
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
@@ -23,7 +24,7 @@ export default function Signup() {
     else {
         try {
             await axios.post('http://localhost:5000/auth/register', {
-                firstname, lastname, email, password
+                firstname, lastname,username, email, password
             })
                 .then(res => {
                     if (res.status == 200) {
@@ -54,6 +55,7 @@ export default function Signup() {
         <div className="signup-page-container-input">
           <Input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstName(e.target.value)}></Input>
           <Input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setlastName(e.target.value)}></Input>
+          <Input type="text" placeholder="Username" value={username} onChange={(e) => setUserName(e.target.value)}></Input>
           <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></Input>
           <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></Input>
           <Input type="password" placeholder="Confirm Password" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)}></Input>

@@ -28,13 +28,17 @@ import Icon from "../../components/Login/Icon";
                   if (res.status == 200) {
                       console.log('Login succesful')
                       const token = res.data.token;
-                      const userName = res.data.name;
+                      const firstname = res.data.name;
                       const lastName = res.data.lastname;
+                      const userName = res.data.username;
                       const userId = res.data.userId;
+                      const profilePicture = res.data.profile_picture;
                       sessionStorage.setItem('token', token);
                       sessionStorage.setItem('id', userId);
-                      sessionStorage.setItem('name', userName);
+                      sessionStorage.setItem('username', userName);
+                      sessionStorage.setItem('firstname', firstname);
                       sessionStorage.setItem('lastname', lastName);
+                      sessionStorage.setItem('profile_picture', profilePicture);
                       navigate('/');
                   }
               })

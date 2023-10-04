@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
+  profile_picture : {
+    type: String,
+    default: 'default-pfp.png',
+  },
   email: {
     type: String,
     required: true,

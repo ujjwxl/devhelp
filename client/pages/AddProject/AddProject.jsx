@@ -6,13 +6,6 @@ import AddProjectComponent from '../../components/MainHome/AddProjectComponent/A
 
 const AddProject = () => {
 
-    const [projectName, setProjectName] = useState('');
-    const [projectDescription, setProjectDescription] = useState('');
-    const [projectGithub, setProjectGithub] = useState('');
-    const [projectPercent, setProjectPercent] = useState('');
-
-    
-
     return (
         <div>
             <Navbar/>

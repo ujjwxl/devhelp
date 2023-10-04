@@ -4,13 +4,14 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, username, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = new userModel({
     firstname,
     lastname,
+    username,
     email,
     password: hashedPassword,
   });
@@ -51,7 +52,9 @@ export const loginUser = async (req, res) => {
           email: user.email,
           name: user.firstname,
           lastname: user.lastname,
+          username: user.username,
           userId: user._id,
+          profile_picture: user.profile_picture
         });
       }
     }
