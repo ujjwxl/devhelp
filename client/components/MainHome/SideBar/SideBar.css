@@ -14,7 +14,7 @@
   }
   
   .sidebar-button {
-    width:80%;
+    width:70%;
     margin: 0px;
     padding: 10px 20px;
     border: none;
@@ -26,6 +26,8 @@
     border-radius: 20px;
     cursor: pointer;
     outline: none;
+    text-decoration: none;
+    text-align: center;
   }
   
   .sidebar-button:hover {

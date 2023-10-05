@@ -1,0 +1,26 @@
+.workspace{
+    background-color: white;
+    height: auto;
+    /* height: 100%; */
+    /* margin-top: 5%; */
+    margin-top: 66px;
+}
+
+.ws-h1{    
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 15px;
+}
+
+.ws-p{
+    padding-left: 20px;
+    font-size: 1.5em;
+    font-family: "Raleway", sans-serif;
+    margin-top: 15px;
+}
+
+.ws-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
