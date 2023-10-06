@@ -9,6 +9,7 @@ import Signup from "../pages/Signup/Signup"
 import MainHome from "../pages/MainHome/MainHome";
 import AddProject from "../pages/AddProject/AddProject";
 import Profile from "../pages/profile/profile"
+import EditProfile from "../pages/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<MainHome />}></Route>
           <Route path="/add" element={<AddProject />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/update" element={<EditProfile />}></Route>
         </Routes>
       </Router>
     </>

@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import "./ProfileCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLink, faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function ProfileCard() {
+
+  const [userDetails, setUserDetails] = useState([]);
+
+  const userId = sessionStorage.getItem('id');
+
+  useEffect(() => {
+    axios.post('http://localhost:5000/auth/find', { userId })
+      .then((response) => {
+        setUserDetails(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching user details:', error);
+      });
+  }, []);
+
   return (
     <div className="profile-card">
       <img
@@ -14,9 +31,9 @@ export default function ProfileCard() {
       <div className="profile-card-link-btn">
       <div className="profile-card-footer">
         <div className="profile-techstack">
-          <p className="profile-card-techstack">React</p>
-          <p className="profile-card-techstack">HTML</p>
-          <p className="profile-card-techstack">CSS</p>
+          <p className="profile-card-techstack">{userDetails.technologyOne}</p>
+          <p className="profile-card-techstack">{userDetails.technologyTwo}</p>
+          <p className="profile-card-techstack">{userDetails.technologyThree}</p>
         </div>
 
         <div className="profile-links">
@@ -24,26 +41,26 @@ export default function ProfileCard() {
             <FontAwesomeIcon icon={faGithub} className="profile-icon" />
           </span>
           <p>/</p>
-          <a href="#">billo</a>
+          <a href="#">{userDetails.github}</a>
           <span className="profile-footer-icons">
             <FontAwesomeIcon icon={faLink} className="profile-icon" />
           </span>
-          <a href="#">billiyan.com</a>
+          <a href="#">{userDetails.website}</a>
           <span className="profile-footer-icons">
             <FontAwesomeIcon icon={faCommentDots} className="profile-icon" />
           </span>
         </div>
       </div>
       <div className="profile-card-btn">
-        <button className="profile-btn">View More</button>
-        <button className="profile-btn">Request to continue</button>
+        <button className="profile-btn">Follow</button>
+        <button className="profile-btn"><Link to={'/update'}>Update Profile</Link></button>
       </div>
       </div>
       <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg" className="profile-photo"></img>
       <div className="user-details">
-          <p className="user-details-p-name">Billo Bagge</p>
-          <p className="user-details-p">@kikarengi</p>
-          <p className="user-details-p">I am a senior software developer at Microsoft and I love Devhelp for the power it provides.</p>
+          <p className="user-details-p-name">{userDetails.firstname + " " + userDetails.lastname}</p>
+          <p className="user-details-p">{'@' + userDetails.username}</p>
+          <p className="user-details-p">{userDetails.bio}</p>
           <div className="user-reach">
           <p className="user-details-p-reach">200 followers</p>
           <p className="user-details-p-reach">200 following</p>

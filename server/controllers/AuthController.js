@@ -63,3 +63,35 @@ export const loginUser = async (req, res) => {
     console.log(error);
   }
 };
+
+export const updateUserProfile = async (req, res) => {
+  const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId } = req.body;
+
+  userModel.findByIdAndUpdate(userId, { bio, github, website, technologyOne, technologyTwo, technologyThree })
+    .then(updatedUser => {
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      res.status(200).json(updatedUser);
+    })
+    .catch(error => {
+      console.error('Error in updating user profile:', error);
+      res.status(500).json({ message: 'Error updating profile' });
+    });
+};
+
+export const getUserDetails = async (req, res) => {
+
+  const { userId } = req.body;
+
+  userModel
+    .findOne({ _id:userId})
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((error) => {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ error: "Failed to fetch user" });
+    });
+};
