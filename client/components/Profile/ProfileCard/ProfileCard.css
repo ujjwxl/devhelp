@@ -1,5 +1,6 @@
 .profile-card {
-  background-color: #cfd0d1;
+  /* background-color: #cfd0d1; */
+  background-color: #28293D;
   width: 90%;
   height: 25rem;
   margin: 10px 0px;
@@ -35,16 +36,18 @@
   align-items: center;
 }
 .profile-icon {
-  color: #000;
+  /* color: #000; */
   font-size: 20px;
   cursor: pointer;
   margin: 0%;
+  color: white;
 }
 .profile-links a {
   text-decoration: none;
   color: #000;
   font-weight: bold;
   margin-right: 25px;
+  color: white;
 }
 .profile-card-btn {
   /* display: flex; */
@@ -92,6 +95,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 4%;
+  color: white;
 }
 .user-details-p{
   margin: 0px;

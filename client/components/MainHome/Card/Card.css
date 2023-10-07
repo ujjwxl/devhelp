@@ -1,9 +1,11 @@
 .card {
-  background-color: #cfd0d1;
+  /* background-color: #cfd0d1; */
+  background-color: #28293D;
   padding: 10px;
   width: 60em;
   margin: 10px 0px;
   border-radius: 5px;
+  color: white;
 }
 
 /* CARD HEADER */
@@ -11,6 +13,7 @@
 .card-header {
   display: flex;
   justify-content: space-between;
+
 }
 
 .header-l {
@@ -31,6 +34,7 @@
   color: #000;
   margin-right: 5px;
   font-weight: bold;
+  color: white;
 }
 
 .header-l-p {
