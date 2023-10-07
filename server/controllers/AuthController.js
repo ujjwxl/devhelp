@@ -64,10 +64,50 @@ export const loginUser = async (req, res) => {
   }
 };
 
+// export const updateUserProfile = async (req, res) => {
+//   const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId } = req.body;
+
+//   userModel.findByIdAndUpdate(userId, { bio, github, website, technologyOne, technologyTwo, technologyThree })
+//     .then(updatedUser => {
+//       if (!updatedUser) {
+//         return res.status(404).json({ message: 'User not found' });
+//       }
+
+//       res.status(200).json(updatedUser);
+//     })
+//     .catch(error => {
+//       console.error('Error in updating user profile:', error);
+//       res.status(500).json({ message: 'Error updating profile' });
+//     });
+// };
+
 export const updateUserProfile = async (req, res) => {
   const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId } = req.body;
 
-  userModel.findByIdAndUpdate(userId, { bio, github, website, technologyOne, technologyTwo, technologyThree })
+  // Create an empty update object
+  const updateData = {};
+
+  // Only include fields in the update if they have a value
+  if (bio) {
+    updateData.bio = bio;
+  }
+  if (github) {
+    updateData.github = github;
+  }
+  if (website) {
+    updateData.website = website;
+  }
+  if (technologyOne) {
+    updateData.technologyOne = technologyOne;
+  }
+  if (technologyTwo) {
+    updateData.technologyTwo = technologyTwo;
+  }
+  if (technologyThree) {
+    updateData.technologyThree = technologyThree;
+  }
+
+  userModel.findByIdAndUpdate(userId, updateData, { new: true })
     .then(updatedUser => {
       if (!updatedUser) {
         return res.status(404).json({ message: 'User not found' });
