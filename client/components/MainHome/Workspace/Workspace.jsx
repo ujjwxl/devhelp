@@ -8,7 +8,7 @@ export default function Workspace() {
       <h1 className='ws-h1'>Welcome back, Varun</h1>
       <p className='ws-p'>Featured Projects</p>
       <div className='ws-card'>
-        <Card></Card>
+        <Card userProfilePage={false} />
       </div>
     </div>
   )

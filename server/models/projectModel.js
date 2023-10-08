@@ -22,9 +22,14 @@ const abandonedProjectSchema = new mongoose.Schema({
   developerProfilePicture: {
     type: String,
   },
-  developerUserId: {
+  developerUserName: {
     type: String,
     // required: true,
+  },
+  developerUserId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
   projectGithubLink: {
     type: String,

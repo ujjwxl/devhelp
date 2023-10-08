@@ -10,7 +10,7 @@ export default function ProfileMain() {
       <p className='ws-p'>Featured Projects</p> */}
       <div className='ws-card'>
         <ProfileCard></ProfileCard>
-        <Card></Card>
+        <Card userProfilePage={true} />
       </div>
     </div>
   )

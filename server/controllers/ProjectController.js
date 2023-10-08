@@ -13,7 +13,8 @@ export const addProject = async (req, res) => {
     firstname,
     lastname,
     username,
-    profile_picture
+    profile_picture,
+    userId
   } = req.body;
 
   try {
@@ -29,7 +30,8 @@ export const addProject = async (req, res) => {
       developerFirstName: firstname,
       developerLastName: lastname,
       developerProfilePicture: profile_picture,
-      developerUserId: username
+      developerUserName: username,
+      developerUserId: userId,
     });
 
     await newProject.save();
@@ -51,4 +53,21 @@ export const getAllProjects = async (req, res) => {
       console.error("Error fetching projects:", error);
       res.status(500).json({ error: "Failed to fetch projects" });
     });
+};
+
+export const getProjectsByUser = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const userProjects = await projectModel.find({ developerUserId: userId });
+
+    if (!userProjects) {
+      return res.status(404).json({ message: 'No projects found for this user' });
+    }
+
+    res.status(200).json(userProjects);
+  } catch (error) {
+    console.error("Error fetching user projects:", error);
+    res.status(500).json({ error: "Failed to fetch user projects" });
+  }
 };

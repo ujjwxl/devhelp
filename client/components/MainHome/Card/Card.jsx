@@ -5,19 +5,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function Card() {
+export default function Card({ userProfilePage }) {
 
   const [projects, setProjects] = useState([]);
 
+  const userId = sessionStorage.getItem('id');
+
   useEffect(() => {
-    axios.get('http://localhost:5000/project/all')
-      .then((response) => {
-        setProjects(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching projects:', error);
-      });
-  }, []);
+    if (userProfilePage) {
+      // Fetch only user's projects
+      axios.get(`http://localhost:5000/project/user/${userId}`) // Replace userId with the actual user ID
+        .then((response) => {
+          setProjects(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user projects:', error);
+        });
+    } else {
+      // Fetch all projects
+      axios.get('http://localhost:5000/project/all')
+        .then((response) => {
+          setProjects(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching projects:', error);
+        });
+    }
+  }, [userProfilePage]);
+  
   // client\src\assets\default-pfp.png
   return (
     <div>
@@ -32,7 +47,7 @@ export default function Card() {
                 alt="profile"
               />
               <a href="" className="header-l-a">
-                {project.developerUserId}
+                {project.developerUserName}
               </a>
               <p className="header-l-p">/</p>
               <a href="" className="header-l-a">

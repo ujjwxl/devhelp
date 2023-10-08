@@ -60,17 +60,12 @@ import Icon from "../../components/Login/Icon";
 
             
             <form onSubmit={handleSubmit}>    
-            {/* <div className="login-page-contain-input"> */}
-              <Input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} ></Input>
+              <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} ></Input>
               <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></Input>
-              {/* </div> */}
             
-              
-            
-
-            <div className="login-page-contain-btn">
-              <button onClick={handleSubmit} className="login-signup-button">Sign In</button>
-            </div>
+              <div className="login-page-contain-btn">
+                <button onClick={handleSubmit} className="login-signup-button">Sign In</button>
+              </div>
             </form>
             
             <h6 className="login-h6">Or Signin With</h6>

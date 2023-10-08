@@ -17,6 +17,7 @@ const AddProjectComponent = () => {
   const lastname = sessionStorage.getItem('lastname');
   const username = sessionStorage.getItem('username');
   const profile_picture = sessionStorage.getItem('profile_picture');
+  const userId = sessionStorage.getItem('id');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +35,8 @@ const AddProjectComponent = () => {
         firstname,
         lastname,
         username,
-        profile_picture
+        profile_picture,
+        userId
       });
 
       console.log('Project added successfully:', response.data);

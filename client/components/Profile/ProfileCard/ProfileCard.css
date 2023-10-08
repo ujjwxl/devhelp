@@ -55,6 +55,10 @@
   margin-left: 35%;
   margin-right: 2%;
 }
+.profile-card-btn button a {
+  text-decoration: none;
+  color: #060606;
+}
 
 .profile-btn {
   background-color: #f6ff00;
