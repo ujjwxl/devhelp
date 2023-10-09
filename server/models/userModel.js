@@ -78,9 +78,13 @@ const userSchema = new mongoose.Schema({
   technologyThree: {
     type: String,
   },
-  notifications: {
-    type: Array
-  }
+  // notifications: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  // }
+  notifications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'notifications', // Reference to the Notification model
+  }],
 });
 
 const userModel = mongoose.model('users', userSchema);

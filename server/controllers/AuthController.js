@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import notificationModel from "../models/notificationModel.js";
 
 export const registerUser = async (req, res) => {
   const { firstname, lastname, username, email, password } = req.body;
@@ -136,9 +137,47 @@ export const getUserDetails = async (req, res) => {
     });
 };
 
+// export const createRequest = async (req, res) => {
+//   const { requesterUserName, projectName, developerUserId } = req.body;
+//   console.log(req.body)
+
+//   try {
+//     const user = await userModel.findOne({ _id: developerUserId });
+
+//     if (!user) {
+//       return res.status(404).json({ message: 'No user found for this id' });
+//     }
+
+//     const message = `${requesterUserName} has requested to continue ${projectName}`;
+
+//     user.notifications.push(message);
+
+//     // Save the updated user document
+//     await user.save();
+//     res.status(200).json({ message: 'Request sent successfully.' });
+    
+//   } catch (error) {
+//     console.error("Error fetching user projects:", error);
+//     res.status(500).json({ error: "Failed to fetch user projects" });
+//   }
+// };
+
+// export const getNotifications = async (req, res) => {
+//   const { userId } = req.params;
+
+//   try {
+   
+//     res.status(200).json({ message: 'Request sent successfully.' });
+    
+//   } catch (error) {
+//     console.error("Error fetching user notifications:", error);
+//     res.status(500).json({ error: "Failed to fetch user notifications" });
+//   }
+// };
+
 export const createRequest = async (req, res) => {
-  const { requesterUserName, projectName, developerUserId } = req.body;
-  console.log(req.body)
+  const { requesterUserName, projectName, developerUserId, projectId, requesterUserId } = req.body;
+  // console.log(req.body)
 
   try {
     const user = await userModel.findOne({ _id: developerUserId });
@@ -147,9 +186,21 @@ export const createRequest = async (req, res) => {
       return res.status(404).json({ message: 'No user found for this id' });
     }
 
-    const message = `${requesterUserName} has requested to continue ${projectName}`;
+    const message = "has requested to continue";
 
-    user.notifications.push(message);
+    const notification=new notificationModel({
+      requesterId: requesterUserId,
+      requesterUserName,
+      receiverId: developerUserId,
+      projectId,
+      projectName,
+      message,
+      isRequest: true,
+    })
+
+    // Save the updated user document
+    await notification.save();
+    user.notifications.push(notification);
 
     // Save the updated user document
     await user.save();
@@ -165,9 +216,12 @@ export const createRequest = async (req, res) => {
 //   const { userId } = req.params;
 
 //   try {
-   
-//     res.status(200).json({ message: 'Request sent successfully.' });
-    
+//     const user = await userModel.findOne({ _id: userId }).select('notifications');
+
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found.' });
+//     }
+//     res.status(200).json(user.notifications);
 //   } catch (error) {
 //     console.error("Error fetching user notifications:", error);
 //     res.status(500).json({ error: "Failed to fetch user notifications" });
@@ -178,11 +232,14 @@ export const getNotifications = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const user = await userModel.findOne({ _id: userId }).select('notifications');
+    // Use the `populate` method to populate the 'notifications' field
+    const user = await userModel.findOne({ _id: userId }).populate('notifications');
 
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
+
+    // Now 'user.notifications' contains an array of notification documents with all fields populated
     res.status(200).json(user.notifications.reverse());
   } catch (error) {
     console.error("Error fetching user notifications:", error);

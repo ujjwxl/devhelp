@@ -48,7 +48,7 @@ export default function Card({ userProfilePage }) {
 
     try {
       await axios.post('http://localhost:5000/auth/request', {
-        requesterUserName, projectName, developerUserId
+        requesterUserName, projectName, developerUserId, projectId, requesterUserId
       })
         .then(res => {
           if (res.status == 200) {

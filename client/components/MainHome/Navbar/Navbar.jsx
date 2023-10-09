@@ -3,26 +3,27 @@ import "./Navbar.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
+import Notifications from "../../Notifications/Notifications";
 
 export default function Navbar() {
 
   const userId = sessionStorage.getItem('id');
 
-  const [userNotifications, setUserNotifications] = useState([]);
+  // const [userNotifications, setUserNotifications] = useState([]);
 
   const [notificationModal, setNotificationModal] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/auth/notifications/${userId}`) // Replace userId with the actual user ID
-      .then((response) => {
-        setUserNotifications(response.data);
-        console.log(userNotifications)
-      })
-      .catch((error) => {
-        console.error("Error fetching user notifications:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5000/auth/notifications/${userId}`) // Replace userId with the actual user ID
+  //     .then((response) => {
+  //       setUserNotifications(response.data);
+  //       console.log(userNotifications)
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user notifications:", error);
+  //     });
+  // }, []);
 
   const toggleNotificationModal = () => {
     setNotificationModal(!notificationModal)
@@ -58,9 +59,10 @@ export default function Navbar() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
               perferendis suscipit officia recusandae
             </p> */}
-            {userNotifications.map((notification, index) => (
+            {/* {userNotifications.map((notification, index) => (
               <p key={index}>{notification}</p>
-            ))}
+            ))} */}
+            <Notifications></Notifications>
             <button className="close-modal" onClick={toggleNotificationModal}>
               CLOSE
             </button>
