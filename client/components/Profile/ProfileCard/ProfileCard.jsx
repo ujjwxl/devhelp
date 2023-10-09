@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import { useParams } from "react-router-dom";
 import "./ProfileCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -7,10 +8,10 @@ import { faLink, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function ProfileCard() {
-
+  const { userId } = useParams();
   const [userDetails, setUserDetails] = useState([]);
 
-  const userId = sessionStorage.getItem('id');
+  // const userId = sessionStorage.getItem('id');
 
   useEffect(() => {
     axios.post('http://localhost:5000/auth/find', { userId })
@@ -20,7 +21,7 @@ export default function ProfileCard() {
       .catch((error) => {
         console.error('Error fetching user details:', error);
       });
-  }, []);
+  }, [userId]);
 
   return (
     <div className="profile-card">

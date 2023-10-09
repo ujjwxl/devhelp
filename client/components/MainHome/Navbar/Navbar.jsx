@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
+
+  const userId = sessionStorage.getItem('id');
+
   return (
     <div className="nav">
       <a href="/home">DevHelp</a>
@@ -20,7 +23,7 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faBell} />
           </div>
           <div className="icon-profile">
-            <FontAwesomeIcon icon={faUser} />
+           <a href={`/profile/${userId}`}><FontAwesomeIcon icon={faUser} /></a> 
           </div>
         </div>
       </div>

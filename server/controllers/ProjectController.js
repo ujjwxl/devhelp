@@ -71,3 +71,18 @@ export const getProjectsByUser = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user projects" });
   }
 };
+
+export const getProject = async (req, res) => {
+
+  const { projectId } = req.params;
+  
+  projectModel
+    .findOne({ _id: projectId })
+    .then((project) => {
+      res.status(200).json(project);
+    })
+    .catch((error) => {
+      console.error("Error fetching projects:", error);
+      res.status(500).json({ error: "Failed to fetch projects" });
+    });
+};

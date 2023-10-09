@@ -8,8 +8,9 @@ import Home from "../pages/Home/Home";
 import Signup from "../pages/Signup/Signup"
 import MainHome from "../pages/MainHome/MainHome";
 import AddProject from "../pages/AddProject/AddProject";
-import Profile from "../pages/profile/profile"
+import Profile from "../pages/Profile/Profile";
 import EditProfile from "../pages/EditProfile/EditProfile";
+import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/home" element={<MainHome />}></Route>
           <Route path="/add" element={<AddProject />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
           <Route path="/update" element={<EditProfile />}></Route>
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/project/:projectId" element={<ProjectDetails />} />
         </Routes>
       </Router>
     </>

@@ -119,7 +119,7 @@
   transform: scale(1.1);
 }
 
-.icon-profile {
+.icon-profile a{
   margin-left: 20px;
   font-size: 25px;
   color: #080808;

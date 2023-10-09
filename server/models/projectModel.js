@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-// const { Schema, model } = mongoose;
-
 const abandonedProjectSchema = new mongoose.Schema({
   projectName: {
     type: String,
@@ -51,7 +49,7 @@ const abandonedProjectSchema = new mongoose.Schema({
   technologiesUsedThree: {
     type: String,
   }
-});
+}, { timestamps: true }); // Add this line to enable timestamps
 
 const projectModel = mongoose.model('projects', abandonedProjectSchema);
 export default projectModel;
