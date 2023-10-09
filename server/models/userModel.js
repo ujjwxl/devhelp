@@ -78,6 +78,9 @@ const userSchema = new mongoose.Schema({
   technologyThree: {
     type: String,
   },
+  notifications: {
+    type: Array
+  }
 });
 
 const userModel = mongoose.model('users', userSchema);

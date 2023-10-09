@@ -38,8 +38,34 @@ export default function Card({ userProfilePage }) {
   function formatDate(dateString) {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
-  }  
+  }
 
+
+
+  async function handleContinueRequest(projectName, projectId, developerUserId) {
+    const requesterUserName = sessionStorage.getItem('username');
+    const requesterUserId = sessionStorage.getItem('id');
+
+    try {
+      await axios.post('http://localhost:5000/auth/request', {
+        requesterUserName, projectName, developerUserId
+      })
+        .then(res => {
+          if (res.status == 200) {
+            console.log('Request sent succesfully')
+            alert('Request sent')
+          }
+        })
+        .catch(e => {
+          alert("Request could not be sent!")
+          console.log(e)
+        })
+    }
+    catch (e) {
+      console.log(e);
+
+    }
+  }
   // client\src\assets\default-pfp.png
   return (
     <div>
@@ -87,7 +113,8 @@ export default function Card({ userProfilePage }) {
             </div>
             <div className="footer-r">
               <button className="footer-r-button"><Link to={`/project/${project._id}`}>View More</Link></button>
-              <button className="footer-r-button">Request to continue</button>
+              <button className="footer-r-button" onClick={() => handleContinueRequest(project.projectName, project._id, project.developerUserId)}>Request to continue</button>
+
             </div>
           </div>
         </div>
@@ -95,3 +122,4 @@ export default function Card({ userProfilePage }) {
     </div>
   );
 }
+

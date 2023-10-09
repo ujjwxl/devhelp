@@ -135,3 +135,57 @@ export const getUserDetails = async (req, res) => {
       res.status(500).json({ error: "Failed to fetch user" });
     });
 };
+
+export const createRequest = async (req, res) => {
+  const { requesterUserName, projectName, developerUserId } = req.body;
+  console.log(req.body)
+
+  try {
+    const user = await userModel.findOne({ _id: developerUserId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user found for this id' });
+    }
+
+    const message = `${requesterUserName} has requested to continue ${projectName}`;
+
+    user.notifications.push(message);
+
+    // Save the updated user document
+    await user.save();
+    res.status(200).json({ message: 'Request sent successfully.' });
+    
+  } catch (error) {
+    console.error("Error fetching user projects:", error);
+    res.status(500).json({ error: "Failed to fetch user projects" });
+  }
+};
+
+// export const getNotifications = async (req, res) => {
+//   const { userId } = req.params;
+
+//   try {
+   
+//     res.status(200).json({ message: 'Request sent successfully.' });
+    
+//   } catch (error) {
+//     console.error("Error fetching user notifications:", error);
+//     res.status(500).json({ error: "Failed to fetch user notifications" });
+//   }
+// };
+
+export const getNotifications = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await userModel.findOne({ _id: userId }).select('notifications');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    res.status(200).json(user.notifications.reverse());
+  } catch (error) {
+    console.error("Error fetching user notifications:", error);
+    res.status(500).json({ error: "Failed to fetch user notifications" });
+  }
+};
