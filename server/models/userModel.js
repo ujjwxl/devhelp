@@ -85,6 +85,14 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'notifications', // Reference to the Notification model
   }],
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users', // Reference to the User model
+  }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users', // Reference to the User model
+  }]
 });
 
 const userModel = mongoose.model('users', userSchema);

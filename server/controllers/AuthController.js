@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import notificationModel from "../models/notificationModel.js";
 
@@ -246,3 +247,33 @@ export const getNotifications = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user notifications" });
   }
 };
+
+
+export const followUser = async (req, res) => {
+  const { anotherUserId, loggedInUserId } = req.body;
+
+  try {
+    const currentUser = await userModel.findById(loggedInUserId);
+    const targetUser = await userModel.findById(anotherUserId);
+
+    if (!currentUser || !targetUser) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    if (currentUser.following.includes(anotherUserId)) {
+      return res.status(400).json({ message: 'You are already following this user.' });
+    }
+
+    currentUser.following.push(anotherUserId);
+    await currentUser.save();
+
+    targetUser.followers.push(loggedInUserId);
+    await targetUser.save();
+
+    return res.status(200).json({ message: 'You are now following this user.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'An error occurred while processing your request.' });
+  }
+};
+
