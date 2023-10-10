@@ -213,21 +213,7 @@ export const createRequest = async (req, res) => {
   }
 };
 
-// export const getNotifications = async (req, res) => {
-//   const { userId } = req.params;
 
-//   try {
-//     const user = await userModel.findOne({ _id: userId }).select('notifications');
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found.' });
-//     }
-//     res.status(200).json(user.notifications);
-//   } catch (error) {
-//     console.error("Error fetching user notifications:", error);
-//     res.status(500).json({ error: "Failed to fetch user notifications" });
-//   }
-// };
 
 export const getNotifications = async (req, res) => {
   const { userId } = req.params;
@@ -250,8 +236,8 @@ export const getNotifications = async (req, res) => {
 
 
 export const followUser = async (req, res) => {
-  const { anotherUserId, loggedInUserId } = req.body;
-
+  const { anotherUserId, loggedInUserId, loggedInUserName } = req.body;
+  console.log(loggedInUserName);
   try {
     const currentUser = await userModel.findById(loggedInUserId);
     const targetUser = await userModel.findById(anotherUserId);
@@ -268,6 +254,23 @@ export const followUser = async (req, res) => {
     await currentUser.save();
 
     targetUser.followers.push(loggedInUserId);
+    await targetUser.save();
+
+    const message = "started following you";
+
+    const notification=new notificationModel({
+      requesterId: loggedInUserId,
+      requesterUserName: loggedInUserName,
+      receiverId: anotherUserId,
+      message,
+      isRequest: false
+    })
+
+    // Save the updated user document
+    await notification.save();
+    targetUser.notifications.push(notification);
+
+    // Save the updated user document
     await targetUser.save();
 
     return res.status(200).json({ message: 'You are now following this user.' });

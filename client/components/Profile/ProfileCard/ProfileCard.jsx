@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProfileCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,56 +16,60 @@ export default function ProfileCard() {
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    axios.post('http://localhost:5000/auth/find', { userId })
+    axios
+      .post("http://localhost:5000/auth/find", { userId })
       .then((response) => {
         setUserDetails(response.data);
         setFollowerCount(response.data.followers.length);
         setFollowingCount(response.data.following.length);
-        if(response.data.followers.includes(loggedInUserId)){
+        if (response.data.followers.includes(loggedInUserId)) {
           setIsFollowing(true);
         }
       })
       .catch((error) => {
-        console.error('Error fetching user details:', error);
+        console.error("Error fetching user details:", error);
       });
   }, [userId]);
 
   async function followUser(anotherUserId) {
-    const loggedInUserId = sessionStorage.getItem('id');
+    const loggedInUserId = sessionStorage.getItem("id");
+    const loggedInUserName =sessionStorage.getItem('username')
     // console.log(anotherUserId)
 
     try {
-      await axios.post('http://localhost:5000/auth/follow', {
-        anotherUserId, loggedInUserId
-      })
-        .then(res => {
+      await axios
+        .post("http://localhost:5000/auth/follow", {
+          anotherUserId,
+          loggedInUserId,
+          loggedInUserName,
+        })
+        .then((res) => {
           if (res.status == 200) {
-            console.log('Followed succesfully')
+            console.log("Followed succesfully");
             // alert('Followed')
             setIsFollowing(true);
-            axios.post('http://localhost:5000/auth/find', { userId })
+            axios
+              .post("http://localhost:5000/auth/find", { userId })
               .then((response) => {
                 setUserDetails(response.data);
                 setFollowerCount(response.data.followers.length);
                 setFollowingCount(response.data.following.length);
               })
               .catch((error) => {
-                console.error('Error fetching user details:', error);
+                console.error("Error fetching user details:", error);
               });
           }
         })
-        .catch(e => {
-          alert("Could not follow user!")
-          console.log(e)
-        })
-    }
-    catch (e) {
+        .catch((e) => {
+          alert("Could not follow user!");
+          console.log(e);
+        });
+    } catch (e) {
       console.log(e);
-
     }
   }
 
-  const loggedInUserId = sessionStorage.getItem('id');
+  const loggedInUserId = sessionStorage.getItem("id");
   const isCurrentUser = loggedInUserId === userId;
 
   return (
@@ -77,9 +81,15 @@ export default function ProfileCard() {
       <div className="profile-card-link-btn">
         <div className="profile-card-footer">
           <div className="profile-techstack">
-            <p className="profile-card-techstack">{userDetails.technologyOne}</p>
-            <p className="profile-card-techstack">{userDetails.technologyTwo}</p>
-            <p className="profile-card-techstack">{userDetails.technologyThree}</p>
+            <p className="profile-card-techstack">
+              {userDetails.technologyOne}
+            </p>
+            <p className="profile-card-techstack">
+              {userDetails.technologyTwo}
+            </p>
+            <p className="profile-card-techstack">
+              {userDetails.technologyThree}
+            </p>
           </div>
 
           <div className="profile-links">
@@ -93,7 +103,14 @@ export default function ProfileCard() {
             </span>
             <a href="#">{userDetails.website}</a>
             <span className="profile-footer-icons">
-              <FontAwesomeIcon icon={faCommentDots} className="profile-icon" />
+              {!isCurrentUser ? (
+                <FontAwesomeIcon
+                  icon={faCommentDots}
+                  className="profile-icon"
+                />
+              ) : (
+                <div></div>
+              )}
             </span>
           </div>
         </div>
@@ -103,16 +120,28 @@ export default function ProfileCard() {
       </div> */}
         <div className="profile-card-btn">
           {!isCurrentUser ? (
-            <button className="profile-btn" onClick={() => followUser(userDetails._id)}>{isFollowing ? 'Following' : 'Follow'}</button>
+            <button
+              className="profile-btn"
+              onClick={() => followUser(userDetails._id,)}
+            >
+              {isFollowing ? "Following" : "Follow"}
+            </button>
           ) : (
-            <button className="profile-btn"><Link to={'/update'}>Edit Profile</Link></button>
+            <button className="profile-btn">
+              <Link to={"/update"}>Edit Profile</Link>
+            </button>
           )}
         </div>
       </div>
-      <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg" className="profile-photo"></img>
+      <img
+        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+        className="profile-photo"
+      ></img>
       <div className="user-details">
-        <p className="user-details-p-name">{userDetails.firstname + " " + userDetails.lastname}</p>
-        <p className="user-details-p">{'@' + userDetails.username}</p>
+        <p className="user-details-p-name">
+          {userDetails.firstname + " " + userDetails.lastname}
+        </p>
+        <p className="user-details-p">{"@" + userDetails.username}</p>
         <p className="user-details-p">{userDetails.bio}</p>
         <div className="user-reach">
           <p className="user-details-p-reach">{followerCount} followers</p>

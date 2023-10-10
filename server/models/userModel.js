@@ -92,6 +92,10 @@ const userSchema = new mongoose.Schema({
   following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users', // Reference to the User model
+  }],
+  workingOn: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'projects',
   }]
 });
 

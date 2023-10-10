@@ -1,4 +1,6 @@
 import projectModel from '../models/projectModel.js';
+import userModel from '../models/userModel.js';
+import notificationModel from '../models/notificationModel.js';
 
 export const addProject = async (req, res) => {
   const {
@@ -85,4 +87,79 @@ export const getProject = async (req, res) => {
       console.error("Error fetching projects:", error);
       res.status(500).json({ error: "Failed to fetch projects" });
     });
+};
+
+export const acceptRequest = async (req, res) => {
+  const { senderId, projectName, loggedInUserName, loggedInUserId, projectId} = req.body;
+
+  try {
+    const user = await userModel.findOne({ _id: senderId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user found' });
+    }
+
+    user.workingOn.push(projectId);
+    await user.save();
+
+    const message = "accepted your request to continue";
+
+    const notification=new notificationModel({
+      requesterId: loggedInUserId,
+      requesterUserName: loggedInUserName,
+      receiverId: senderId,
+      projectName,
+      projectId,
+      message,
+    })
+
+    // Save the updated user document
+    await notification.save();
+    user.notifications.push(notification);
+
+    // Save the updated user document
+    await user.save();
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error fetching user projects:", error);
+    res.status(500).json({ error: "Failed to fetch user projects" });
+  }
+};
+
+
+
+export const declineRequest = async (req, res) => {
+  const { senderId, projectName, loggedInUserName, loggedInUserId, projectId} = req.body;
+
+  try {
+    const user = await userModel.findOne({ _id: senderId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user found' });
+    }
+
+    const message = "has declined your request to continue";
+
+    const notification=new notificationModel({
+      requesterId: loggedInUserId,
+      requesterUserName: loggedInUserName,
+      receiverId: senderId,
+      projectName,
+      projectId,
+      message,
+    })
+
+    // Save the updated user document
+    await notification.save();
+    user.notifications.push(notification);
+
+    // Save the updated user document
+    await user.save();
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error fetching user projects:", error);
+    res.status(500).json({ error: "Failed to fetch user projects" });
+  }
 };
