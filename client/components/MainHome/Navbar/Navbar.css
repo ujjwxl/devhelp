@@ -161,8 +161,9 @@ body.active-modal {
 .modal-content {
   position: absolute;
   /* top: 21.7%; */
-  top: 16%;
+  top: 40%;
   left: 80%;
+  height: 500px;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #f1f1f1;
@@ -170,6 +171,7 @@ body.active-modal {
   border-radius: 3px;
   max-width: 600px;
   min-width: 380px;
+  overflow: scroll;
 }
 
 .close-modal {

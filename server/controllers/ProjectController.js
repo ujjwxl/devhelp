@@ -74,6 +74,31 @@ export const getProjectsByUser = async (req, res) => {
   }
 };
 
+
+export const getWorkingProjectsByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Find the user by their ID and populate the 'workingOn' field with project details
+    const user = await userModel.findById(userId).populate('workingOn');
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // The 'workingOn' field will now contain project details
+    const workingProjects = user.workingOn;
+
+    // Return the list of working projects
+    res.status(200).json(workingProjects);
+  } catch (error) {
+    console.error("Error fetching working projects:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
 export const getProject = async (req, res) => {
 
   const { projectId } = req.params;

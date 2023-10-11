@@ -1,5 +1,5 @@
 import express from 'express';
-import { addProject, getAllProjects, getProjectsByUser, getProject, acceptRequest, declineRequest } from '../controllers/ProjectController.js';
+import { addProject, getAllProjects, getProjectsByUser, getWorkingProjectsByUser, getProject, acceptRequest, declineRequest } from '../controllers/ProjectController.js';
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get('/all', getAllProjects);
 
 // Route to get projects uploaded by a specific user
 router.get('/user/:userId', getProjectsByUser);
-
+router.get('/working/:userId', getWorkingProjectsByUser);
 router.get('/get/:projectId', getProject);
 
 router.post('/accept', acceptRequest);

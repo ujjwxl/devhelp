@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function Card({ userProfilePage }) {
+export default function Card({ userProfilePage, user, listed }) {
   const [projects, setProjects] = useState([]);
+
+  console.log(user.workingOn);
 
   const { userId } = useParams();
 
   useEffect(() => {
-    if (userProfilePage) {
+    if (userProfilePage && listed) {
       // Fetch only user's projects
       axios
         .get(`http://localhost:5000/project/user/${userId}`) // Replace userId with the actual user ID
@@ -22,7 +24,15 @@ export default function Card({ userProfilePage }) {
         .catch((error) => {
           console.error("Error fetching user projects:", error);
         });
-    } else {
+    } else if(userProfilePage && !listed) {
+      axios.get(`http://localhost:5000/project/working/${userId}`)
+      .then((response) => {
+        setProjects(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user projects:", error);
+      });
+    }else {
       // Fetch all projects
       axios
         .get("http://localhost:5000/project/all")
@@ -33,37 +43,42 @@ export default function Card({ userProfilePage }) {
           console.error("Error fetching projects:", error);
         });
     }
-  }, [userProfilePage]);
+  }, [userProfilePage,listed]);
 
   function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
-
-
-  async function handleContinueRequest(projectName, projectId, developerUserId) {
-    const requesterUserName = sessionStorage.getItem('username');
-    const requesterUserId = sessionStorage.getItem('id');
+  async function handleContinueRequest(
+    projectName,
+    projectId,
+    developerUserId
+  ) {
+    const requesterUserName = sessionStorage.getItem("username");
+    const requesterUserId = sessionStorage.getItem("id");
 
     try {
-      await axios.post('http://localhost:5000/auth/request', {
-        requesterUserName, projectName, developerUserId, projectId, requesterUserId
-      })
-        .then(res => {
+      await axios
+        .post("http://localhost:5000/auth/request", {
+          requesterUserName,
+          projectName,
+          developerUserId,
+          projectId,
+          requesterUserId,
+        })
+        .then((res) => {
           if (res.status == 200) {
-            console.log('Request sent succesfully')
-            alert('Request sent')
+            console.log("Request sent succesfully");
+            alert("Request sent");
           }
         })
-        .catch(e => {
-          alert("Request could not be sent!")
-          console.log(e)
-        })
-    }
-    catch (e) {
+        .catch((e) => {
+          alert("Request could not be sent!");
+          console.log(e);
+        });
+    } catch (e) {
       console.log(e);
-
     }
   }
   // client\src\assets\default-pfp.png
@@ -112,9 +127,33 @@ export default function Card({ userProfilePage }) {
               <p className="footer-l-p">{project.technologiesUsedThree}</p>
             </div>
             <div className="footer-r">
-              <button className="footer-r-button"><Link to={`/project/${project._id}`}>View More</Link></button>
-              <button className="footer-r-button" onClick={() => handleContinueRequest(project.projectName, project._id, project.developerUserId)}>Request to continue</button>
-
+              <button className="footer-r-button">
+                <Link to={`/project/${project._id}`}>View More</Link>
+              </button>
+              <div className="footer-r">
+                {user &&
+                user.workingOn &&
+                user.workingOn.includes(project._id) ? (
+                  // User is working on the project
+                  <button className="footer-r-button working-button">
+                    Working
+                  </button>
+                ) : (
+                  // User is not working on the project
+                  <button
+                    className="footer-r-button"
+                    onClick={() =>
+                      handleContinueRequest(
+                        project.projectName,
+                        project._id,
+                        project.developerUserId
+                      )
+                    }
+                  >
+                    Request to continue
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -122,4 +161,3 @@ export default function Card({ userProfilePage }) {
     </div>
   );
 }
-
