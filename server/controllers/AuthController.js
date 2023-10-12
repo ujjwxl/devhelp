@@ -280,3 +280,21 @@ export const followUser = async (req, res) => {
   }
 };
 
+export const searchUsers = async (req, res) => {
+  const { query } = req.query;
+  try {
+    // Use a regular expression with the 'i' flag for case-insensitive search
+    const searchResults = await userModel.find({
+      $or: [
+        { username: { $regex: new RegExp(query, 'i') } },
+        { firstname: { $regex: new RegExp(query, 'i') } },
+        { lastname: { $regex: new RegExp(query, 'i') } },
+      ],
+    });
+
+    res.status(200).json(searchResults);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while searching for users.' });
+  }
+};

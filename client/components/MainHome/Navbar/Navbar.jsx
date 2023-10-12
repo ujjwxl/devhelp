@@ -9,24 +9,27 @@ export default function Navbar() {
 
   const userId = sessionStorage.getItem('id');
 
-  // const [userNotifications, setUserNotifications] = useState([]);
-
   const [notificationModal, setNotificationModal] = useState(false);
+  const [searchModal, setSearchModal] = useState(false);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/auth/notifications/${userId}`) // Replace userId with the actual user ID
-  //     .then((response) => {
-  //       setUserNotifications(response.data);
-  //       console.log(userNotifications)
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching user notifications:", error);
-  //     });
-  // }, []);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   const toggleNotificationModal = () => {
     setNotificationModal(!notificationModal)
+  }
+
+  const toggleSearchModal = () => {
+    setSearchModal(!searchModal)
+  }
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/auth/search?query=${searchQuery}`);
+      setSearchResults(response.data);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
   }
 
   return (
@@ -34,10 +37,16 @@ export default function Navbar() {
       <a href="/home">DevHelp</a>
       <div className="nav-r">
         <div className="search">
-          <input type="text" placeholder="Search..." />
-          <a href="/">
+          {/* <input type="text" placeholder="Search..." /> */}
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button onClick={() => { handleSearch(); toggleSearchModal(); }}>
             <FontAwesomeIcon icon={faSearch} />
-          </a>
+          </button>
         </div>
 
         <div className="icons">
@@ -70,7 +79,39 @@ export default function Navbar() {
         </div>
       )}
 
+      {/* {searchResults.length > 0 && (
+        <div className="search-results">
+          <h3>Search Results:</h3>
+          <ul>
+            {searchResults.map((user) => (
+              <li key={user._id}>
+                <a href={`/profile/${user._id}`}>{user.username}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )} */}
 
+      {searchResults.length > 0 && searchModal && (
+        <div className="modal">
+          <div onClick={toggleSearchModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Search Users</h2>
+            <p>
+              {searchResults.map((user, index) => (
+                <span key={user._id}>
+                  {index > 0 && ', '} {/* Add a comma and space for all items except the first */}
+                  <a href={`/profile/${user._id}`}>{user.username}</a> <br/>
+                </span>
+              ))}
+            </p>
+            <button className="close-modal" onClick={toggleSearchModal}>
+              CLOSE
+            </button>
+          </div>
+        </div>
+      )}
+      
     </div>
   );
 }
