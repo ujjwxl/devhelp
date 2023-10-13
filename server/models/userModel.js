@@ -96,6 +96,10 @@ const userSchema = new mongoose.Schema({
   workingOn: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'projects',
+  }],
+  savedProjects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'projects',
   }]
 });
 

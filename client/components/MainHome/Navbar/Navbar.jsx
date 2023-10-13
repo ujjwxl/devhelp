@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,8 @@ export default function Navbar() {
   const [searchModal, setSearchModal] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState({ users: [], projects: [] });
 
   const toggleNotificationModal = () => {
     setNotificationModal(!notificationModal)
@@ -79,39 +81,47 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* {searchResults.length > 0 && (
-        <div className="search-results">
-          <h3>Search Results:</h3>
-          <ul>
-            {searchResults.map((user) => (
-              <li key={user._id}>
-                <a href={`/profile/${user._id}`}>{user.username}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} */}
-
-      {searchResults.length > 0 && searchModal && (
+      {searchModal && (
         <div className="modal">
           <div onClick={toggleSearchModal} className="overlay"></div>
-          <div className="modal-content">
-            <h2>Search Users</h2>
-            <p>
-              {searchResults.map((user, index) => (
-                <span key={user._id}>
-                  {index > 0 && ', '} {/* Add a comma and space for all items except the first */}
-                  <a href={`/profile/${user._id}`}>{user.username}</a> <br/>
-                </span>
-              ))}
-            </p>
+          <div className="search-modal-content">
+            {searchResults.users.length > 0 && (
+              <div>
+                <h2>Users</h2>
+                {searchResults.users.map((user) => (
+                  <span key={user._id}>
+                    {/* <a href={`/profile/${user._id}`}>{user.username}</a> <br/> */}
+                    <Link to={`/profile/${user._id}`}>{user.username}</Link> <br />
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {searchResults.projects.length > 0 && (
+              <div>
+                <h2>Projects</h2>
+                {searchResults.projects.map((project) => (
+                  <div key={project._id}>
+                    {/* <h3>Project name: <a href={`/project/${project._id}`}>{project.projectName}</a></h3>
+                    <p>Developer: <a href={`/profile/${project.developerUserId}`}>{project.developerUserName}</a></p> */}
+                    <h3>
+                      Project name: <Link to={`/project/${project._id}`}>{project.projectName}</Link>
+                    </h3>
+                    <p>
+                      Developer: <Link to={`/profile/${project.developerUserId}`}>{project.developerUserName}</Link>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <button className="close-modal" onClick={toggleSearchModal}>
               CLOSE
             </button>
           </div>
         </div>
       )}
-      
+
     </div>
   );
 }

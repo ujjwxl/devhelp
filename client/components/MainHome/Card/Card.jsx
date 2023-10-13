@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function Card({ userProfilePage, user, listed }) {
+export default function Card({ userProfilePage, user, listed, saved }) {
   const [projects, setProjects] = useState([]);
 
   console.log(user.workingOn);
@@ -24,15 +24,15 @@ export default function Card({ userProfilePage, user, listed }) {
         .catch((error) => {
           console.error("Error fetching user projects:", error);
         });
-    } else if(userProfilePage && !listed) {
+    } else if (userProfilePage && !listed) {
       axios.get(`http://localhost:5000/project/working/${userId}`)
-      .then((response) => {
-        setProjects(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user projects:", error);
-      });
-    }else {
+        .then((response) => {
+          setProjects(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user projects:", error);
+        });
+    } else {
       // Fetch all projects
       axios
         .get("http://localhost:5000/project/all")
@@ -43,7 +43,7 @@ export default function Card({ userProfilePage, user, listed }) {
           console.error("Error fetching projects:", error);
         });
     }
-  }, [userProfilePage,listed]);
+  }, [userProfilePage, listed]);
 
   function formatDate(dateString) {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -81,6 +81,31 @@ export default function Card({ userProfilePage, user, listed }) {
       console.log(e);
     }
   }
+
+  async function saveProject(projectId) {
+
+    const loggedInUserId = sessionStorage.getItem("id");
+
+    try {
+      await axios
+        .post("http://localhost:5000/project/save", {
+          loggedInUserId,
+          projectId
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            console.log("Project saved successfully");
+            alert("Project saved");
+          }
+        })
+        .catch((e) => {
+          alert("Project could not be saved!");
+          console.log(e);
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  }
   // client\src\assets\default-pfp.png
   return (
     <div>
@@ -110,7 +135,11 @@ export default function Card({ userProfilePage, user, listed }) {
             <div className="header-r">
               <p className="header-date">{formatDate(project.createdAt)}</p>
               <span className="header-r-icons">
-                <FontAwesomeIcon icon={faBookmark} className="bookmark-icon" />
+                <FontAwesomeIcon icon={faBookmark} className="bookmark-icon" onClick={() =>
+                  saveProject(
+                    project._id
+                  )
+                } />
                 <FontAwesomeIcon icon={faGithub} className="github-icon" />
               </span>
               <p className="header-r-p">{project.completionPercent + "%"}</p>
@@ -132,8 +161,8 @@ export default function Card({ userProfilePage, user, listed }) {
               </button>
               <div className="footer-r">
                 {user &&
-                user.workingOn &&
-                user.workingOn.includes(project._id) ? (
+                  user.workingOn &&
+                  user.workingOn.includes(project._id) ? (
                   // User is working on the project
                   <button className="footer-r-button working-button">
                     Working

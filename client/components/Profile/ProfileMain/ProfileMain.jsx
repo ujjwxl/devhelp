@@ -8,8 +8,8 @@ import Card from "../../MainHome/Card/Card"
 export default function ProfileMain() {
 
   const [user, setUser] = useState({});
-  const [myProject, setMyProject]= useState(true);
-  const userId=sessionStorage.getItem('id');
+  const [myProject, setMyProject] = useState(true);
+  const userId = sessionStorage.getItem('id');
 
   useEffect(() => {
     axios.post("http://localhost:5000/auth/find", { userId })
@@ -22,7 +22,7 @@ export default function ProfileMain() {
       });
   }, []);
 
-  const toggleMyProject = () =>{
+  const toggleMyProject = () => {
     setMyProject(true);
   }
 
@@ -36,8 +36,11 @@ export default function ProfileMain() {
       <p className='ws-p'>Featured Projects</p> */}
       <div className='ws-card'>
         <ProfileCard></ProfileCard>
-        <button onClick={toggleMyProject}>My projects</button>
-        <button onClick={toggleMyWorking}>Working On</button>
+        <div className="profile-main-buttons">
+          <button onClick={toggleMyProject} className='profile-main-btn'>Listed</button>
+          <button onClick={toggleMyWorking} className='profile-main-btn'>Working On</button>
+        </div>
+
         <Card userProfilePage={true} user={user} listed={myProject} />
       </div>
     </div>

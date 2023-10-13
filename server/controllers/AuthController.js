@@ -1,4 +1,5 @@
 import userModel from "../models/userModel.js";
+import projectModel from "../models/projectModel.js";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -283,8 +284,8 @@ export const followUser = async (req, res) => {
 export const searchUsers = async (req, res) => {
   const { query } = req.query;
   try {
-    // Use a regular expression with the 'i' flag for case-insensitive search
-    const searchResults = await userModel.find({
+    // Search for users with the given query
+    const userSearchResults = await userModel.find({
       $or: [
         { username: { $regex: new RegExp(query, 'i') } },
         { firstname: { $regex: new RegExp(query, 'i') } },
@@ -292,9 +293,30 @@ export const searchUsers = async (req, res) => {
       ],
     });
 
-    res.status(200).json(searchResults);
+    // Search for projects with the given query
+    const projectSearchResults = await projectModel.find({
+      $or: [
+        { projectName: { $regex: new RegExp(query, 'i') } },
+        { technologiesUsedOne: { $regex: new RegExp(query, 'i') } },
+        { technologiesUsedTwo: { $regex: new RegExp(query, 'i') } },
+        { technologiesUsedThree: { $regex: new RegExp(query, 'i') } },
+        { projectDescription: { $regex: new RegExp(query, 'i') } },
+        { projectNotes: { $regex: new RegExp(query, 'i') } },
+        { developerFirstName: { $regex: new RegExp(query, 'i') } }, // Add developerFirstName
+        { developerLastName: { $regex: new RegExp(query, 'i') } }, // Add developerLastName
+        { developerUserName: { $regex: new RegExp(query, 'i') } }, // Add developerUserName
+      ],
+    });
+
+    // Combine and return the results
+    res.status(200).json({ users: userSearchResults, projects: projectSearchResults });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'An error occurred while searching for users.' });
+    res.status(500).json({ message: 'An error occurred while searching for users and projects.' });
   }
 };
+
+
+
+
+

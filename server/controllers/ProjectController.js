@@ -163,7 +163,7 @@ export const declineRequest = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'No user found' });
     }
-
+ 
     const message = "has declined your request to continue";
 
     const notification=new notificationModel({
@@ -186,5 +186,51 @@ export const declineRequest = async (req, res) => {
   } catch (error) {
     console.error("Error fetching user projects:", error);
     res.status(500).json({ error: "Failed to fetch user projects" });
+  }
+};
+
+export const saveProject = async (req, res) => {
+  const { loggedInUserId,projectId } = req.body;
+
+  try {
+    const user = await userModel.findOne({ _id: loggedInUserId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user found' });
+    }
+
+    const isProjectSaved = user.savedProjects.includes(projectId);
+
+    if (isProjectSaved) {
+      return res.status(200).json({ message: 'Project already saved' });
+    } else {
+      user.savedProjects.push(projectId);
+      await user.save();
+      return res.status(200).json(user);
+    }
+  } catch (error) {
+    console.error("Error saving project:", error);
+    res.status(500).json({ error: "Failed to save project" });
+  }
+};
+
+export const getSavedProjects = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Find the user by their ID and populate the savedProjects field
+    const user = await userModel
+      .findById(userId)
+      .populate('savedProjects');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // The 'user.savedProjects' field will now contain populated project documents
+    res.status(200).json(user.savedProjects);
+  } catch (error) {
+    console.error("Error fetching saved projects for the user:", error);
+    res.status(500).json({ error: "Failed to fetch saved projects" });
   }
 };
