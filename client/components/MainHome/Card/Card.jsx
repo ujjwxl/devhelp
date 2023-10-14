@@ -9,11 +9,24 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 export default function Card({ userProfilePage, user, listed, saved }) {
   const [projects, setProjects] = useState([]);
 
-  console.log(user.workingOn);
+  // console.log(user.workingOn);
 
   const { userId } = useParams();
 
   useEffect(() => {
+    if(saved) {
+
+      const loggedInUserId = sessionStorage.getItem('id');
+
+      axios
+        .get(`http://localhost:5000/project/saved/${loggedInUserId}`) // Replace userId with the actual user ID
+        .then((response) => {
+          setProjects(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user projects:", error);
+        });
+    }
     if (userProfilePage && listed) {
       // Fetch only user's projects
       axios
@@ -22,7 +35,7 @@ export default function Card({ userProfilePage, user, listed, saved }) {
           setProjects(response.data);
         })
         .catch((error) => {
-          console.error("Error fetching user projects:", error);
+          console.error("Error fetching saved projects:", error);
         });
     } else if (userProfilePage && !listed) {
       axios.get(`http://localhost:5000/project/working/${userId}`)

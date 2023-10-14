@@ -49,7 +49,7 @@ export default function Sidebar() {
       <Link to="/random-projects" className="sidebar-button">
         Random Projects
       </Link>
-      <Link to="/saved-items" className="sidebar-button">
+      <Link to="/saved" className="sidebar-button">
         Saved Items
       </Link>
       <Link to="/settings" className="sidebar-button">

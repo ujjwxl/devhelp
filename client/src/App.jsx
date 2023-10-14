@@ -11,6 +11,8 @@ import AddProject from "../pages/AddProject/AddProject";
 import Profile from "../pages/Profile/Profile";
 import EditProfile from "../pages/EditProfile/EditProfile";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
+import SavedProjectsComponent from "../components/MainHome/SavedProjectsComponent/SavedProjectsComponent";
+import SavedProjects from "../pages/SavedProjects/SavedProjects";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           <Route path="/update" element={<EditProfile />}></Route>
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/project/:projectId" element={<ProjectDetails />} />
+          <Route path="/saved" element={<SavedProjects />}></Route>
         </Routes>
       </Router>
     </>
