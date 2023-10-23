@@ -6,10 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLink, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import io from 'socket.io-client';
+export const socket = io('http://localhost:5000');
 
 export default function ProfileCard() {
   const { userId } = useParams();
   const [userDetails, setUserDetails] = useState([]);
+
+  const loginUserId = sessionStorage.getItem('id');
+
+  // useEffect(() => {
+  //   socket.emit("add_user", loginUserId)
+  // },[])
 
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
@@ -104,7 +112,7 @@ export default function ProfileCard() {
             <a href="#">{userDetails.website}</a>
             <span className="profile-footer-icons">
               {!isCurrentUser ? (
-                <Link to="/chat">
+                <Link to={`/chat/${userDetails._id}`}>
                   <FontAwesomeIcon
                     icon={faCommentDots}
                     className="profile-icon"

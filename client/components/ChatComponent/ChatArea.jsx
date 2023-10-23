@@ -1,83 +1,126 @@
-// import React, { useState, useEffect } from 'react';
-// import io from 'socket.io-client';
-
-// // const socket = io('http://localhost:5000'); 
-// const socket = io('http://localhost:5000', {
-//   withCredentials: true,
-//   transports: ['websocket'], // Use WebSocket transport if available
-//   extraHeaders: {
-//     'Access-Control-Allow-Origin': 'http://localhost:5173', // Specify the origin
-//     'Access-Control-Allow-Methods': 'GET, POST', // Specify allowed methods
-//   },
-// });
-
-// export default function ChatComponent() {
-//   const [message, setMessage] = useState('');
-//   const [messages, setMessages] = useState([]);
-
-//   useEffect(() => {
-//     // Listen for incoming chat messages
-//     socket.on('chatMessage', (message) => {
-//       setMessages([...messages, message]);
-//     });
-//   }, [messages]);
-
-//   const sendMessage = () => {
-//     // Send a chat message to the server
-//     socket.emit('chatMessage', message);
-//     setMessage('');
-//   };
-
-//   return (
-//     <div className="workspace">
-//       <div className="chat-box">
-//         <div className="messages">
-//           {messages.map((msg, index) => (
-//             <div key={index} className="message">
-//               {msg}
-//             </div>
-//           ))}
-//         </div>
-//         <div className="input-box">
-//           <input
-//             type="text"
-//             placeholder="Type your message"
-//             value={message}
-//             onChange={(e) => setMessage(e.target.value)}
-//           />
-//           <button onClick={sendMessage}>Send</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import React from 'react'
+import { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
 import './chatArea.css'
+import { useParams } from 'react-router-dom'
 import MessageOthers from './MessageOthers'
 import MessageSelf from './MessageSelf'
+import { socket } from '../Profile/ProfileCard/ProfileCard'
 
 
 export default function ChatArea() {
+
+  const chatContainerRef = useRef();
+
+  const { chatUserId } = useParams();
+
+  const [receiverDetails, setReceiverDetails] = useState([])
+
+  const loggedInUserId = sessionStorage.getItem('id');
+
+  const [messageInput, setMessageInput] = useState('');
+
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.emit("add_user", loggedInUserId)
+  },[])
+
+  useEffect(() => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, []);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/auth/find", { userId: chatUserId })
+      .then((response) => {
+        setReceiverDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+      });
+  }, [chatUserId]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/message/find", { loggedInUserId, chatUserId })
+      .then((response) => {
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+      });
+  }, [loggedInUserId, chatUserId]);
+
+  console.log(messages)
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:5000/message/send', {
+      sender: loggedInUserId,
+      receiver: chatUserId,
+      content: messageInput,
+    })
+      .then((response) => {
+        setMessages([...messages, response.data]);
+        setMessageInput('');
+        socket.emit('send_message', {
+          to: chatUserId,
+          msg: messageInput
+      });
+
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+
+      })
+      .catch((error) => {
+        console.error("Error sending message:", error);
+      });
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      axios
+      .post("http://localhost:5000/message/find", { loggedInUserId, chatUserId })
+      .then((response) => {
+        setMessages(response.data);
+
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+      });
+    })
+  }, [socket])
+
   return (
     <div className='chatArea-container'>
       <div className='chatArea-header'>
         <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg" alt="" className='chatArea-profile-picture' />
-        <p className='chatArea-header-p'>Rohit Sharma</p>
+        <p className='chatArea-header-p'>{receiverDetails.firstname + " " + receiverDetails.lastname}</p>
       </div>
-      <div className='chatArea-messages'>
-        <MessageOthers></MessageOthers>
+      <div className='chatArea-messages' ref={chatContainerRef}>
+        {/* <MessageOthers></MessageOthers>
         <MessageSelf></MessageSelf>
         <MessageOthers></MessageOthers>
         <MessageSelf></MessageSelf>
         <MessageOthers></MessageOthers>
-        <MessageSelf></MessageSelf>
+        <MessageSelf></MessageSelf> */}
+        {messages.map((message) =>
+          message.sender === chatUserId ? (
+            <MessageOthers key={message._id} content={message.content} firstname={receiverDetails.firstname} lastname={receiverDetails.lastname}></MessageOthers>
+          ) : (
+            <MessageSelf key={message._id} content={message.content}></MessageSelf>
+          )
+        )}
       </div>
-      <div className='chatArea-footer'>
-        <input className='chatArea-footer-input' placeholder='Type a message'></input>
-        <button>Send</button>
-      </div>
+      <form action="" onSubmit={handleSendMessage}>
+        <div className='chatArea-footer'>
+          <input className='chatArea-footer-input' placeholder='Type a message' value={messageInput} onChange={(e) => setMessageInput(e.target.value)}></input>
+          <button type='submit' onClick={handleSendMessage}>Send</button>
+        </div>
+      </form>
     </div>
   )
 }
