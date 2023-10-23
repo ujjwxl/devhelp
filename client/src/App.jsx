@@ -11,8 +11,8 @@ import AddProject from "../pages/AddProject/AddProject";
 import Profile from "../pages/Profile/Profile";
 import EditProfile from "../pages/EditProfile/EditProfile";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
-import SavedProjectsComponent from "../components/MainHome/SavedProjectsComponent/SavedProjectsComponent";
 import SavedProjects from "../pages/SavedProjects/SavedProjects";
+import Chat from "../pages/Chat/Chat";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/project/:projectId" element={<ProjectDetails />} />
           <Route path="/saved" element={<SavedProjects />}></Route>
+          <Route path="/chat" element={<Chat />}></Route>
         </Routes>
       </Router>
     </>

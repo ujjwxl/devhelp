@@ -33,7 +33,7 @@ export default function ProfileCard() {
 
   async function followUser(anotherUserId) {
     const loggedInUserId = sessionStorage.getItem("id");
-    const loggedInUserName =sessionStorage.getItem('username')
+    const loggedInUserName = sessionStorage.getItem("username");
     // console.log(anotherUserId)
 
     try {
@@ -104,10 +104,12 @@ export default function ProfileCard() {
             <a href="#">{userDetails.website}</a>
             <span className="profile-footer-icons">
               {!isCurrentUser ? (
-                <FontAwesomeIcon
-                  icon={faCommentDots}
-                  className="profile-icon"
-                />
+                <Link to="/chat">
+                  <FontAwesomeIcon
+                    icon={faCommentDots}
+                    className="profile-icon"
+                  />
+                </Link>
               ) : (
                 <div></div>
               )}
@@ -122,7 +124,7 @@ export default function ProfileCard() {
           {!isCurrentUser ? (
             <button
               className="profile-btn"
-              onClick={() => followUser(userDetails._id,)}
+              onClick={() => followUser(userDetails._id)}
             >
               {isFollowing ? "Following" : "Follow"}
             </button>
