@@ -308,7 +308,6 @@ export const searchUsers = async (req, res) => {
       ],
     });
 
-    // Combine and return the results
     res.status(200).json({ users: userSearchResults, projects: projectSearchResults });
   } catch (error) {
     console.error(error);
@@ -316,7 +315,37 @@ export const searchUsers = async (req, res) => {
   }
 };
 
+// export const getUserChats = async (req, res) => {
+//   const { userId } = req.params;
 
+//   userModel
+//   .findOne({ _id:userId})
+//   .then((user) => {
+//     res.status(200).json(user);
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching user:", error);
+//     res.status(500).json({ error: "Failed to fetch user" });
+//   });
+// }
 
+export const getUserChats = async (req, res) => {
+  const { userId } = req.params;
 
+  try {
+    // Find the user by their ID and populate the userChats field
+    const user = await userModel.findById(userId).populate('userChats');
 
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Get the list of users with whom the user has sent or received messages
+    const usersWithChats = user.userChats;
+
+    // Send the list of users with the entire user details in the userChats field
+    return res.status(200).json(usersWithChats);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}

@@ -127,7 +127,7 @@ export const acceptRequest = async (req, res) => {
     user.workingOn.push(projectId);
     await user.save();
 
-    const message = "accepted your request to continue";
+    const message = "accepted your request to continue ";
 
     const notification=new notificationModel({
       requesterId: loggedInUserId,

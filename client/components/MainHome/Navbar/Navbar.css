@@ -73,6 +73,9 @@
   color: #000000;
   font-size: 18px;
 }
+
+
+
 /* .nav-r input {
     padding: 8px 30px;
     border: 1px solid #cccccc;
@@ -119,6 +122,19 @@
   transform: scale(1.1);
 }
 
+.icon-chat{
+  margin-left: 20px;
+  font-size: 25px;
+  color: #080808;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.icon-chat:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+
 .icon-profile a{
   margin-left: 20px;
   font-size: 25px;
@@ -153,9 +169,9 @@ body.active-modal {
   position: fixed;
 }
 
-/* .overlay {
-  background: rgba(49,49,49,0.8);
-} */
+.overlay {
+  background: rgba(49,49,49,0.4);
+}
 
 
 .modal-content {

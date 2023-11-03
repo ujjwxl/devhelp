@@ -14,6 +14,32 @@ export const sendMessage = async (req, res) => {
     });
 
     await message.save();
+    const senderUser = await userModel.findById(sender);
+    if (senderUser) {
+      // Check if the receiver's user ID is already in the userChats array
+      const receiverIndex = senderUser.userChats.indexOf(receiver);
+      if (receiverIndex !== -1) {
+        // If it's already present, remove it from the array
+        senderUser.userChats.splice(receiverIndex, 1);
+      }
+      // Add the receiver's user ID to the userChats array
+      senderUser.userChats.push(receiver);
+      await senderUser.save();
+    }
+
+    // Update the receiver's user document
+    const receiverUser = await userModel.findById(receiver);
+    if (receiverUser) {
+      // Check if the sender's user ID is already in the userChats array
+      const senderIndex = receiverUser.userChats.indexOf(sender);
+      if (senderIndex !== -1) {
+        // If it's already present, remove it from the array
+        receiverUser.userChats.splice(senderIndex, 1);
+      }
+      // Add the sender's user ID to the userChats array
+      receiverUser.userChats.push(sender);
+      await receiverUser.save();
+    }
 
     //   await message.populate('sender receiver', 'firstname lastname').execPopulate();
 

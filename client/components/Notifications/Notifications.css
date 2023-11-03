@@ -1,3 +1,8 @@
-.abc a{
+.notify a{
     font-size: 20px;
+    margin: 0;
 }
+
+/* .notify p{
+    margin: 0;
+} */

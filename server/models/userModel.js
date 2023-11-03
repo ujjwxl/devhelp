@@ -1,37 +1,3 @@
-// import mongoose from 'mongoose';
-
-// const userSchema = new mongoose.Schema({
-//   firstname: {
-//     type: String,
-//     required: true,
-//   },
-//   lastname: {
-//     type: String,
-//     required: true,
-//   },
-//   username: {
-//     type: String,
-//     required: true,
-//   },
-//   profile_picture : {
-//     type: String,
-//     default: 'default-pfp.png',
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true, // Ensure email addresses are unique
-//   },
-//   password: {
-//     type: String,
-//     required: true,
-//   },
-// });
-
-// const userModel = mongoose.model('users', userSchema);
-
-// export default userModel;
-
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
@@ -46,6 +12,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   profile_picture: {
     type: String,
@@ -100,6 +67,10 @@ const userSchema = new mongoose.Schema({
   savedProjects: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'projects',
+  }],
+  userChats: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
   }]
 });
 

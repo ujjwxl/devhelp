@@ -1,7 +1,13 @@
 import React from "react";
 import "./MessageSelf.css";
 
-export default function MessageSelf({ content }) {
+export default function MessageSelf({ content, time }) {
+
+  function formatTime(dateString) {
+    const options = { hour: "2-digit", minute: "2-digit" };
+    return new Date(dateString).toLocaleTimeString(undefined, options);
+  }
+  
   return (
     <div className="self-message-container">
       <div className="self-message-box">
@@ -13,7 +19,7 @@ export default function MessageSelf({ content }) {
           five centuries, but also the leap */}
           {content}
         </p>
-        <p className="self-timeStamp">12:00am</p>
+        <p className="self-timeStamp">{formatTime(time)}</p>
       </div>
     </div>
   );

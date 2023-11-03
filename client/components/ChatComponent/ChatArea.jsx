@@ -109,9 +109,9 @@ export default function ChatArea() {
         <MessageSelf></MessageSelf> */}
         {messages.map((message) =>
           message.sender === chatUserId ? (
-            <MessageOthers key={message._id} content={message.content} firstname={receiverDetails.firstname} lastname={receiverDetails.lastname}></MessageOthers>
+            <MessageOthers key={message._id} content={message.content} firstname={receiverDetails.firstname} lastname={receiverDetails.lastname} time={message.createdAt}></MessageOthers>
           ) : (
-            <MessageSelf key={message._id} content={message.content}></MessageSelf>
+            <MessageSelf key={message._id} content={message.content} time={message.createdAt}></MessageSelf>
           )
         )}
       </div>
