@@ -10,6 +10,7 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import Notifications from "../../Notifications/Notifications";
+import LoadingBar from 'react-top-loading-bar'
 
 export default function Navbar() {
   const userId = sessionStorage.getItem("id");
@@ -59,9 +60,19 @@ export default function Navbar() {
     }
   };
 
+  
+
   return (
     <div className="nav">
-      <a href="/home">DevHelp</a>
+       <LoadingBar
+        // color='#f11946'
+        color='#ffffff'
+        progress={100}
+        height={3}
+        // onLoaderFinished={() => setProgress(0)}
+      />
+      {/* <a href="/home">DevHelp</a> */}
+      <Link to={'/home'}>DevHelp</Link>
       <div className="nav-r">
         <div className="search">
           {/* <input type="text" placeholder="Search..." /> */}
@@ -90,9 +101,7 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faBell} />
           </div>
           <div className="icon-profile">
-            <a href={`/profile/${userId}`}>
-              <FontAwesomeIcon icon={faUser} />
-            </a>
+            <a href={`/profile/${userId}`}><FontAwesomeIcon icon={faUser} /></a>
           </div>
         </div>
       </div>

@@ -17,25 +17,26 @@ router.post('/follow', followUser)
 router.get('/search', searchUsers)
 router.get('/chats/:userId', getUserChats)
 
-// router.get("/login/failed", (req, res)=> {
-//     res.status(401).json({
-//         success: false,
-//         message: "failure",
-//     });
-// });
+router.get("/login/failed", (req, res)=> {
+    res.status(401).json({
+        success: false,
+        message: "failure",
+    });
+});
 
-// router.get("/login/success", (req, res)=> {
-//     if(req.user){
-//         res.status(200).json({
-//             user: req.user,
-//         });
-//     }
-//     else{
-//         res.status(401).json({message: "Not authorized"});
-//     }
+router.get("/login/success", (req, res)=> {
+    if(req.user){
+        console.log(req.user)
+        res.status(200).json({
+            user: req.user,
+        });
+    }
+    else{
+        res.status(401).json({message: "Not authorized"});
+    }
     
-// });
-
+});
+ 
 router.get('/google', passport.authenticate("google", {scope: ["profile", "email"] }));
 
 router.get('/google/callback', passport.authenticate('google', {
@@ -44,7 +45,7 @@ router.get('/google/callback', passport.authenticate('google', {
   }), (req, res) => {
     // On successful authentication, send user data to the frontend
     const user = req.user; // This should contain the user data
-    console.log(user);
+    // console.log(user);
   
     // Send the success message with user data to the frontend
     res.status(200).json({

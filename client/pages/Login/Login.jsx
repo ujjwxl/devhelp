@@ -1,4 +1,4 @@
-  import React, { useState } from "react";
+  import React, { useState, useEffect } from "react";
   import { Link, useNavigate} from "react-router-dom";
   import axios from "axios";
   import { FaGithub} from "react-icons/fa";
@@ -16,6 +16,8 @@
 
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
+
+      const [user, setUser] = useState(null);
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -72,31 +74,87 @@
     //   console.log("hello");
     // };
 
-    const storeGoogleUserDataInSessionStorage = (user) => {
-      // Store the user's data in session storage.
-      sessionStorage.setItem("id", user._id);
-      sessionStorage.setItem("username", user.username);
-      sessionStorage.setItem("firstname", user.firstname);
-      sessionStorage.setItem("lastname", user.lastname);
-      sessionStorage.setItem("profile_picture", user.profile_picture);
+    // const storeGoogleUserDataInSessionStorage = (user) => {
+    //   // Store the user's data in session storage.
+    //   sessionStorage.setItem("id", user._id);
+    //   sessionStorage.setItem("username", user.username);
+    //   sessionStorage.setItem("firstname", user.firstname);
+    //   sessionStorage.setItem("lastname", user.lastname);
+    //   sessionStorage.setItem("profile_picture", user.profile_picture);
     
-      // Navigate to the desired page.
-      navigate('/home');
-      console.log("hello");
-    };
+    //   // Navigate to the desired page.
+    //   navigate('/home');
+    //   console.log("hello");
+    // };
 
     const handleGoogleLogin = async () => {
       // Open a new window and redirect the user to your backend API to log in with Google.
       window.location.href = "http://localhost:5000/auth/google";
+      axios.get("http://localhost:5000/auth/login/success", {
+          withCredentials: true,
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+          },
+      })
+      .then((response) => {
+          if (response.status === 200) {
+              return response.data;
+          } else {
+              throw new Error("Authentication has failed!");
+          }
+      })
+      .then((resObject) => {
+          setUser(resObject.user);
+          const user = resObject.user
+          sessionStorage.setItem("id", user._id);
+          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("firstname", user.firstname);
+          sessionStorage.setItem("lastname", user.lastname);
+          sessionStorage.setItem("profile_picture", user.profile_picture);
+      })
+      .catch((error) => {
+          console.error("Error fetching user details:", error);
+      });
     };
 
-    window.addEventListener("message", async (event) => {
-      console.log("Hello");
-      if (event.origin === "http://localhost:5000" && event.data.type === "googleLoginSuccess") {
-        const user = event.data.user;
-         storeGoogleUserDataInSessionStorage(user);
-      }
-    });
+  //   useEffect(() => {
+  //     axios.get("http://localhost:5000/auth/login/success", {
+  //         withCredentials: true,
+  //         headers: {
+  //             Accept: "application/json",
+  //             "Content-Type": "application/json",
+  //         },
+  //     })
+  //     .then((response) => {
+  //         if (response.status === 200) {
+  //             return response.data;
+  //         } else {
+  //             throw new Error("Authentication has failed!");
+  //         }
+  //     })
+  //     .then((resObject) => {
+  //         setUser(resObject.user);
+  //         const user = resObject.user
+  //         sessionStorage.setItem("id", user._id);
+  //         sessionStorage.setItem("username", user.username);
+  //         sessionStorage.setItem("firstname", user.firstname);
+  //         sessionStorage.setItem("lastname", user.lastname);
+  //         sessionStorage.setItem("profile_picture", user.profile_picture);
+  //     })
+  //     .catch((error) => {
+  //         console.error("Error fetching user details:", error);
+  //     });
+  // }, []);
+
+    
+    // window.addEventListener("message", async (event) => {
+    //   console.log("Hello");
+    //   if (event.origin === "http://localhost:5000" && event.data.type === "googleLoginSuccess") {
+    //     const user = event.data.user;
+    //     storeGoogleUserDataInSessionStorage(user);
+    //   }
+    // });
 
 
       return (

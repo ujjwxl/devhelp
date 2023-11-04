@@ -48,7 +48,11 @@ passport.use(new GoogleStrategy({
 
         await user.save();
       }
+      
       done(null, user);
+      // console.log(user)
+      console.log("authenticated")
+
     } catch (error) {
       done(error, null);
     }

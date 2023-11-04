@@ -66,9 +66,17 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+const CLIENT_ORIGIN = 'http://localhost:5173'; // Update with your React app's origin
+
+// Set up CORS options
+const corsOptions = {
+  origin: CLIENT_ORIGIN,
+  credentials: true, // Allow credentials (cookies, headers, etc.)
+};
+
 app.use(bodyParser.json({limit: "30mb" , extended: true}))
 app.use(bodyParser.urlencoded({limit: "30mb" , extended: true}))
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(passport.initialize());
 app.use(passport.session());
