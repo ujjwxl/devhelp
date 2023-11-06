@@ -5,6 +5,10 @@ const abandonedProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  projectStatus:{
+    type:String,
+    required: true,
+  },
   projectDescription: {
     type: String,
     required: true,

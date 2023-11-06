@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function Card({ userProfilePage, user, listed, saved }) {
+export default function Card({ userProfilePage, user, listed, saved, isAbandoned, toCollaborate }) {
   const [projects, setProjects] = useState([]);
 
   // console.log(user.workingOn);
@@ -14,9 +14,8 @@ export default function Card({ userProfilePage, user, listed, saved }) {
   const { userId } = useParams();
 
   useEffect(() => {
-    if(saved) {
-
-      const loggedInUserId = sessionStorage.getItem('id');
+    if (saved) {
+      const loggedInUserId = sessionStorage.getItem("id");
 
       axios
         .get(`http://localhost:5000/project/saved/${loggedInUserId}`) // Replace userId with the actual user ID
@@ -27,7 +26,7 @@ export default function Card({ userProfilePage, user, listed, saved }) {
           console.error("Error fetching user projects:", error);
         });
     }
-    if (userProfilePage && listed) {
+    else if (userProfilePage && listed) {
       // Fetch only user's projects
       axios
         .get(`http://localhost:5000/project/user/${userId}`) // Replace userId with the actual user ID
@@ -38,14 +37,39 @@ export default function Card({ userProfilePage, user, listed, saved }) {
           console.error("Error fetching saved projects:", error);
         });
     } else if (userProfilePage && !listed) {
-      axios.get(`http://localhost:5000/project/working/${userId}`)
+      axios
+        .get(`http://localhost:5000/project/working/${userId}`)
         .then((response) => {
           setProjects(response.data);
         })
         .catch((error) => {
           console.error("Error fetching user projects:", error);
         });
-    } else {
+    } else if (isAbandoned) {
+        // Fetch only abandoned projects
+        axios
+          .get("http://localhost:5000/project/abandoned")
+          .then((response) => {
+            setProjects(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching abandoned projects:", error);
+          });
+        }
+        else if (toCollaborate) {
+          // Fetch only abandoned projects
+          axios
+            .get("http://localhost:5000/project/collab")
+            .then((response) => {
+              setProjects(response.data);
+              console.log(projects);
+            })
+            .catch((error) => {
+              console.error("Error fetching collaborate projects:", error);
+            });
+          }
+
+        else{
       // Fetch all projects
       axios
         .get("http://localhost:5000/project/all")
@@ -55,8 +79,8 @@ export default function Card({ userProfilePage, user, listed, saved }) {
         .catch((error) => {
           console.error("Error fetching projects:", error);
         });
-    }
-  }, [userProfilePage, listed]);
+      }
+  }, [userProfilePage, listed, isAbandoned, toCollaborate]);
 
   function formatDate(dateString) {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -96,14 +120,13 @@ export default function Card({ userProfilePage, user, listed, saved }) {
   }
 
   async function saveProject(projectId) {
-
     const loggedInUserId = sessionStorage.getItem("id");
 
     try {
       await axios
         .post("http://localhost:5000/project/save", {
           loggedInUserId,
-          projectId
+          projectId,
         })
         .then((res) => {
           if (res.status == 200) {
@@ -148,11 +171,11 @@ export default function Card({ userProfilePage, user, listed, saved }) {
             <div className="header-r">
               <p className="header-date">{formatDate(project.createdAt)}</p>
               <span className="header-r-icons">
-                <FontAwesomeIcon icon={faBookmark} className="bookmark-icon" onClick={() =>
-                  saveProject(
-                    project._id
-                  )
-                } />
+                <FontAwesomeIcon
+                  icon={faBookmark}
+                  className="bookmark-icon"
+                  onClick={() => saveProject(project._id)}
+                />
                 <FontAwesomeIcon icon={faGithub} className="github-icon" />
               </span>
               <p className="header-r-p">{project.completionPercent + "%"}</p>
@@ -168,7 +191,7 @@ export default function Card({ userProfilePage, user, listed, saved }) {
               <p className="footer-l-p">{project.technologiesUsedTwo}</p>
               <p className="footer-l-p">{project.technologiesUsedThree}</p>
             </div>
-            <div className="footer-r">
+            {/* <div className="footer-r">
               <button className="footer-r-button">
                 <Link to={`/project/${project._id}`}>View More</Link>
               </button>
@@ -195,6 +218,50 @@ export default function Card({ userProfilePage, user, listed, saved }) {
                     Request to continue
                   </button>
                 )}
+              </div>
+            </div> */}
+
+            <div className="footer-r">
+              <button className="footer-r-button">
+                <Link to={`/project/${project._id}`}>View More</Link>
+              </button>
+              <div className="footer-r">
+                {user &&
+                user.workingOn &&
+                user.workingOn.includes(project._id) ? (
+                  // User is already working on the project
+                  <button className="footer-r-button working-button">
+                    Working
+                  </button>
+                ) : project.projectStatus === "collaborate" ? (
+                  // Display "Request to collaborate" for projects with projectStatus "collaborate"
+                  <button
+                    className="footer-r-button"
+                    onClick={() =>
+                      handleContinueRequest(
+                        project.projectName,
+                        project._id,
+                        project.developerUserId
+                      )
+                    }
+                  >
+                    Request to collaborate
+                  </button>
+                ) : project.projectStatus === "abandoned" ? (
+                  // Display "Request to continue" for projects with projectStatus "abandon"
+                  <button
+                    className="footer-r-button"
+                    onClick={() =>
+                      handleContinueRequest(
+                        project.projectName,
+                        project._id,
+                        project.developerUserId
+                      )
+                    }
+                  >
+                    Request to continue
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>

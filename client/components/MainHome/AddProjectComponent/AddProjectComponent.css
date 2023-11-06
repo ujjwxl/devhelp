@@ -1,4 +1,8 @@
 
+
+.addProject{
+    color: aliceblue;
+}
 .add-project-heading {
     text-align: center;
 }
@@ -6,11 +10,11 @@
 .add-project {
     width: 50%;
     height: 40px;
+    padding-left: 10px;
     font-size: 1.1rem;
     background-color: gainsboro;
     margin-left: 25%;
     border-radius: 10px;
-    /* margin-bottom: 10px; */
 }
 
 .add-project-description {
@@ -19,8 +23,6 @@
     margin-left: 25%;
     font-size: 1.1rem;
     border-radius: 10px;
-    /* margin-bottom: 10px; */
-    /* height: 700%; */
 }
 
 .add-project-notes {
@@ -29,7 +31,6 @@
     margin-left: 25%;
     font-size: 1.1rem;
     border-radius: 10px;
-    /* margin-bottom: 10px; */
 }
 
 .add-project-button {
@@ -46,3 +47,62 @@
 .add-project-input-details {
     margin-left: 25%;
 }
+
+/* Add transitions to inputs and textareas for a smoother experience */
+.add-project, .add-project-description, .add-project-notes {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Add a hover effect to highlight inputs and textareas */
+.add-project:hover, .add-project-description:hover, .add-project-notes:hover {
+  background-color: #cccccc;
+}
+
+/* Add a subtle focus effect to inputs and textareas */
+.add-project:focus, .add-project-description:focus, .add-project-notes:focus {
+  outline: none;
+  background-color: #dad5d5;
+}
+
+/* Animate the submit button when clicked */
+.add-project-button {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(0px);
+}
+/* Add a hover effect to the "Add project" button */
+.add-project-button:hover {
+  cursor: pointer; /* Change cursor to a pointer on hover */
+}
+
+
+.add-project-button:active {
+  transform: translateY(-5px);
+}
+
+/* Add a subtle drop shadow to the submit button */
+.add-project-button {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+/* Update the dropdown styles */
+.add-project-select {
+  width: 50%;
+  height: 40px;
+  font-size: 1.1rem;
+  background-color: gainsboro;
+  margin-left: 25%;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out; /* Add a smooth transition */
+}
+
+/* Apply the same hover and focus styles as other inputs */
+.add-project-select:hover {
+  background-color: #cccccc;
+}
+
+.add-project-select:focus {
+  outline: none; /* Remove the default outline */
+  background-color: #e6e6e6; /* Change the background color when focused */
+  box-shadow: 0 0 5px rgba(227, 212, 212, 0.2); /* Add a subtle box-shadow when focused */
+}
+
+  

@@ -5,6 +5,7 @@ import notificationModel from '../models/notificationModel.js';
 export const addProject = async (req, res) => {
   const {
     projectName,
+    projectStatus,
     projectDescription,
     projectGithub,
     projectPercent,
@@ -22,6 +23,7 @@ export const addProject = async (req, res) => {
   try {
     const newProject = new projectModel({
       projectName,
+      projectStatus,
       projectDescription,
       projectGithubLink: projectGithub,
       completionPercent: projectPercent,
@@ -232,5 +234,38 @@ export const getSavedProjects = async (req, res) => {
   } catch (error) {
     console.error("Error fetching saved projects for the user:", error);
     res.status(500).json({ error: "Failed to fetch saved projects" });
+  }
+};
+
+
+export const getAbandonedProjects = async (req, res) => {
+  try {
+    // Find projects with projectStatus "abandoned"
+    const abandonedProjects = await projectModel.find({ projectStatus: 'abandoned' });
+
+    if (!abandonedProjects) {
+      return res.status(404).json({ message: 'No abandoned projects found' });
+    }
+
+    res.status(200).json(abandonedProjects);
+  } catch (error) {
+    console.error('Error fetching abandoned projects:', error);
+    res.status(500).json({ error: 'Failed to fetch abandoned projects' });
+  }
+};
+
+export const getCollaborateProjects = async (req, res) => {
+  try {
+    // Find projects with projectStatus "collaborate"
+    const collaborateProjects = await projectModel.find({ projectStatus: 'collaborate' });
+
+    if (!collaborateProjects) {
+      return res.status(404).json({ message: 'No collaborate projects found' });
+    }
+
+    res.status(200).json(collaborateProjects);
+  } catch (error) {
+    console.error('Error fetching collaborate projects:', error);
+    res.status(500).json({ error: 'Failed to fetch collaborate projects' });
   }
 };

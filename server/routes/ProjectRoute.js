@@ -1,5 +1,5 @@
 import express from 'express';
-import { addProject, getAllProjects, getProjectsByUser, getWorkingProjectsByUser, getProject, acceptRequest, declineRequest, saveProject, getSavedProjects } from '../controllers/ProjectController.js';
+import { addProject, getAllProjects, getProjectsByUser, getWorkingProjectsByUser, getProject, acceptRequest, declineRequest, saveProject, getSavedProjects, getAbandonedProjects, getCollaborateProjects } from '../controllers/ProjectController.js';
 
 const router = express.Router();
 
@@ -19,5 +19,8 @@ router.post('/decline', declineRequest);
 
 router.post('/save', saveProject);
 router.get('/saved/:userId', getSavedProjects);
+router.get('/abandoned', getAbandonedProjects);
+router.get('/collab', getCollaborateProjects);
+
 
 export default router;

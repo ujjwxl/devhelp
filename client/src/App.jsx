@@ -29,6 +29,8 @@ function App() {
           <Route path="/project/:projectId" element={<ProjectDetails />} />
           <Route path="/saved" element={<SavedProjects />}></Route>
           <Route path="/chat/:chatUserId" element={<Chat />}></Route>
+          <Route path="/abandon" element={<MainHome />}></Route>
+          <Route path="/collaborate" element={<MainHome />}></Route>
         </Routes>
       </Router>
     </>

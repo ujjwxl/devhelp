@@ -36,24 +36,25 @@ export default function Sidebar() {
           <p>{followerCount + ` followers`}</p>
           <p>{followingCount + `following`}</p>
         </div> */}
-        <p>{followerCount + ` followers ` +  followingCount + `following`}</p>
+        <p>{followerCount + ` followers ` + followingCount + ` following`}</p>
       </div>
 
 
       <Link to="/add" className="sidebar-button">
-        Add a Project
+        Add Project
       </Link>
-      <Link to="/my-projects" className="sidebar-button">
+      <Link to={`/profile/${userId}`} className="sidebar-button">
         My Projects
       </Link>
-      <Link to="/random-projects" className="sidebar-button">
-        Random Projects
+      
+      <Link to="/abandon" className="sidebar-button">
+        Abandon Projects
+      </Link>
+      <Link to="/collaborate" className="sidebar-button">
+        Collaborate Projects
       </Link>
       <Link to="/saved" className="sidebar-button">
-        Saved Items
-      </Link>
-      <Link to="/settings" className="sidebar-button">
-        Settings
+        Saved
       </Link>
       <Link to="/about" className="sidebar-button">
         About

@@ -39,6 +39,7 @@ router.get("/login/success", (req, res)=> {
  
 router.get('/google', passport.authenticate("google", {scope: ["profile", "email"] }));
 
+
 router.get('/google/callback', passport.authenticate('google', {
     successRedirect: CLIENT_URL, // Replace with your actual client URL
     failureRedirect: '/login', // You can customize this URL
