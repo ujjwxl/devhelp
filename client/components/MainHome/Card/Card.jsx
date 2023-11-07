@@ -222,7 +222,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
             </div> */}
 
             <div className="footer-r">
-              <button className="footer-r-button">
+              <button className="footer-r-button no-decor">
                 <Link to={`/project/${project._id}`}>View More</Link>
               </button>
               <div className="footer-r">

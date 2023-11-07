@@ -80,7 +80,7 @@ export default function Notifications() {
               <Link to={`/profile/${notification.requesterId}`}>
                 {notification.requesterUserName}
               </Link>{" "}
-              {notification.message}
+              {notification.message}{" "}
               <Link to={`/project/${notification.projectId}`}>
                 {notification.projectName}
               </Link>
@@ -89,6 +89,7 @@ export default function Notifications() {
             {notification.isRequest && (
               <div>
                 <button
+                className="respond-btn"
                   onClick={() =>
                     acceptRequest(
                       notification.requesterId,
@@ -100,6 +101,7 @@ export default function Notifications() {
                   Accept
                 </button>
                 <button
+                className="respond-btn"
                   onClick={() =>
                     declineRequest(
                       notification.requesterId,

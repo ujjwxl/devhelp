@@ -129,7 +129,7 @@ export const acceptRequest = async (req, res) => {
     user.workingOn.push(projectId);
     await user.save();
 
-    const message = "accepted your request to continue ";
+    const message = " accepted your request to continue ";
 
     const notification=new notificationModel({
       requesterId: loggedInUserId,
@@ -166,7 +166,7 @@ export const declineRequest = async (req, res) => {
       return res.status(404).json({ message: 'No user found' });
     }
  
-    const message = "has declined your request to continue";
+    const message = " has declined your request to continue ";
 
     const notification=new notificationModel({
       requesterId: loggedInUserId,

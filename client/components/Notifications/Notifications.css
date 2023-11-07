@@ -6,3 +6,44 @@
 /* .notify p{
     margin: 0;
 } */
+
+.respond-btn{
+  background-color: rgb(149, 175, 76);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 5px;
+  padding: 5px 7px;
+  margin-left: 5px;
+
+  &:hover {
+    animation: pulse-color 0.4s ease-in-out infinite;
+  }
+  &:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse-color {
+    from {
+      transform: scale(1);
+      background-color: #4CAF50;
+    }
+    25% {
+      transform: scale(1.1);
+      background-color: #69F0AE;
+    }
+    50% {
+      transform: scale(1);
+      background-color: #69F0AE;
+    }
+    75% {
+      transform: scale(1.1);
+      background-color: #4CAF50;
+    }
+    to {
+      transform: scale(1);
+      background-color: #4CAF50;
+    }
+  }

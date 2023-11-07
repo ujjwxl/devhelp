@@ -27,8 +27,8 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../../components/MainHome/Navbar/Navbar';
 import SideBar from '../../components/MainHome/SideBar/SideBar';
 import Workspace from '../../components/MainHome/Workspace/Workspace';
-import Abandon from '../../components/MainHome/AbandonedComponent/AbandonedComponent';
-import Collaborate from '../../components/MainHome/AbandonedComponent/Collaborate';
+import Abandon from '../../components/MainHome/Collab_Abandon/Abandoned';
+import Collaborate from '../../components/MainHome/Collab_Abandon/Collaborate';
 import './MainHome.css';
 
 export default function MainHome() {
