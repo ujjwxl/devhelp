@@ -85,7 +85,7 @@ export const loginUser = async (req, res) => {
 // };
 
 export const updateUserProfile = async (req, res) => {
-  const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId } = req.body;
+  const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId, profile_picture } = req.body;
 
   // Create an empty update object
   const updateData = {};
@@ -108,6 +108,9 @@ export const updateUserProfile = async (req, res) => {
   }
   if (technologyThree) {
     updateData.technologyThree = technologyThree;
+  }
+  if(profile_picture) {
+    updateData.profile_picture = profile_picture;
   }
 
   userModel.findByIdAndUpdate(userId, updateData, { new: true })

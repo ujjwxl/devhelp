@@ -105,4 +105,7 @@
   box-shadow: 0 0 5px rgba(227, 212, 212, 0.2); /* Add a subtle box-shadow when focused */
 }
 
-  
+.add-project-uploaded-image {
+  width: 250px;
+  height: 250px;
+}

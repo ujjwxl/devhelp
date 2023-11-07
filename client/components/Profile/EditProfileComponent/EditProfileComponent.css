@@ -1,0 +1,13 @@
+
+.profile-picture-preview {
+    height: 400px;
+    width: 400px;
+}
+
+.dropzone {
+    width: 500px;
+    height: 200px;
+    background-color: blue;
+    text-align: center;
+    margin-left: 30%;
+}

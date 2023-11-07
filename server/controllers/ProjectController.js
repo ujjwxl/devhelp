@@ -17,7 +17,10 @@ export const addProject = async (req, res) => {
     lastname,
     username,
     profile_picture,
-    userId
+    userId,
+    project_image_one,
+    project_image_two,
+    project_image_three
   } = req.body;
 
   try {
@@ -36,6 +39,9 @@ export const addProject = async (req, res) => {
       developerProfilePicture: profile_picture,
       developerUserName: username,
       developerUserId: userId,
+      projectImageOne: project_image_one,
+      projectImageTwo: project_image_two,
+      projectImageThree: project_image_three
     });
 
     await newProject.save();

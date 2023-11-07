@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./AddProjectComponent.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { useDropzone } from 'react-dropzone';
 
 const AddProjectComponent = () => {
   const [projectName, setProjectName] = useState("");
@@ -14,16 +15,70 @@ const AddProjectComponent = () => {
   const [technologyThree, setTechnologyThree] = useState("");
   const [projectStatus, setProjectStatus] = useState("collaborate");
 
+  const [images, setImages] = useState([]);
+  const [projectImages, setProjectImages] = useState({
+    projectImage1: null,
+    projectImage2: null,
+    projectImage3: null,
+  });
+
   const firstname = sessionStorage.getItem("firstname");
   const lastname = sessionStorage.getItem("lastname");
   const username = sessionStorage.getItem("username");
   const profile_picture = sessionStorage.getItem("profile_picture");
   const userId = sessionStorage.getItem("id");
 
-  const navigate= useNavigate();
+  const onDrop = (acceptedFiles) => {
+    // Store up to three images in the 'images' state
+    setImages(acceptedFiles.slice(0, 3));
+
+    // Map the images to the projectImages state
+    acceptedFiles.slice(0, 3).forEach((file, index) => {
+      const key = `projectImage${index + 1}`;
+      setProjectImages((prevImages) => ({
+        ...prevImages,
+        [key]: file,
+      }));
+    });
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*',
+    onDrop,
+    multiple: true,
+    maxFiles: 3,
+  });
+
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // const project_image_one = projectImages.projectImageOne.name;
+    // const project_image_two = projectImages.projectImageTwo.name;
+    // const project_image_three = projectImages.projectImageThree.name; 
+
+    const project_image_one = projectImages.projectImage1 ? projectImages.projectImage1.name : null;
+    const project_image_two = projectImages.projectImage2 ? projectImages.projectImage2.name : null;
+    const project_image_three = projectImages.projectImage3 ? projectImages.projectImage3.name : null;
+
+    const projectImagesArray = []; // Create an array to store project images
+
+    const formData = new FormData();
+
+    for (let i = 1; i <= 3; i++) {
+      const key = `projectImage${i}`;
+      const file = projectImages[key];
+      if (file) {
+        // projectImagesArray.push(file); // Add the file to the array
+        formData.append(`projectImagesArray`, file);
+      }
+    }
+
+    console.log(projectImagesArray)
+
+    console.log(project_image_one)
 
     try {
       const response = await axios.post("http://localhost:5000/project/add", {
@@ -41,6 +96,9 @@ const AddProjectComponent = () => {
         username,
         profile_picture,
         userId,
+        project_image_one,
+        project_image_two,
+        project_image_three
       });
 
       console.log("Project added successfully:", response.data);
@@ -48,6 +106,31 @@ const AddProjectComponent = () => {
       // Optionally, you can reset the form fields here
     } catch (error) {
       console.error("Error adding project:", error);
+    }
+
+    try {
+      // const formData = new FormData();
+
+      // Append all three images to the formData
+      // for (let i = 1; i <= 3; i++) {
+      //   const key = `projectImage${i}`;
+      //   const file = projectImages[key];
+      //   if (file) {
+      //     formData.append(key, file);
+      //   }
+      // }
+
+      // formData.append("projectImagesArray", projectImagesArray)
+
+      const result = await axios.post('http://localhost:5000/project/image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Images uploaded successfully:', result.data);
+    } catch (error) {
+      console.error('Image upload failed:', error);
     }
   };
 
@@ -143,6 +226,20 @@ const AddProjectComponent = () => {
             onChange={(e) => setTechnologyThree(e.target.value)}
           />{" "}
           <br />
+
+          <div {...getRootProps()} className="dropzone">
+            {/* <input {...getInputProps()} name="projectImages"/> */}
+            <input {...getInputProps({ name: "projectImages" })} />
+            <p>Drag and drop images here, or click to select files (up to 3).</p>
+          </div>
+          <div className="uploaded-images">
+            {images.map((file, index) => (
+              <div key={index} className="image-preview">
+                <img src={URL.createObjectURL(file)} alt={`Image ${index + 1}`} className="add-project-uploaded-image" />
+              </div>
+            ))}
+          </div>
+
           <button type="submit" className="add-project-button">
             Add project
           </button>

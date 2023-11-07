@@ -66,6 +66,8 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use(express.static('public'));
+
 const CLIENT_ORIGIN = 'http://localhost:5173'; // Update with your React app's origin
 
 // Set up CORS options
@@ -80,6 +82,18 @@ app.use(cors(corsOptions));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, "public/assets");
+  },
+
+  filename: function(req, file, cb) {
+      cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage })
 
 
 const server = http.createServer(app);
@@ -116,6 +130,16 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
     console.log("Listening");
   });
+
+app.use('/auth/image', upload.single('profilePicture'));
+// app.use('/project/image', upload.single('profilePicture'));
+
+app.use('/project/image', upload.array('projectImagesArray', 3), (req, res) => {
+  // Access uploaded images via req.files
+  console.log('Uploaded project images:', req.files);
+  // Process and store the images in your database or file system
+  // Respond with success or error messages as needed
+});
 
 app.use('/auth', AuthRoute)
 app.use('/project', ProjectRoute)

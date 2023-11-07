@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import './ProjectDetailsComponent.css'
 
 function FileOrFolder(props) {
   const { item, onFileClick, onFolderClick } = props;
@@ -96,6 +97,10 @@ export default function ProjectDetailsComponent() {
       <h1>Hello</h1>
       <h1>{projectDetails.projectName}</h1>
       <p>{projectDetails.projectNotes}</p>
+
+      <img src={`http://localhost:5000/assets/` + projectDetails.projectImageOne} alt=""  className='project-image'/>
+      <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'/>
+      <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'/>
 
       <h1>GitHub Repository Contents</h1>
       <div>

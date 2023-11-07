@@ -143,9 +143,13 @@ export default function ProfileCard() {
           )}
         </div>
       </div>
-      <img
+      {/* <img
         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
         className="profile-photo"
+      ></img> */}
+      <img
+        src={`http://localhost:5000/assets/` + userDetails.profile_picture}
+        className="profile-photo" 
       ></img>
       <div className="user-details">
         <p className="user-details-p-name">

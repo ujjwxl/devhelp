@@ -151,7 +151,8 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
             <div className="header-l">
               <img
                 // src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
-                src={`../../../src/assets/` + project.developerProfilePicture}
+                // src={`../../../src/assets/` + project.developerProfilePicture}
+                src={`http://localhost:5000/assets/` + project.developerProfilePicture}
                 className="header-l-img"
                 alt="profile"
               />

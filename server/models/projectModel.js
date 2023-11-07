@@ -52,6 +52,15 @@ const abandonedProjectSchema = new mongoose.Schema({
   },
   technologiesUsedThree: {
     type: String,
+  },
+  projectImageOne: {
+    type: String,
+  },
+  projectImageTwo: {
+    type: String,
+  },
+  projectImageThree: {
+    type: String,
   }
 }, { timestamps: true }); // Add this line to enable timestamps
 

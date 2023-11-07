@@ -72,10 +72,10 @@
   background: white;
 }
 
-.search:hover input {
-  /* width: 200px; */
-  /* background: white; */
-}
+/* .search:hover input {
+  width: 200px;
+  background: white;
+} */
 
 .search a {
   color: #000000;

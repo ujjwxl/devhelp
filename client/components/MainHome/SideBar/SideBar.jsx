@@ -29,7 +29,8 @@ export default function Sidebar() {
 
       <div className="sidebar-user-details">
         {/* <img src="src\assets\default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
-        <img src="../../../src/assets/default-pfp.png" alt="" className='sidebar-profile-picture' />
+        {/* <img src="../../../src/assets/default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
+        <img src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' />
         <p>{userDetails.firstname + " " + userDetails.lastname}</p>
         <p>{`@`+userDetails.username}</p>
         {/* <div className="sidebar-user-profiile-follow">
