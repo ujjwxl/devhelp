@@ -46,30 +46,30 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
           console.error("Error fetching user projects:", error);
         });
     } else if (isAbandoned) {
-        // Fetch only abandoned projects
-        axios
-          .get("http://localhost:5000/project/abandoned")
-          .then((response) => {
-            setProjects(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching abandoned projects:", error);
-          });
-        }
-        else if (toCollaborate) {
-          // Fetch only abandoned projects
-          axios
-            .get("http://localhost:5000/project/collab")
-            .then((response) => {
-              setProjects(response.data);
-              console.log(projects);
-            })
-            .catch((error) => {
-              console.error("Error fetching collaborate projects:", error);
-            });
-          }
+      // Fetch only abandoned projects
+      axios
+        .get("http://localhost:5000/project/abandoned")
+        .then((response) => {
+          setProjects(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching abandoned projects:", error);
+        });
+    }
+    else if (toCollaborate) {
+      // Fetch only abandoned projects
+      axios
+        .get("http://localhost:5000/project/collab")
+        .then((response) => {
+          setProjects(response.data);
+          console.log(projects);
+        })
+        .catch((error) => {
+          console.error("Error fetching collaborate projects:", error);
+        });
+    }
 
-        else{
+    else {
       // Fetch all projects
       axios
         .get("http://localhost:5000/project/all")
@@ -79,7 +79,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
         .catch((error) => {
           console.error("Error fetching projects:", error);
         });
-      }
+    }
   }, [userProfilePage, listed, isAbandoned, toCollaborate]);
 
   function formatDate(dateString) {
@@ -156,17 +156,25 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 className="header-l-img"
                 alt="profile"
               />
-              <a
+              {/* <a
                 href={`/profile/${project.developerUserId}`}
                 className="header-l-a"
               >
                 {project.developerUserName}
-              </a>
+              </a> */}
+
+              <Link to={`/profile/${project.developerUserId}`} className="header-l-a">
+                {project.developerUserName}
+              </Link>
 
               <p className="header-l-p">/</p>
-              <a href="" className="header-l-a">
+              {/* <a href="" className="header-l-a">
                 {project.projectName}
-              </a>
+              </a> */}
+
+              <Link to={`/project/${project._id}`} className="header-l-a">
+                {project.projectName}
+              </Link>
             </div>
 
             <div className="header-r">
@@ -228,8 +236,8 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
               </button>
               <div className="footer-r">
                 {user &&
-                user.workingOn &&
-                user.workingOn.includes(project._id) ? (
+                  user.workingOn &&
+                  user.workingOn.includes(project._id) ? (
                   // User is already working on the project
                   <button className="footer-r-button working-button">
                     Working

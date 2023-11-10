@@ -2,7 +2,7 @@
   /* background-color: #bcb5b5; */
   /* background-color: #B151F2; */
   /* background-color: #9400FF; */
-  background-color: #6527be;
+  /* background-color: #6527be; */
   /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3); */
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,15 @@
   height: 5%;
   z-index: 1;
   /* reduced navbar height to make for fixed navbar */
+  /* background: #ffe259; 
+  background: -webkit-linear-gradient(to right, #ffa751, #ffe259);
+  background: linear-gradient(to right, #ffa751, #ffe259); */
+
+  background: #0052D4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 }
 
 .nav h1 {
@@ -194,8 +203,8 @@ body.active-modal {
 
 .chat-links a {
   display: block;
-  margin-bottom: 10px;
-  font-size: 28px;
+  margin-top: 6px;
+  font-size: 26px;
 }
 .light-link {
   color: #542020; /* Adjust the color to make it lighter */
@@ -373,4 +382,21 @@ body.active-modal {
     transform: scale(1);
     background-color: #4caf50;
   }
+}
+
+.chat-link {
+  display: flex;
+  /* background-color: red; */
+}
+
+.chat-link img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.chat-links p {
+  margin-left: 10px;
 }

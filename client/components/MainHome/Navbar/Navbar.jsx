@@ -67,7 +67,7 @@ export default function Navbar() {
         color="#ffffff"
         progress={100}
         height={3}
-        // onLoaderFinished={() => setProgress(0)}
+      // onLoaderFinished={() => setProgress(0)}
       />
       {/* <a href="/home">DevHelp</a> */}
       <Link to={"/home"}>DevHelp</Link>
@@ -105,14 +105,18 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faBell} />
           </div>
           <div className="icon-profile">
-            <a href={`/profile/${userId}`}>
+            {/* <a href={`/profile/${userId}`}>
               <FontAwesomeIcon icon={faUser} />
-            </a>
+            </a> */}
+
+            <Link to={`/profile/${userId}`}>
+              <FontAwesomeIcon icon={faUser} />
+            </Link>
           </div>
         </div>
       </div>
 
-      {chatModal && (
+      {/* {chatModal && (
         <div className="modal">
           <div onClick={toggleChatModal} className="overlay"></div>
           <div className="search-modal-content">
@@ -127,6 +131,36 @@ export default function Navbar() {
                 <Link to={`/chat/${chat._id}`} className="light-link">{chat.username}</Link>
               ))}
             </div>
+          </div>
+        </div>
+      )} */}
+
+      {chatModal && (
+        <div className="modal">
+          <div onClick={toggleChatModal} className="overlay"></div>
+          <div className="search-modal-content">
+            <div className="modal-header">
+              <h2>Chats</h2>
+              <button className="close-modal" onClick={toggleChatModal}>
+                CLOSE
+              </button>
+            </div>
+            {userChats.length === 0 ? (
+              <p>No chats available</p>
+            ) : (
+              <div className="chat-links">
+                {userChats.map((chat) => (
+                  <div className="chat-link">
+                    <img src={`http://localhost:5000/assets/` + chat.profile_picture} alt="" />
+                    <Link to={`/chat/${chat._id}`} className="light-link" key={chat._id}>
+                      {chat.username}
+                    </Link>
+                    <p>{`@` + chat.username}</p>
+                  </div>
+
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

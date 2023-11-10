@@ -347,7 +347,7 @@ export const getUserChats = async (req, res) => {
     const usersWithChats = user.userChats;
 
     // Send the list of users with the entire user details in the userChats field
-    return res.status(200).json(usersWithChats);
+    return res.status(200).json(usersWithChats.reverse());
   } catch (error) {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
