@@ -105,7 +105,7 @@ export default function ProfileCard() {
               <FontAwesomeIcon icon={faGithub} className="profile-icon" />
             </span>
             <p>/</p>
-            <a href="#">{userDetails.github}</a>
+            <a href={`https://github.com/` + userDetails.github}>{userDetails.github}</a>
             <span className="profile-footer-icons">
               <FontAwesomeIcon icon={faLink} className="profile-icon" />
             </span>

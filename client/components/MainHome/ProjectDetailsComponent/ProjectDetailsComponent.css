@@ -1,5 +1,37 @@
 
 .project-image {
-    width: 400px;
+    width: 600px;
     height: 400px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.project-details-page {
+    color: white;
+    padding: 0 40px;
+}
+
+.project-details-header {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    /* background-color: blue; */
+    margin-top: 80px;
+}
+
+.project-details-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    margin-top: 12px;
+    /* margin-left: 20px; */
+    margin-right: 20px;
+}
+
+.project-details-header-left {
+    display: flex;
+}
+
+.project-details-project-notes {
+    white-space: pre-wrap;
 }
