@@ -70,11 +70,24 @@ export default function Navbar() {
     sessionStorage.clear();
     window.location.href = "/login";
   };
-
   const handleProfileClick = (profileLink) => {
     window.location.href = profileLink;
   };
-  
+
+  useEffect(() => {
+    if (searchQuery.trim() !== '') {
+      handleSearch();
+      setSearchModal(true)
+    } else {
+      // Clear the search results if the search query is empty
+      setSearchResults({
+        users: [],
+        projects: [],
+      });
+    }
+  }, [searchQuery]);
+
+
   return (
     <div className="nav">
       <LoadingBar

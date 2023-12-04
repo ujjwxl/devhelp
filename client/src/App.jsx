@@ -13,6 +13,7 @@ import EditProfile from "../pages/EditProfile/EditProfile";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 import SavedProjects from "../pages/SavedProjects/SavedProjects";
 import Chat from "../pages/Chat/Chat";
+import NotFound from "../pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <Route path="/chat/:chatUserId" element={<Chat />}></Route>
           <Route path="/abandon" element={<MainHome />}></Route>
           <Route path="/collaborate" element={<MainHome />}></Route>
+
+          <Route path="*" element={<NotFound/>}></Route>
         </Routes>
       </Router>
     </>

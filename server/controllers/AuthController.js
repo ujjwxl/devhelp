@@ -293,6 +293,9 @@ export const searchUsers = async (req, res) => {
         { username: { $regex: new RegExp(query, 'i') } },
         { firstname: { $regex: new RegExp(query, 'i') } },
         { lastname: { $regex: new RegExp(query, 'i') } },
+        { technologyOne: { $regex: new RegExp(query, 'i') } },
+        { technologyTwo: { $regex: new RegExp(query, 'i') } },
+        { technologyThree: { $regex: new RegExp(query, 'i') } },
       ],
     });
 

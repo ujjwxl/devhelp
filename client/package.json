@@ -27,7 +27,8 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-top-loading-bar": "^2.3.1",
     "socket.io-client": "^4.7.2",
-    "styled-components": "^6.0.8"
+    "styled-components": "^6.0.8",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

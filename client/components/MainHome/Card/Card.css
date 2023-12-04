@@ -33,6 +33,7 @@
   height: 2.5rem;
   border-radius: 100px;
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 .header-l-a {
@@ -54,6 +55,19 @@
   color: #555;
   margin-right: 15px;
 }
+
+.header-r .green {
+  background-color: 53c66c;
+}
+
+.header-r .yellow {
+  background-color: yellow;
+}
+
+.header-r .red {
+  background-color: red;
+}
+
 
 .header-date {
   margin-right: 15px;

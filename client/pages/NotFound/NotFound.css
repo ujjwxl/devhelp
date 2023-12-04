@@ -1,0 +1,19 @@
+
+.computer-image {
+    width: 20%;
+}
+
+.not-found-page {
+    color: white;
+    margin-top: 60px;
+}
+
+.not-found-page h1 {
+    font-size: 5rem;
+}
+
+.not-found-page button {
+    background: #3B62F4;
+    width: 250px;
+    height: 50px;
+}

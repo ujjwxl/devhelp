@@ -4,6 +4,7 @@ import "./Card.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { format, render, cancel, register } from 'timeago.js';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Card({ userProfilePage, user, listed, saved, isAbandoned, toCollaborate }) {
@@ -143,9 +144,23 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
     }
   }
 
-  const handleProfileClick = (profileLink) => {
-    window.location.href = profileLink;
-  };
+  // const handleProfileClick = (profileLink) => {
+  //   window.location.href = profileLink;
+  // };
+
+
+  function getCompletionClass(completionPercent) {
+    if (completionPercent > 70) {
+      return 'green';
+    } else if (completionPercent >= 40 && completionPercent <= 69) {
+      return 'yellow';
+    } else {
+      return 'red';
+    }
+  }
+
+
+
   // client\src\assets\default-pfp.png
   return (
     <div>
@@ -153,14 +168,19 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
         <div className="card" key={project._id}>
           <div className="card-header">
             <div className="header-l">
-              <img
+              <Link to={`/profile/${project.developerUserId}`}><img
+                src={`http://localhost:5000/assets/` + project.developerProfilePicture}
+                className="header-l-img"
+                alt="profile"
+              /></Link>
+              {/* <img
                 // src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
                 // src={`../../../src/assets/` + project.developerProfilePicture}
                 src={`http://localhost:5000/assets/` + project.developerProfilePicture}
                 onClick={() => handleProfileClick(`/profile/${project.developerUserId}`)}
                 className="header-l-img"
                 alt="profile"
-              />
+              /> */}
               {/* <a
                 href={`/profile/${project.developerUserId}`}
                 className="header-l-a"
@@ -183,7 +203,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
             </div>
 
             <div className="header-r">
-              <p className="header-date">{formatDate(project.createdAt)}</p>
+              <p className="header-date">{format(project.createdAt)}</p>
               <span className="header-r-icons">
                 <FontAwesomeIcon
                   icon={faBookmark}
@@ -192,7 +212,10 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 />
                 <FontAwesomeIcon icon={faGithub} className="github-icon" />
               </span>
-              <p className="header-r-p">{project.completionPercent + "%"}</p>
+              {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
+              <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
+                {project.completionPercent + "%"}
+              </p>
             </div>
           </div>
 
