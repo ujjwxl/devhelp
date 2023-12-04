@@ -142,6 +142,10 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
       console.log(e);
     }
   }
+
+  const handleProfileClick = (profileLink) => {
+    window.location.href = profileLink;
+  };
   // client\src\assets\default-pfp.png
   return (
     <div>
@@ -153,6 +157,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 // src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
                 // src={`../../../src/assets/` + project.developerProfilePicture}
                 src={`http://localhost:5000/assets/` + project.developerProfilePicture}
+                onClick={() => handleProfileClick(`/profile/${project.developerUserId}`)}
                 className="header-l-img"
                 alt="profile"
               />

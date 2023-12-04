@@ -61,12 +61,18 @@
 
 .search-btn {
   text-decoration: none;
+  border: none;
+  background: none;
 }
 
-/* .search:hover {
-  background: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-} */
+.search-btn svg {
+  font-size: 18px;
+  color: #000000;  
+}
+
+.search-btn:hover {
+cursor: pointer;
+}
 
 .search input {
   width: 0;
@@ -76,7 +82,7 @@
   transition: 0.9s;
   background: transparent;
   font-family: "McLaren", cursive;
-  font-size: 15px;
+  font-size: 16px;
   width: 240px;
   background: white;
 }
@@ -133,7 +139,7 @@
 }
 
 .icon-notification:hover {
-  color: #007bff;
+  color: #dfd515;
   transform: scale(1.1);
 }
 
@@ -146,11 +152,11 @@
 }
 
 .icon-chat:hover {
-  color: #007bff;
+  color: #e1c2c2;
   transform: scale(1.1);
 }
 
-.icon-profile a {
+.icon-profile {
   margin-left: 20px;
   font-size: 25px;
   color: #080808;
@@ -399,4 +405,71 @@ body.active-modal {
 
 .chat-links p {
   margin-left: 10px;
+}
+
+
+
+
+
+.profile-modal-content {
+  position: absolute;
+  top: 16.5%;
+  left: 93%;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  background: #f1f1f1;
+  padding: 14px 14px;
+  /* border-radius: 3px; */
+  border-radius: 10px;
+  max-width: 300px;
+  min-width: 100px;
+}
+
+
+.profile-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-options a{
+  margin: 0;
+}
+
+.user-options{
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.profile-options button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.profile-options button:hover {
+  background-color: #0056b3;
+}
+
+.animated-line {
+  width: 0;
+  height: 2px;
+  background-color: #007bff; /* Adjust color as needed */
+  transition: width 0.3s ease;
+}
+
+/* Add this style for the hover effect on the "Sign Out" option */
+#sign-out-option:hover + .animated-line {
+  width: 100%;
+}
+#profile-option:hover + .animated-line {
+  width: 100%;
 }

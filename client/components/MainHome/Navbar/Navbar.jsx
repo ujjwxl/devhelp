@@ -8,6 +8,7 @@ import {
   faBell,
   faUser,
   faComment,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import Notifications from "../../Notifications/Notifications";
 import LoadingBar from "react-top-loading-bar";
@@ -24,7 +25,12 @@ export default function Navbar() {
     users: [],
     projects: [],
   });
-  const [userChats, setUserChats] = useState([]); // State to store user chats
+  const [userChats, setUserChats] = useState([]);
+  const [profileModal, setProfileModal] = useState(false);
+
+  const toggleProfileModal = () => {
+    setProfileModal(!profileModal);
+  };
 
   const toggleNotificationModal = () => {
     setNotificationModal(!notificationModal);
@@ -60,6 +66,15 @@ export default function Navbar() {
     }
   };
 
+  const handleSignOut = () => {
+    sessionStorage.clear();
+    window.location.href = "/login";
+  };
+
+  const handleProfileClick = (profileLink) => {
+    window.location.href = profileLink;
+  };
+  
   return (
     <div className="nav">
       <LoadingBar
@@ -67,18 +82,31 @@ export default function Navbar() {
         color="#ffffff"
         progress={100}
         height={3}
-      // onLoaderFinished={() => setProgress(0)}
+        // onLoaderFinished={() => setProgress(0)}
       />
       {/* <a href="/home">DevHelp</a> */}
       <Link to={"/home"}>DevHelp</Link>
       <div className="nav-r">
         <div className="search">
           {/* <input type="text" placeholder="Search..." /> */}
+          {/* <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          /> */}
+
           <input
             type="text"
             placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+                toggleSearchModal();
+              }
+            }}
           />
           <button
             className="search-btn"
@@ -104,14 +132,16 @@ export default function Navbar() {
           <div className="icon-notification" onClick={toggleNotificationModal}>
             <FontAwesomeIcon icon={faBell} />
           </div>
-          <div className="icon-profile">
-            {/* <a href={`/profile/${userId}`}>
-              <FontAwesomeIcon icon={faUser} />
-            </a> */}
+          {/* <div className="icon-profile">
+
 
             <Link to={`/profile/${userId}`}>
               <FontAwesomeIcon icon={faUser} />
             </Link>
+          </div> */}
+
+          <div className="icon-profile" onClick={toggleProfileModal}>
+            <FontAwesomeIcon icon={faUser} />
           </div>
         </div>
       </div>
@@ -135,7 +165,7 @@ export default function Navbar() {
         </div>
       )} */}
 
-      {chatModal && (
+      {/* {chatModal && (
         <div className="modal">
           <div onClick={toggleChatModal} className="overlay"></div>
           <div className="search-modal-content">
@@ -151,16 +181,85 @@ export default function Navbar() {
               <div className="chat-links">
                 {userChats.map((chat) => (
                   <div className="chat-link">
-                    <img src={`http://localhost:5000/assets/` + chat.profile_picture} alt="" />
-                    <Link to={`/chat/${chat._id}`} className="light-link" key={chat._id}>
+                    <img
+                      src={
+                        `http://localhost:5000/assets/` + chat.profile_picture
+                      }
+                      alt=""
+                    />
+                    <Link
+                      to={`/chat/${chat._id}`}
+                      className="light-link"
+                      key={chat._id}
+                    >
                       {chat.username}
                     </Link>
                     <p>{`@` + chat.username}</p>
                   </div>
-
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      )} */}
+
+      {profileModal && (
+        <div className="modal">
+          <div onClick={toggleProfileModal} className="overlay"></div>
+          <div className="profile-modal-content">
+            <div className="profile-options">
+              <p
+                onClick={() => handleProfileClick(`/profile/${userId}`)}
+                className="user-options profile-option"
+                id="profile-option"
+              >
+                Profile
+              </p>
+              <div className="animated-line" id="profile-line"></div>
+              <p
+                onClick={handleSignOut}
+                className="user-options sign-out-option"
+                id="sign-out-option"
+              >
+                Sign Out
+              </p>
+              <div className="animated-line" id="sign-out-line"></div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {chatModal && (
+        <div className="modal">
+          <div onClick={toggleChatModal} className="overlay"></div>
+          <div className="search-modal-content">
+            <div className="modal-header">
+              <h2>Chats</h2>
+              <button className="close-modal" onClick={toggleChatModal}>
+                CLOSE
+              </button>
+            </div>
+            {
+              <div className="chat-links">
+                {userChats.map((chat) => (
+                  <div className="chat-link" key={chat._id}>
+                    <img
+                      src={
+                        `http://localhost:5000/assets/` + chat.profile_picture
+                      }
+                      alt=""
+                    />
+                    <Link to={`/chat/${chat._id}`} className="light-link">
+                      {chat.username}
+                    </Link>
+                    <p>{`@` + chat.username}</p>
+                  </div>
+                ))}
+              </div>
+            }
+
+            {/* Display a message when no chats are available */}
+            {userChats.length === 0 && <h3>No chats available</h3>}
           </div>
         </div>
       )}
@@ -175,13 +274,7 @@ export default function Navbar() {
                 CLOSE
               </button>
             </div>
-            {/* <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              perferendis suscipit officia recusandae
-            </p> */}
-            {/* {userNotifications.map((notification, index) => (
-              <p key={index}>{notification}</p>
-            ))} */}
+
             <Notifications></Notifications>
           </div>
         </div>
@@ -196,7 +289,9 @@ export default function Navbar() {
                 <h2 className="search-h2">Users</h2>
                 {searchResults.users.map((user) => (
                   <span key={user._id}>
-                    <Link to={`/profile/${user._id}`} className="search-link">{user.username}</Link>{" "}
+                    <Link to={`/profile/${user._id}`} className="search-link">
+                      {user.username}
+                    </Link>{" "}
                     <br />
                   </span>
                 ))}
@@ -208,17 +303,21 @@ export default function Navbar() {
                 <h2 className="search-h2">Projects</h2>
                 {searchResults.projects.map((project) => (
                   <div key={project._id}>
-                    {/* <h3>Project name: <a href={`/project/${project._id}`}>{project.projectName}</a></h3>
-                    <p>Developer: <a href={`/profile/${project.developerUserId}`}>{project.developerUserName}</a></p> */}
                     <h3>
                       Project name:{" "}
-                      <Link to={`/project/${project._id}`} className="search-link">
+                      <Link
+                        to={`/project/${project._id}`}
+                        className="search-link"
+                      >
                         {project.projectName}
                       </Link>
                     </h3>
                     <p>
                       Developer:{" "}
-                      <Link to={`/profile/${project.developerUserId}`} className="search-link">
+                      <Link
+                        to={`/profile/${project.developerUserId}`}
+                        className="search-link"
+                      >
                         {project.developerUserName}
                       </Link>
                     </p>
@@ -226,6 +325,10 @@ export default function Navbar() {
                 ))}
               </div>
             )}
+
+            {/* Display a message when no results are found */}
+            {searchResults.users.length === 0 &&
+              searchResults.projects.length === 0 && <h3>No results found</h3>}
 
             <button className="close-modal" onClick={toggleSearchModal}>
               CLOSE

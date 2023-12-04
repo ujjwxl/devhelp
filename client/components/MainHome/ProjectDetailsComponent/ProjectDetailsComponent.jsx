@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Modal from 'react-modal';
 import './ProjectDetailsComponent.css'
 
 // function FileOrFolder(props) {
@@ -37,6 +38,18 @@ export default function ProjectDetailsComponent() {
   const [contents, setContents] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [apiUrl, setApiUrl] = useState(""); // New apiUrl state
+
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [expandedImage, setExpandedImage] = useState('');
+
+  const openImageModal = (imageSrc) => {
+    setExpandedImage(imageSrc);
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+  };
 
   useEffect(() => {
     axios.get(`http://localhost:5000/project/get/${projectId}`)
@@ -186,9 +199,9 @@ export default function ProjectDetailsComponent() {
 
       <h3>Tech Stack Used : </h3>
       <div className="footer-l">
-        <p className="footer-l-p">{projectDetails.technologiesUsedOne}</p>
-        <p className="footer-l-p">{projectDetails.technologiesUsedTwo}</p>
-        <p className="footer-l-p">{projectDetails.technologiesUsedThree}</p>
+        <p className="foter">{projectDetails.technologiesUsedOne}</p>
+        <p className="foter">{projectDetails.technologiesUsedTwo}</p>
+        <p className="foter">{projectDetails.technologiesUsedThree}</p>
       </div>
 
 
@@ -220,19 +233,42 @@ export default function ProjectDetailsComponent() {
       <h3>Project Images : </h3>
 
       <div className="project-images">
-        {projectDetails.projectImageOne && (
+        {/* {projectDetails.projectImageOne && (
           <img src={`http://localhost:5000/assets/` + projectDetails.projectImageOne} alt="" className='project-image' />
+        )} */}
+        {projectDetails.projectImageOne && (
+          <img
+            src={`http://localhost:5000/assets/` + projectDetails.projectImageOne}
+            alt=""
+            className='project-image'
+            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageOne)}
+          />
         )}
         {projectDetails.projectImageTwo && (
-          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image' />
+          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image' 
+            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
+          />
         )}
         {projectDetails.projectImageThree && (
-          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image' />
+          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
+          onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
         )}
         {!projectDetails.projectImageOne && !projectDetails.projectImageTwo && !projectDetails.projectImageThree && (
           <p>No images available for this project</p>
         )}
       </div>
+      <Modal
+        isOpen={isImageModalOpen}
+        onRequestClose={closeImageModal}
+        contentLabel="Expanded Image"
+      >
+        <img
+          src={expandedImage}
+          alt="Expanded Project Image"
+          className="expanded-image"
+        />
+        <button className='closeImgModal' onClick={closeImageModal}>Close</button>
+      </Modal>
 
 
       <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3>

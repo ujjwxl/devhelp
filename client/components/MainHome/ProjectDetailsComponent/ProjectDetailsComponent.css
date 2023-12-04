@@ -1,37 +1,77 @@
-
 .project-image {
-    width: 600px;
-    height: 400px;
-    margin-top: 20px;
-    border-radius: 10px;
+  width: 600px;
+  height: 400px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .project-details-page {
-    color: white;
-    padding: 0 40px;
+  color: white;
+  padding: 0 40px;
+  margin-bottom: 20px;
 }
 
 .project-details-header {
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    /* background-color: blue; */
-    margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  /* background-color: blue; */
+  margin-top: 80px;
 }
 
 .project-details-header img {
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    margin-top: 12px;
-    /* margin-left: 20px; */
-    margin-right: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  margin-top: 12px;
+  /* margin-left: 20px; */
+  margin-right: 20px;
 }
 
 .project-details-header-left {
-    display: flex;
+  display: flex;
 }
 
 .project-details-project-notes {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
+}
+
+.foter {
+  background-color: #007bff;
+  color: #fff;
+  padding: 7px 8%;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+/* Add the following styles to your CSS file */
+
+/* Styles for the modal */
+.react-modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the modal content */
+.react-modal-content {
+  max-width: 80%; /* Adjust as needed */
+  max-height: 70vh; /* Adjust as needed */
+}
+
+/* Styles for the expanded image */
+.expanded-image {
+  width: 100%;
+  height: 80%;
+  object-fit: contain; /* Adjust as needed */
+}
+
+.closeImgModal {
+  padding: 5px 7px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 5px;
 }
