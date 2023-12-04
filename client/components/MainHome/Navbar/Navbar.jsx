@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import axios from "axios";
@@ -27,6 +27,25 @@ export default function Navbar() {
   });
   const [userChats, setUserChats] = useState([]);
   const [profileModal, setProfileModal] = useState(false);
+
+  const searchInputRef = useRef(null);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "/") {
+      event.preventDefault();
+      // Focus on the search input when '/' key is pressed
+      searchInputRef.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []); // Empty dependency array ensures the effect runs only once (on mount)
 
   const toggleProfileModal = () => {
     setProfileModal(!profileModal);
@@ -111,7 +130,7 @@ export default function Navbar() {
 
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Click or press / to search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -120,6 +139,7 @@ export default function Navbar() {
                 toggleSearchModal();
               }
             }}
+            ref={searchInputRef}
           />
           <button
             className="search-btn"

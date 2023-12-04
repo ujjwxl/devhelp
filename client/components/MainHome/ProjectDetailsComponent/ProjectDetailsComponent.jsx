@@ -5,6 +5,11 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Modal from 'react-modal';
 import './ProjectDetailsComponent.css'
+// import fileIcon from '../../../src/assets/icons8-file-48.png';
+// import folderIcon from '../../../src/assets/icons8-folder-48.png';
+
+import fileIcon from '../../../src/assets/icons8-file.svg';
+import folderIcon from '../../../src/assets/icons8-folder.svg';
 
 // function FileOrFolder(props) {
 //   const { item, onFileClick, onFolderClick } = props;
@@ -147,10 +152,12 @@ export default function ProjectDetailsComponent() {
 
     if (item.type === 'file') {
       return (
-        <div>
+        <div className='github-file'>
+          <img src={fileIcon} alt="" className='github-code-icon' />
           <a
             href="#"
             onClick={() => onFileClick(item)}
+            className='github-file-or-folder'
           >
             {item.name}
           </a>
@@ -158,8 +165,9 @@ export default function ProjectDetailsComponent() {
       );
     } else if (item.type === 'dir') {
       return (
-        <div>
-          <span onClick={() => onFolderClick(item)}>{item.name}</span>
+        <div className='github-folder' >
+          <img src={folderIcon} alt="" className='github-code-icon' onClick={() => onFolderClick(item)} />
+          <span onClick={() => onFolderClick(item)} className='github-file-or-folder'>{item.name}</span>
         </div>
       );
     }
@@ -211,7 +219,7 @@ export default function ProjectDetailsComponent() {
         <p>
           Current Path: {currentPath.join('/')}
         </p>
-        <button onClick={goBack}>Go Back</button>
+        <button onClick={goBack} className='github-back-button'>Go Back</button>
         {contents.map((item) => (
           <FileOrFolder
             key={item.name}

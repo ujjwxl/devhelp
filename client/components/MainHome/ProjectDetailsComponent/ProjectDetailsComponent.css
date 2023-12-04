@@ -75,3 +75,34 @@
   transition: background-color 0.2s ease-in-out;
   border-radius: 5px;
 }
+
+/* .github-file {
+  background-color: red;
+} */
+
+.github-folder {
+  /* background-color: blue; */
+  cursor: pointer;
+}
+
+.github-code-icon {
+  width: 3%;
+  margin-right: 5px;
+}
+
+.github-back-button {
+  background-color: #f6ff00;
+  color: #060606;
+  padding: 8px 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.github-file-or-folder {
+  position: absolute;
+  margin-top: 5px;
+}
