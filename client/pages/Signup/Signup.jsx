@@ -22,9 +22,11 @@ export default function Signup() {
     if (password != confirmpassword) alert('Please enter the same password in both fields')
 
     else {
+      const capitalizedFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1);
+      const capitalizedLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1);
         try {
             await axios.post('http://localhost:5000/auth/register', {
-                firstname, lastname,username, email, password
+              capitalizedFirstName, capitalizedLastName,username, email, password
             })
                 .then(res => {
                     if (res.status == 200) {

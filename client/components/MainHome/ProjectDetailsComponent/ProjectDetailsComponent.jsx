@@ -5,6 +5,7 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Modal from 'react-modal';
 import './ProjectDetailsComponent.css'
+import { Link } from 'react-router-dom';
 // import fileIcon from '../../../src/assets/icons8-file-48.png';
 // import folderIcon from '../../../src/assets/icons8-folder-48.png';
 
@@ -46,6 +47,9 @@ export default function ProjectDetailsComponent() {
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [expandedImage, setExpandedImage] = useState('');
+
+  const loggedInUserId = sessionStorage.getItem("id");
+  const isOwnerLoggedIn = loggedInUserId === projectDetails.developerUserId;
 
   const openImageModal = (imageSrc) => {
     setExpandedImage(imageSrc);
@@ -297,11 +301,16 @@ export default function ProjectDetailsComponent() {
 
       <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3>
 
-      <button className="footer-r-button">Contact Developer</button>
+      {!isOwnerLoggedIn && (
+        <Link to={`/chat/${projectDetails.developerUserId}`}><button className="footer-r-button">Contact Developer</button></Link>
+        
+      )}
 
-      <button className="footer-r-button" onClick={() => handleContinueRequest(projectDetails.projectName, projectDetails._id, projectDetails.developerUserId)}>
-        Request to continue
-      </button>
+      {!isOwnerLoggedIn && (
+        <button className="footer-r-button" onClick={() => handleContinueRequest(projectDetails.projectName, projectDetails._id, projectDetails.developerUserId)}>
+          Request to continue
+        </button>
+      )}
     </div>
   );
 }

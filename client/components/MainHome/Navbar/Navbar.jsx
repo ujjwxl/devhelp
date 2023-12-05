@@ -283,7 +283,7 @@ export default function Navbar() {
                       alt=""
                     />
                     <Link to={`/chat/${chat._id}`} className="light-link">
-                      {chat.username}
+                    {chat.firstname + " "+ chat.lastname}
                     </Link>
                     <p>{`@` + chat.username}</p>
                   </div>

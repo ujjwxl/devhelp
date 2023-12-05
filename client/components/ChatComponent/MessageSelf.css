@@ -1,8 +1,10 @@
+/* MessageSelf.css */
+
 .self-message-container {
   display: flex;
-  flex-direction: row-reverse; /* Reverse the direction to make it appear on the right */
+  flex-direction: row-reverse;
   align-items: center;
-  margin-left: auto; /* Push to the right by setting margin-left to auto */
+  margin-left: auto;
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -12,12 +14,12 @@
   border-radius: 15px;
   margin-top: 10px;
   max-width: 45%;
-  /* word-wrap: break-word; Enable word wrapping for long words */
 }
 
 .self-message-p {
   margin: 5px 10px;
   font-size: 15px;
+  word-wrap: break-word;
 }
 
 .self-timeStamp {
@@ -25,5 +27,15 @@
   font-size: 0.75rem;
   font-weight: lighter;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 90%;
+  display: flex; /* Add flex display to align timestamp */
+  justify-content: flex-end;
+}
+
+.time {
+  margin: 0;
+  margin-left: 5px;
+}
+
+.am-pm {
+  margin-left: 2px;
 }

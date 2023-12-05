@@ -263,43 +263,48 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 <Link to={`/project/${project._id}`}>View More</Link>
               </button>
               <div className="footer-r">
-                {user &&
-                  user.workingOn &&
-                  user.workingOn.includes(project._id) ? (
-                  // User is already working on the project
-                  <button className="footer-r-button working-button">
-                    Working
-                  </button>
-                ) : project.projectStatus === "collaborate" ? (
-                  // Display "Request to collaborate" for projects with projectStatus "collaborate"
-                  <button
-                    className="footer-r-button"
-                    onClick={() =>
-                      handleContinueRequest(
-                        project.projectName,
-                        project._id,
-                        project.developerUserId
-                      )
-                    }
-                  >
-                    Request to collaborate
-                  </button>
-                ) : project.projectStatus === "abandoned" ? (
-                  // Display "Request to continue" for projects with projectStatus "abandon"
-                  <button
-                    className="footer-r-button"
-                    onClick={() =>
-                      handleContinueRequest(
-                        project.projectName,
-                        project._id,
-                        project.developerUserId
-                      )
-                    }
-                  >
-                    Request to continue
-                  </button>
-                ) : null}
-              </div>
+              {user &&
+                user._id !== project.developerUserId && (
+                // User is not the owner of the project
+                <>
+                  {user.workingOn &&
+                    user.workingOn.includes(project._id) ? (
+                    // User is already working on the project
+                    <button className="footer-r-button working-button">
+                      Working
+                    </button>
+                  ) : project.projectStatus === "collaborate" ? (
+                    // Display "Request to collaborate" for projects with projectStatus "collaborate"
+                    <button
+                      className="footer-r-button"
+                      onClick={() =>
+                        handleContinueRequest(
+                          project.projectName,
+                          project._id,
+                          project.developerUserId
+                        )
+                      }
+                    >
+                      Request to collaborate
+                    </button>
+                  ) : project.projectStatus === "abandoned" ? (
+                    // Display "Request to continue" for projects with projectStatus "abandon"
+                    <button
+                      className="footer-r-button"
+                      onClick={() =>
+                        handleContinueRequest(
+                          project.projectName,
+                          project._id,
+                          project.developerUserId
+                        )
+                      }
+                    >
+                      Request to continue
+                    </button>
+                  ) : null}
+                </>
+              )}
+            </div>
             </div>
           </div>
         </div>

@@ -210,11 +210,13 @@ body.active-modal {
 .chat-links a {
   display: block;
   margin-top: 6px;
-  font-size: 26px;
+  font-size: 24px;
+  margin-left: 10px;
 }
 .light-link {
   color: #542020; /* Adjust the color to make it lighter */
   text-decoration: none;
+  margin-left: 0px;
 }
 
 .light-link:hover {
@@ -254,9 +256,10 @@ body.active-modal {
   padding: 14px 28px;
   /* border-radius: 3px; */
   border-radius: 10px;
-  max-width: 600px;
+  max-width: 380px;
   min-width: 380px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .notification-modal-content {

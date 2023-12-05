@@ -32,22 +32,42 @@
   max-width: 40%;
 }
 
-.abc {
+/* .abc {
   margin: 5px;
   margin-left: 10px;
-}
+} */
 
 .other-message-p {
   margin: 5px;
   margin-left: 10px;
   font-size: 15px;
+  word-wrap: break-word;
 }
 
-.other-timeStamp {
+/* .other-timeStamp {
   margin: 5px;
   align-self: flex-end;
   font-size: 0.75rem;
   font-weight: lighter;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-left: 80%;
+} */
+
+.other-timeStamp {
+  margin: 5px;
+  margin-top: 0px;
+  font-size: 0.75rem;
+  font-weight: lighter;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex; 
+  justify-content: flex-end;
+}
+
+.time {
+  margin: 0;
+  margin-left: 5px; 
+}
+
+.am-pm {
+  margin-left: 2px;
 }

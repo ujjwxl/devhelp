@@ -7,13 +7,13 @@ import jwt from "jsonwebtoken";
 import notificationModel from "../models/notificationModel.js";
 
 export const registerUser = async (req, res) => {
-  const { firstname, lastname, username, email, password } = req.body;
+  const { capitalizedFirstName, capitalizedLastName, username, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = new userModel({
-    firstname,
-    lastname,
+    firstname: capitalizedFirstName,
+    lastname: capitalizedLastName,
     username,
     email,
     password: hashedPassword,
