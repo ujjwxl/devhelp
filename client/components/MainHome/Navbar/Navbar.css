@@ -303,7 +303,8 @@ body.active-modal {
   top: 15px;
   right: 20px;
   padding: 5px 7px;
-  background-color: rgb(149, 175, 76);
+  /* background-color: rgb(149, 175, 76); */
+  background-color: #007BFF;
   color: white;
   border: none;
   cursor: pointer;
@@ -323,11 +324,11 @@ body.active-modal {
 
     /* animation: shadow-grow 0.2s ease-in-out infinite; */
 
-    animation: pulse-color 0.4s ease-in-out infinite;
+    /* animation: pulse-color 0.4s ease-in-out infinite; */
   }
-  &:active {
+  /* &:active {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  }
+  } */
 }
 
 /* @keyframes grow {

@@ -7,59 +7,110 @@ export default function Notifications() {
   const userId = sessionStorage.getItem("id");
   const [userNotifications, setUserNotifications] = useState([]);
 
-  async function acceptRequest(senderId, projectName, projectId) {
+  // async function acceptRequest(notificationId, senderId, projectName, projectId) {
+  //   const loggedInUserId = sessionStorage.getItem("id");
+  //   const loggedInUserName = sessionStorage.getItem("username");
+
+  //   try {
+  //     await axios
+  //       .post("http://localhost:5000/project/accept", {
+  //         senderId,
+  //         projectName,
+  //         loggedInUserName,
+  //         loggedInUserId,
+  //         projectId,
+  //       })
+  //       .then((res) => {
+  //         if (res.status == 200) {
+  //           console.log("Accepted succesfully");
+  //           axios.delete(`http://localhost:5000/project/remove/${notificationId}`);
+  //         }
+  //       })
+  //       .catch((e) => {
+  //         alert("Accept request could not be processed!");
+  //         console.log(e);
+  //       });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
+
+  async function acceptRequest(notificationId, senderId, projectName, projectId) {
     const loggedInUserId = sessionStorage.getItem("id");
     const loggedInUserName = sessionStorage.getItem("username");
-
+  
     try {
-      await axios
-        .post("http://localhost:5000/project/accept", {
-          senderId,
-          projectName,
-          loggedInUserName,
-          loggedInUserId,
-          projectId,
-        })
-        .then((res) => {
-          if (res.status == 200) {
-            console.log("Accepted succesfully");
-          }
-        })
-        .catch((e) => {
-          alert("Accept request could not be processed!");
-          console.log(e);
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post("http://localhost:5000/project/accept", {
+        senderId,
+        projectName,
+        loggedInUserName,
+        loggedInUserId,
+        projectId,
+      });
+  
+      if (response.status === 200) {
+        console.log("Accepted successfully");
+  
+        // If the accept request was successful, make a separate call to delete the notification
+        await axios.delete(`http://localhost:5000/project/remove/${notificationId}`);
+      }
+    } catch (error) {
+      alert("Accept request could not be processed!");
+      console.log(error);
     }
   }
 
-  async function declineRequest(senderId, projectName, projectId) {
+  async function declineRequest(notificationId, senderId, projectName, projectId) {
     const loggedInUserId = sessionStorage.getItem("id");
     const loggedInUserName = sessionStorage.getItem("username");
-
+  
     try {
-      await axios
-        .post("http://localhost:5000/project/decline", {
-          senderId,
-          projectName,
-          loggedInUserName,
-          loggedInUserId,
-          projectId,
-        })
-        .then((res) => {
-          if (res.status == 200) {
-            console.log("Declined succesfully");
-          }
-        })
-        .catch((e) => {
-          alert("Decline request could not be processed!");
-          console.log(e);
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post("http://localhost:5000/project/decline", {
+        senderId,
+        projectName,
+        loggedInUserName,
+        loggedInUserId,
+        projectId,
+      });
+  
+      if (response.status === 200) {
+        console.log("Declined successfully");
+  
+        // If the accept request was successful, make a separate call to delete the notification
+        await axios.delete(`http://localhost:5000/project/remove/${notificationId}`);
+      }
+    } catch (error) {
+      alert("Decline request could not be processed!");
+      console.log(error);
     }
   }
+
+  // async function declineRequest(notificationId, senderId, projectName, projectId) {
+  //   const loggedInUserId = sessionStorage.getItem("id");
+  //   const loggedInUserName = sessionStorage.getItem("username");
+
+  //   try {
+  //     await axios
+  //       .post("http://localhost:5000/project/decline", {
+  //         senderId,
+  //         projectName,
+  //         loggedInUserName,
+  //         loggedInUserId,
+  //         projectId,
+  //       })
+  //       .then((res) => {
+  //         if (res.status == 200) {
+  //           console.log("Declined succesfully");
+  //         }
+  //       })
+  //       .catch((e) => {
+  //         alert("Decline request could not be processed!");
+  //         console.log(e);
+  //       });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   useEffect(() => {
     axios
@@ -76,7 +127,7 @@ export default function Notifications() {
       <div>
         {userNotifications.map((notification) => (
           <div key={notification._id}>
-            <p>
+            <p className="notification-message">
               <Link to={`/profile/${notification.requesterId}`}>
                 {notification.requesterUserName}
               </Link>{" "}
@@ -84,6 +135,11 @@ export default function Notifications() {
               <Link to={`/project/${notification.projectId}`}>
                 {notification.projectName}
               </Link>
+              <br/>
+              <span className="createdAt">
+                at {new Date(notification.createdAt).toLocaleString('en-GB')}
+              </span>
+              
             </p>
             {/* You can display other notification fields here */}
             {notification.isRequest && (
@@ -92,6 +148,7 @@ export default function Notifications() {
                 className="respond-btn"
                   onClick={() =>
                     acceptRequest(
+                      notification._id,
                       notification.requesterId,
                       notification.projectName,
                       notification.projectId
@@ -101,9 +158,10 @@ export default function Notifications() {
                   Accept
                 </button>
                 <button
-                className="respond-btn"
+                className="respond-btn respond-btn-2"
                   onClick={() =>
                     declineRequest(
+                      notification._id,
                       notification.requesterId,
                       notification.projectName,
                       notification.projectId
@@ -114,8 +172,10 @@ export default function Notifications() {
                 </button>
               </div>
             )}
+            <hr/>
           </div>
         ))}
+        
       </div>
     </div>
   );
