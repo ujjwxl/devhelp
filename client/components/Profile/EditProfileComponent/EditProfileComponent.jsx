@@ -40,7 +40,12 @@ const EditProfileComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const profile_picture = profilePicture.name;
+    const profile_picture = null
+
+    if (profilePicture) {
+      const profile_picture = profilePicture.name;
+    }
+
 
     try {
       const response = await axios.patch('http://localhost:5000/auth/update', {

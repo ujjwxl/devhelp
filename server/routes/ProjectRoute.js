@@ -1,26 +1,26 @@
 import express from 'express';
 import { addProject, getAllProjects, getProjectsByUser, getWorkingProjectsByUser, getProject, acceptRequest, declineRequest, saveProject, getSavedProjects, getAbandonedProjects, getCollaborateProjects } from '../controllers/ProjectController.js';
-
+import { verifyToken } from '../middleware/auth.js';
 const router = express.Router();
 
 // Route to add a new project
-router.post('/add', addProject);
+router.post('/add', verifyToken, addProject);
 
 // Route to get all projects
-router.get('/all', getAllProjects);
+router.get('/all', verifyToken, getAllProjects);
 
 // Route to get projects uploaded by a specific user
-router.get('/user/:userId', getProjectsByUser);
-router.get('/working/:userId', getWorkingProjectsByUser);
-router.get('/get/:projectId', getProject);
+router.get('/user/:userId', verifyToken, getProjectsByUser);
+router.get('/working/:userId', verifyToken, getWorkingProjectsByUser);
+router.get('/get/:projectId', verifyToken, getProject);
 
-router.post('/accept', acceptRequest);
-router.post('/decline', declineRequest);
+router.post('/accept', verifyToken, acceptRequest);
+router.post('/decline', verifyToken, declineRequest);
 
-router.post('/save', saveProject);
-router.get('/saved/:userId', getSavedProjects);
-router.get('/abandoned', getAbandonedProjects);
-router.get('/collab', getCollaborateProjects);
+router.post('/save', verifyToken, saveProject);
+router.get('/saved/:userId', verifyToken, getSavedProjects);
+router.get('/abandoned', verifyToken, getAbandonedProjects);
+router.get('/collab', verifyToken, getCollaborateProjects);
 
 
 export default router;

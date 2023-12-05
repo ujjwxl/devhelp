@@ -1,6 +1,6 @@
 import express from 'express'
 import {  getUserDetails, loginUser, registerUser, updateUserProfile, createRequest, getNotifications, followUser, searchUsers, getUserChats } from '../controllers/AuthController.js';
-// import { verifyToken } from '../middleware/auth.js';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 import passport from 'passport';
@@ -9,13 +9,13 @@ const CLIENT_URL= "http://localhost:5173/home"
 
 router.post('/register', registerUser)
 router.post('/login', loginUser)
-router.patch('/update', updateUserProfile)
-router.post('/find', getUserDetails)
-router.post('/request', createRequest)
-router.get('/notifications/:userId', getNotifications)
-router.post('/follow', followUser)
-router.get('/search', searchUsers)
-router.get('/chats/:userId', getUserChats)
+router.patch('/update', verifyToken, updateUserProfile)
+router.post('/find', verifyToken, getUserDetails)
+router.post('/request', verifyToken, createRequest)
+router.get('/notifications/:userId', verifyToken, getNotifications)
+router.post('/follow', verifyToken, followUser)
+router.get('/search', verifyToken, searchUsers)
+router.get('/chats/:userId', verifyToken, getUserChats)
 
 router.get("/login/failed", (req, res)=> {
     res.status(401).json({

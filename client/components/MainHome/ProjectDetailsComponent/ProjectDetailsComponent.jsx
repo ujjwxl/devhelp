@@ -72,8 +72,16 @@ export default function ProjectDetailsComponent() {
   }, [projectId]);
 
   const fetchContents = (path = '') => {
+
+    const config = {
+      headers: {
+        // Exclude the Authorization header for this specific request
+        Authorization: null,
+      },
+    };
+
     axios
-      .get(apiUrl + path)
+      .get(apiUrl + path, config)
       .then((response) => {
         setContents(response.data);
       })
@@ -83,7 +91,15 @@ export default function ProjectDetailsComponent() {
   };
 
   const handleFileClick = (file) => {
-    axios.get(file.url)
+
+    const config = {
+      headers: {
+        // Exclude the Authorization header for this specific request
+        Authorization: null,
+      },
+    };
+
+    axios.get(file.url, config)
       .then((response) => {
         const decodedContent = atob(response.data.content);
         file.content = decodedContent;

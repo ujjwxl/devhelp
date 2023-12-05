@@ -6,6 +6,19 @@ import ProjectDetailsComponent from "../../components/MainHome/ProjectDetailsCom
 
 const ProjectDetails = () => {
 
+    const token = sessionStorage.getItem('token')
+
+
+    //setting the authorisation token in the header
+    const setAuthToken = (token) => {
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        } else {
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    };
+    setAuthToken(token);
+
     return (
         <div>
             <Navbar/>

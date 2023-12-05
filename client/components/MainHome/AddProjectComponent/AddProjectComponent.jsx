@@ -105,6 +105,7 @@ const AddProjectComponent = () => {
       alert("Project added successfully");
       // Optionally, you can reset the form fields here
     } catch (error) {
+      alert("Project could not be added")
       console.error("Error adding project:", error);
     }
 
