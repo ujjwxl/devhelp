@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Notifications from "../../Notifications/Notifications";
 import LoadingBar from "react-top-loading-bar";
+import userimg from '../../../src/assets/user.png';
 
 export default function Navbar() {
   const userId = sessionStorage.getItem("id");
@@ -275,7 +276,7 @@ export default function Navbar() {
             {
               <div className="chat-links">
                 {userChats.map((chat) => (
-                  <div className="chat-link" key={chat._id}>
+                  <div className="chat-link user-name-chat" key={chat._id}>
                     <img
                       src={
                         `http://localhost:5000/assets/` + chat.profile_picture
@@ -320,14 +321,20 @@ export default function Navbar() {
             {searchResults.users.length > 0 && (
               <div>
                 <h2 className="search-h2">Users</h2>
+                <div className="search-link">
                 {searchResults.users.map((user) => (
                   <span key={user._id}>
+                  <div className="user-name">
+                  <img src={userimg} alt="User" className="user-svg" />
                     <Link to={`/profile/${user._id}`} className="search-link">
                       {user.username}
                     </Link>{" "}
                     <br />
+                    </div>
                   </span>
                 ))}
+                </div>
+                <hr/>
               </div>
             )}
 
@@ -336,16 +343,15 @@ export default function Navbar() {
                 <h2 className="search-h2">Projects</h2>
                 {searchResults.projects.map((project) => (
                   <div key={project._id}>
-                    <h3>
+                    <h3 className="search-h3 search-link-a">
                       Project name:{" "}
                       <Link
                         to={`/project/${project._id}`}
-                        className="search-link"
                       >
                         {project.projectName}
                       </Link>
                     </h3>
-                    <p>
+                    <h3 className="search-h3 search-link-a">
                       Developer:{" "}
                       <Link
                         to={`/profile/${project.developerUserId}`}
@@ -353,7 +359,8 @@ export default function Navbar() {
                       >
                         {project.developerUserName}
                       </Link>
-                    </p>
+                    </h3>
+                    <hr/>
                   </div>
                 ))}
               </div>

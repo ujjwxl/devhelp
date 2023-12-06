@@ -91,7 +91,7 @@
 .bookmark-icon:hover {
   /* color: #6a6501; */
   color: #FFFB73;
-  /* transform: scale(1.08); */
+  transform: scale(1.08);
 }
 
 .github-icon {
