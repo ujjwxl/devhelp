@@ -83,7 +83,7 @@
 .bookmark-icon {
   margin: 0 15px;
   color: #fff200;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
@@ -170,10 +170,11 @@
     /* background-color:#de330c; */
     /* background-color:#38E54D; */
     /* background-color:#CCCCCC; */
-    background: none;
-    border: 0.5px solid #fff200;
+    background: white;
+    border: 0.5px solid #007bff;
     padding: 8px 55px;
-    color: #fff200;
+    color: #007bff;
+    cursor: default;
   }
 
   .working-button:hover {

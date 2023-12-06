@@ -111,7 +111,7 @@ export default function Navbar() {
     <div className="nav">
       <LoadingBar
         // color='#f11946'
-        color="#ffffff"
+        color="#28293D"
         progress={100}
         height={4}
         // onLoaderFinished={() => setProgress(0)}

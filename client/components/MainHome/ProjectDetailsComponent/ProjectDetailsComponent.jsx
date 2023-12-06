@@ -196,6 +196,18 @@ export default function ProjectDetailsComponent() {
     return null;
   }
 
+  const customStyles = {
+    content: {
+      width: '70%',
+      height: '75%',
+      marginTop: '3%',
+      marginLeft: '22%',
+      textAlign: 'center',
+      backgroundColor: '#28293D',
+      borderRadius: '10px'
+    },
+  };
+
   return (
     <div className='workspace project-details-page'>
 
@@ -290,6 +302,7 @@ export default function ProjectDetailsComponent() {
         isOpen={isImageModalOpen}
         onRequestClose={closeImageModal}
         contentLabel="Expanded Image"
+        style={customStyles}
       >
         <img
           src={expandedImage}
