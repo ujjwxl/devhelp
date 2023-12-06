@@ -50,7 +50,12 @@ export default function Notifications() {
   
       if (response.status === 200) {
         console.log("Accepted successfully");
-  
+
+        // Update state to remove the accepted notification
+        setUserNotifications((prevNotifications) =>
+          prevNotifications.filter((notification) => notification._id !== notificationId)
+        );
+
         // If the accept request was successful, make a separate call to delete the notification
         await axios.delete(`http://localhost:5000/project/remove/${notificationId}`);
       }
@@ -75,6 +80,11 @@ export default function Notifications() {
   
       if (response.status === 200) {
         console.log("Declined successfully");
+
+        // Update state to remove the declined notification
+        setUserNotifications((prevNotifications) =>
+          prevNotifications.filter((notification) => notification._id !== notificationId)
+        );
   
         // If the accept request was successful, make a separate call to delete the notification
         await axios.delete(`http://localhost:5000/project/remove/${notificationId}`);
