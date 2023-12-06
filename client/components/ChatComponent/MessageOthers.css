@@ -26,7 +26,8 @@
 }
 
 .other-message-box {
-  background-color: aqua;
+  /* background-color: aqua; */
+  background-color: #EEEDED;
   border-radius: 15px;
   margin-top: 10px;
   max-width: 40%;

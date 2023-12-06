@@ -113,7 +113,7 @@ export default function Navbar() {
         // color='#f11946'
         color="#ffffff"
         progress={100}
-        height={3}
+        height={4}
         // onLoaderFinished={() => setProgress(0)}
       />
       {/* <a href="/home">DevHelp</a> */}
@@ -321,14 +321,13 @@ export default function Navbar() {
               <div>
                 <h2 className="search-h2">Users</h2>
                 {searchResults.users.map((user) => (
-                  <span key={user._id} className="search-link">
-                    <Link to={`/profile/${user._id}`} className="search-link-a">
+                  <span key={user._id}>
+                    <Link to={`/profile/${user._id}`} className="search-link">
                       {user.username}
                     </Link>{" "}
                     <br />
                   </span>
                 ))}
-              <hr/>
               </div>
             )}
 
@@ -355,8 +354,6 @@ export default function Navbar() {
                         {project.developerUserName}
                       </Link>
                     </p>
-              <hr/>
-
                   </div>
                 ))}
               </div>

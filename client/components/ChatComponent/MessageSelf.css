@@ -10,7 +10,8 @@
 }
 
 .self-message-box {
-  background-color: aqua;
+  /* background-color: aqua; */
+  background-color:#A2FF86;
   border-radius: 15px;
   margin-top: 10px;
   max-width: 45%;

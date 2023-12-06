@@ -47,12 +47,12 @@
 }
 
 .search {
-  height: 30px;
+  height: 20px;
   display: flex;
   cursor: pointer;
   padding: 10px 20px;
   background: #6527be;
-  border-radius: 30px;
+  border-radius: 10px;
   align-items: center;
   transition: 0.8s;
   background: white;
@@ -139,33 +139,33 @@ cursor: pointer;
 }
 
 .icon-notification:hover {
-  color: #dfd515;
-  transform: scale(1.1);
+  color: #FFFB73;
+  /* transform: scale(1.1); */
 }
 
 .icon-chat {
   margin-left: 20px;
   font-size: 25px;
-  color: #080808;
+  color: #CCCCCC;
   cursor: pointer;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .icon-chat:hover {
-  color: #e1c2c2;
-  transform: scale(1.1);
+  color: #FFFFFF;
+  /* transform: scale(1.1); */
 }
 
 .icon-profile {
   margin-left: 20px;
   font-size: 25px;
-  color: #080808;
+  color: #CCCCCC;
   cursor: pointer;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 .icon-profile:hover {
-  color: #007bff;
-  transform: scale(1.1);
+  color: #FFFFFF;
+  /* transform: scale(1.1); */
 }
 
 body.active-modal {
@@ -222,16 +222,10 @@ body.active-modal {
 .light-link:hover {
   color: #666; /* Adjust the color for the hover state, if desired */
 }
-.search-h2{
-  margin-bottom: 5px;
-}
 
 .search-link {
-  font-size: 20px;
+  font-size: 25px;
   size: 25px;
-}
-.search-link a{
-  text-decoration: none;
 }
 
 .modal-content {
@@ -331,8 +325,6 @@ body.active-modal {
     /* animation: shadow-grow 0.2s ease-in-out infinite; */
 
     /* animation: pulse-color 0.4s ease-in-out infinite; */
-    animation: scaleUp 0.4s ease-in-out;
-    background-color: #418fe3;
   }
   /* &:active {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);

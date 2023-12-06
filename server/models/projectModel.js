@@ -33,6 +33,14 @@ const abandonedProjectSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  projectGithubOwner : {
+    type: String,
+    required: true,
+  },
+  projectRepoName : {
+    type: String,
+    required: true,    
+  },
   projectGithubLink: {
     type: String,
     required: true,

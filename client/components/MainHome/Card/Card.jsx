@@ -164,8 +164,8 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
   // client\src\assets\default-pfp.png
   return (
     <div>
-      {projects.map((project) => (
-        <div className="card" key={project._id}>
+      {projects.map((project, index) => (
+        <div className="card" key={index}>
           <div className="card-header">
             <div className="header-l">
               <Link to={`/profile/${project.developerUserId}`}><img
@@ -210,7 +210,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                   className="bookmark-icon"
                   onClick={() => saveProject(project._id)}
                 />
-                <FontAwesomeIcon icon={faGithub} className="github-icon" />
+                <a href={project.projectGithubLink}><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
               </span>
               {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
               <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>

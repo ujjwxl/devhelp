@@ -64,8 +64,9 @@ export default function ProjectDetailsComponent() {
     axios.get(`http://localhost:5000/project/get/${projectId}`)
       .then((response) => {
         setProjectDetails(response.data);
-
-        const newApiUrl = `https://api.github.com/repos/${response.data.developerUserName}/${response.data.projectGithubLink}/contents`;
+        console.log(response.data);
+        
+        const newApiUrl = `https://api.github.com/repos/${response.data.projectGithubOwner}/${response.data.projectRepoName}/contents`;
         setApiUrl(newApiUrl);
 
         fetchContents(newApiUrl);
@@ -302,7 +303,7 @@ export default function ProjectDetailsComponent() {
       <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3>
 
       {!isOwnerLoggedIn && (
-        <Link to={`/chat/${projectDetails.developerUserId}`}><button className="footer-r-button">Contact Developer</button></Link>
+        <Link to={`/chat/${projectDetails.developerUserId}`}><button className="footer-r-button footer-r-button-1">Contact Developer</button></Link>
         
       )}
 

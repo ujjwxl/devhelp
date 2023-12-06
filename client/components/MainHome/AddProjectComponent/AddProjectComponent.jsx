@@ -7,6 +7,8 @@ import { useDropzone } from 'react-dropzone';
 const AddProjectComponent = () => {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
+  const [gitHubRepoOwner, setGitHubRepoOwner] = useState("");
+  const [gitHubRepoName, setGitHubRepoName] = useState("");
   const [projectGithub, setProjectGithub] = useState("");
   const [projectPercent, setProjectPercent] = useState("");
   const [projectNotes, setProjectNotes] = useState("");
@@ -85,6 +87,8 @@ const AddProjectComponent = () => {
         projectName,
         projectStatus,
         projectDescription,
+        gitHubRepoOwner,
+        gitHubRepoName,
         projectGithub,
         projectPercent,
         projectNotes,
@@ -172,6 +176,25 @@ const AddProjectComponent = () => {
             onChange={(e) => setProjectDescription(e.target.value)}
           />{" "}
           <br />
+
+          <h3 className="add-project-input-details">Enter the GitHub repo owner username</h3>
+          <input
+            type="text"
+            placeholder="Add GithHub repo owner username"
+            className="add-project"
+            onChange={(e) => setGitHubRepoOwner(e.target.value)}
+          />{" "}
+          <br />
+
+          <h3 className="add-project-input-details">Enter the GitHub repository name</h3>
+          <input
+            type="text"
+            placeholder="Add GithHub repository name"
+            className="add-project"
+            onChange={(e) => setGitHubRepoName(e.target.value)}
+          />{" "}
+          <br />
+
           <h3 className="add-project-input-details">Add GitHub repo link</h3>
           <input
             type="text"
