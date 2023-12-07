@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/add', verifyToken, addProject);
 
 // Route to get all projects
-router.get('/all', verifyToken, getAllProjects);
+router.get('/all', getAllProjects);
 
 // Route to get projects uploaded by a specific user
 router.get('/user/:userId', verifyToken, getProjectsByUser);

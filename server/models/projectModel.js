@@ -30,7 +30,7 @@ const abandonedProjectSchema = new mongoose.Schema({
   },
   developerUserId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
     required: true,
   },
   projectGithubOwner : {

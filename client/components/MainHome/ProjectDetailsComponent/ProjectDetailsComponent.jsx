@@ -65,7 +65,7 @@ export default function ProjectDetailsComponent() {
       .then((response) => {
         setProjectDetails(response.data);
         console.log(response.data);
-        
+
         const newApiUrl = `https://api.github.com/repos/${response.data.projectGithubOwner}/${response.data.projectRepoName}/contents`;
         setApiUrl(newApiUrl);
 
@@ -214,9 +214,15 @@ export default function ProjectDetailsComponent() {
       <div className="project-details-header">
         <div className="project-details-header-left">
 
-          <div className="project-details-left-one">
-            <img src={`http://localhost:5000/assets/` + projectDetails.developerProfilePicture} alt="" />
-          </div>
+          {/* <div className="project-details-left-one">
+            <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
+          </div> */}
+
+          {projectDetails.developerUserId && (
+            <div className="project-details-left-one">
+              <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
+            </div>
+          )}
 
 
           <div className="project-details-header-left-two">
@@ -286,13 +292,13 @@ export default function ProjectDetailsComponent() {
           />
         )}
         {projectDetails.projectImageTwo && (
-          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image' 
+          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'
             onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
           />
         )}
         {projectDetails.projectImageThree && (
           <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
-          onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
+            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
         )}
         {!projectDetails.projectImageOne && !projectDetails.projectImageTwo && !projectDetails.projectImageThree && (
           <p>No images available for this project</p>
@@ -317,7 +323,7 @@ export default function ProjectDetailsComponent() {
 
       {!isOwnerLoggedIn && (
         <Link to={`/chat/${projectDetails.developerUserId}`}><button className="footer-r-button footer-r-button-1">Contact Developer</button></Link>
-        
+
       )}
 
       {!isOwnerLoggedIn && (

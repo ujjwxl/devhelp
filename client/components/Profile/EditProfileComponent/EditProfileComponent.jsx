@@ -40,10 +40,10 @@ const EditProfileComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const profile_picture = null
+    let profile_picture = null
 
     if (profilePicture) {
-      const profile_picture = profilePicture.name;
+      profile_picture = profilePicture.name;
     }
 
 
