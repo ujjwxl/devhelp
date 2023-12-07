@@ -49,7 +49,7 @@ export default function ProjectDetailsComponent() {
   const [expandedImage, setExpandedImage] = useState('');
 
   const loggedInUserId = sessionStorage.getItem("id");
-  const isOwnerLoggedIn = loggedInUserId === projectDetails.developerUserId;
+  const isOwnerLoggedIn = loggedInUserId === projectDetails.developerUserId?._id;
 
   const openImageModal = (imageSrc) => {
     setExpandedImage(imageSrc);
@@ -218,7 +218,7 @@ export default function ProjectDetailsComponent() {
             <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
           </div> */}
 
-          {projectDetails.developerUserId && (
+          {projectDetails.developerUserId?._id && (
             <div className="project-details-left-one">
               <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
             </div>
@@ -322,12 +322,12 @@ export default function ProjectDetailsComponent() {
       <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3>
 
       {!isOwnerLoggedIn && (
-        <Link to={`/chat/${projectDetails.developerUserId}`}><button className="footer-r-button footer-r-button-1">Contact Developer</button></Link>
+        <Link to={`/chat/${projectDetails.developerUserId?._id}`}><button className="footer-r-button footer-r-button-1">Contact Developer</button></Link>
 
       )}
 
       {!isOwnerLoggedIn && (
-        <button className="footer-r-button" onClick={() => handleContinueRequest(projectDetails.projectName, projectDetails._id, projectDetails.developerUserId)}>
+        <button className="footer-r-button" onClick={() => handleContinueRequest(projectDetails.projectName, projectDetails._id, projectDetails.developerUserId?._id)}>
           Request to continue
         </button>
       )}

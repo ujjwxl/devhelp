@@ -264,7 +264,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
               </button>
               <div className="footer-r">
               {user &&
-                user._id !== project.developerUserId && (
+                user._id !== project.developerUserId?._id && (
                 // User is not the owner of the project
                 <>
                   {user.workingOn &&
@@ -281,7 +281,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                         handleContinueRequest(
                           project.projectName,
                           project._id,
-                          project.developerUserId
+                          project.developerUserId?._id
                         )
                       }
                     >
@@ -295,7 +295,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                         handleContinueRequest(
                           project.projectName,
                           project._id,
-                          project.developerUserId
+                          project.developerUserId?._id
                         )
                       }
                     >
