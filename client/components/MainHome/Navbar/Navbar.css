@@ -299,6 +299,11 @@ body.active-modal {
   overflow-x: hidden;
 }
 
+.search-modal-content a {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 24px;
+}
+
 .notification-modal-content {
   position: absolute;
   /* top: 21.7%; */

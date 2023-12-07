@@ -168,8 +168,8 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
         <div className="card" key={index}>
           <div className="card-header">
             <div className="header-l">
-              <Link to={`/profile/${project.developerUserId._id}`}><img
-                src={`http://localhost:5000/assets/` + project.developerUserId.profile_picture}
+              <Link to={`/profile/${project.developerUserId?._id}`}><img
+                src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
                 className="header-l-img"
                 alt="profile"
               /></Link>
@@ -188,7 +188,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 {project.developerUserName}
               </a> */}
 
-              <Link to={`/profile/${project.developerUserId._id}`} className="header-l-a">
+              <Link to={`/profile/${project.developerUserId?._id}`} className="header-l-a">
                 {project.developerUserName}
               </Link>
 

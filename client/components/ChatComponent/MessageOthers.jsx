@@ -43,7 +43,8 @@ export default function MessageOthers({ content, firstname, lastname, time }) {
   return (
     <div className="other-message-container">
       <div className='other-message-icon'>
-        <p className=''>{firstname.charAt(0)}</p>
+        {/* <p className=''>{firstname.charAt(0)}</p> */}
+        <p className=''>{firstname ? firstname.charAt(0) : ''}</p>
       </div>
       <div className='other-message-box'>
         {/* <h5 className='abc'>{firstname + " " + lastname}</h5> */}
