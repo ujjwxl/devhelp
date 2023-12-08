@@ -81,7 +81,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
           console.error("Error fetching projects:", error);
         });
     }
-  }, [userProfilePage, listed, isAbandoned, toCollaborate]);
+  }, [userProfilePage, listed, isAbandoned, toCollaborate, userId]);
 
   function formatDate(dateString) {
     const options = { year: "numeric", month: "short", day: "numeric" };
@@ -258,10 +258,10 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
               </div>
             </div> */}
 
-            <div className="footer-r">
+            <div className="footer-r"><Link to={`/project/${project._id}`}>
               <button className="footer-r-button no-decor">
-                <Link to={`/project/${project._id}`}>View More</Link>
-              </button>
+                View More
+              </button></Link>
               <div className="footer-r">
               {user &&
                 user._id !== project.developerUserId?._id && (

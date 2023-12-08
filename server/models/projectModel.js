@@ -54,12 +54,15 @@ const abandonedProjectSchema = new mongoose.Schema({
   },
   technologiesUsedOne: {
     type: String,
+    default: "Tech1",
   },
   technologiesUsedTwo: {
     type: String,
+    default: "Tech2",
   },
   technologiesUsedThree: {
     type: String,
+    default: "Tech3",
   },
   projectImageOne: {
     type: String,
