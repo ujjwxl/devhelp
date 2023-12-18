@@ -144,11 +144,6 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
     }
   }
 
-  // const handleProfileClick = (profileLink) => {
-  //   window.location.href = profileLink;
-  // };
-
-
   function getCompletionClass(completionPercent) {
     if (completionPercent > 70) {
       return 'green';
@@ -158,13 +153,10 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
       return 'red';
     }
   }
-
-
-
-  // client\src\assets\default-pfp.png
+  
   return (
     <div>
-      {projects.map((project, index) => (
+      {/* {projects.map((project, index) => (
         <div className="card" key={index}>
           <div className="card-header">
             <div className="header-l">
@@ -173,29 +165,13 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 className="header-l-img"
                 alt="profile"
               /></Link>
-              {/* <img
-                // src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
-                // src={`../../../src/assets/` + project.developerProfilePicture}
-                src={`http://localhost:5000/assets/` + project.developerProfilePicture}
-                onClick={() => handleProfileClick(`/profile/${project.developerUserId}`)}
-                className="header-l-img"
-                alt="profile"
-              /> */}
-              {/* <a
-                href={`/profile/${project.developerUserId}`}
-                className="header-l-a"
-              >
-                {project.developerUserName}
-              </a> */}
+
 
               <Link to={`/profile/${project.developerUserId?._id}`} className="header-l-a">
                 {project.developerUserName}
               </Link>
 
               <p className="header-l-p">/</p>
-              {/* <a href="" className="header-l-a">
-                {project.projectName}
-              </a> */}
 
               <Link to={`/project/${project._id}`} className="header-l-a">
                 {project.projectName}
@@ -212,7 +188,6 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 />
                 <a href={project.projectGithubLink}><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
               </span>
-              {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
               <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
                 {project.completionPercent + "%"}
               </p>
@@ -228,87 +203,159 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
               <p className="footer-l-p">{project.technologiesUsedTwo}</p>
               <p className="footer-l-p">{project.technologiesUsedThree}</p>
             </div>
-            {/* <div className="footer-r">
-              <button className="footer-r-button">
-                <Link to={`/project/${project._id}`}>View More</Link>
-              </button>
-              <div className="footer-r">
-                {user &&
-                  user.workingOn &&
-                  user.workingOn.includes(project._id) ? (
-                  // User is working on the project
-                  <button className="footer-r-button working-button">
-                    Working
-                  </button>
-                ) : (
-                  // User is not working on the project
-                  <button
-                    className="footer-r-button"
-                    onClick={() =>
-                      handleContinueRequest(
-                        project.projectName,
-                        project._id,
-                        project.developerUserId
-                      )
-                    }
-                  >
-                    Request to continue
-                  </button>
-                )}
-              </div>
-            </div> */}
 
             <div className="footer-r"><Link to={`/project/${project._id}`}>
               <button className="footer-r-button no-decor">
                 View More
               </button></Link>
               <div className="footer-r">
-              {user &&
-                user._id !== project.developerUserId?._id && (
-                // User is not the owner of the project
-                <>
-                  {user.workingOn &&
-                    user.workingOn.includes(project._id) ? (
-                    // User is already working on the project
-                    <button className="footer-r-button working-button">
-                      Working
-                    </button>
-                  ) : project.projectStatus === "collaborate" ? (
-                    // Display "Request to collaborate" for projects with projectStatus "collaborate"
-                    <button
-                      className="footer-r-button"
-                      onClick={() =>
-                        handleContinueRequest(
-                          project.projectName,
-                          project._id,
-                          project.developerUserId?._id
-                        )
-                      }
-                    >
-                      Request to collaborate
-                    </button>
-                  ) : project.projectStatus === "abandoned" ? (
-                    // Display "Request to continue" for projects with projectStatus "abandon"
-                    <button
-                      className="footer-r-button"
-                      onClick={() =>
-                        handleContinueRequest(
-                          project.projectName,
-                          project._id,
-                          project.developerUserId?._id
-                        )
-                      }
-                    >
-                      Request to continue
-                    </button>
-                  ) : null}
-                </>
-              )}
-            </div>
+                {user &&
+                  user._id !== project.developerUserId?._id && (
+                    // User is not the owner of the project
+                    <>
+                      {user.workingOn &&
+                        user.workingOn.includes(project._id) ? (
+                        // User is already working on the project
+                        <button className="footer-r-button working-button">
+                          Working
+                        </button>
+                      ) : project.projectStatus === "collaborate" ? (
+                        <button
+                          className="footer-r-button"
+                          onClick={() =>
+                            handleContinueRequest(
+                              project.projectName,
+                              project._id,
+                              project.developerUserId?._id
+                            )
+                          }
+                        >
+                          Request to collaborate
+                        </button>
+                      ) : project.projectStatus === "abandoned" ? (
+                        <button
+                          className="footer-r-button"
+                          onClick={() =>
+                            handleContinueRequest(
+                              project.projectName,
+                              project._id,
+                              project.developerUserId?._id
+                            )
+                          }
+                        >
+                          Request to continue
+                        </button>
+                      ) : null}
+                    </>
+                  )}
+              </div>
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
+
+      {projects.length === 0 ? (
+        <p className="add-project-heading">No projects found.</p>
+      ) : (
+        projects.map((project, index) => (
+          <div className="card" key={index}>
+            <div className="card-header">
+              <div className="header-l">
+                <Link to={`/profile/${project.developerUserId?._id}`}><img
+                  src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
+                  className="header-l-img"
+                  alt="profile"
+                /></Link>
+  
+  
+                <Link to={`/profile/${project.developerUserId?._id}`} className="header-l-a">
+                  {project.developerUserName}
+                </Link>
+  
+                <p className="header-l-p">/</p>
+  
+                <Link to={`/project/${project._id}`} className="header-l-a">
+                  {project.projectName}
+                </Link>
+              </div>
+  
+              <div className="header-r">
+                <p className="header-date">{format(project.createdAt)}</p>
+                <span className="header-r-icons">
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    className="bookmark-icon"
+                    onClick={() => saveProject(project._id)}
+                  />
+                  <a href={project.projectGithubLink}><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
+                </span>
+                {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
+                <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
+                  {project.completionPercent + "%"}
+                </p>
+              </div>
+            </div>
+  
+            <div className="card-content">
+              <p className="card-content-p">{project.projectDescription}</p>
+            </div>
+            <div className="card-footer">
+              <div className="footer-l">
+                <p className="footer-l-p">{project.technologiesUsedOne}</p>
+                <p className="footer-l-p">{project.technologiesUsedTwo}</p>
+                <p className="footer-l-p">{project.technologiesUsedThree}</p>
+              </div>
+  
+              <div className="footer-r"><Link to={`/project/${project._id}`}>
+                <button className="footer-r-button no-decor">
+                  View More
+                </button></Link>
+                <div className="footer-r">
+                  {user &&
+                    user._id !== project.developerUserId?._id && (
+                      // User is not the owner of the project
+                      <>
+                        {user.workingOn &&
+                          user.workingOn.includes(project._id) ? (
+                          // User is already working on the project
+                          <button className="footer-r-button working-button">
+                            Working
+                          </button>
+                        ) : project.projectStatus === "collaborate" ? (
+                          <button
+                            className="footer-r-button"
+                            onClick={() =>
+                              handleContinueRequest(
+                                project.projectName,
+                                project._id,
+                                project.developerUserId?._id
+                              )
+                            }
+                          >
+                            Request to collaborate
+                          </button>
+                        ) : project.projectStatus === "abandoned" ? (
+                          <button
+                            className="footer-r-button"
+                            onClick={() =>
+                              handleContinueRequest(
+                                project.projectName,
+                                project._id,
+                                project.developerUserId?._id
+                              )
+                            }
+                          >
+                            Request to continue
+                          </button>
+                        ) : null}
+                      </>
+                    )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 }

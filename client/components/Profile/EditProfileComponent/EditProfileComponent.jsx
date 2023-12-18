@@ -80,7 +80,7 @@ const EditProfileComponent = () => {
   return (
     <div className='workspace'>
 
-      <h2>Update your profile</h2>
+      <h2 className='add-project-heading'>Update your profile</h2>
 
       <form action="POST" onSubmit={handleSubmit}>
         <input type="text" placeholder="Add/update your bio" className="add-project" onChange={(e) => setBio(e.target.value)} /> <br />
@@ -115,7 +115,7 @@ const EditProfileComponent = () => {
           )}
         </div>
 
-        <button type='submit' className='add-project-button'>Add project</button>
+        <button type='submit' className='add-project-button'>Update Profile</button>
       </form>
     </div>
   )

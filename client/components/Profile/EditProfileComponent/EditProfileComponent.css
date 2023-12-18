@@ -2,12 +2,16 @@
 .profile-picture-preview {
     height: 400px;
     width: 400px;
+    margin-top: 220px;
 }
 
 .dropzone {
-    width: 500px;
+    width: 51%;
     height: 200px;
-    background-color: blue;
+    margin-top: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
     text-align: center;
-    margin-left: 30%;
+    margin-left: 25%;
+    color: white;
 }

@@ -17,6 +17,9 @@ export const registerUser = async (req, res) => {
     username,
     email,
     password: hashedPassword,
+    technologyOne: 'Tech1',
+    technologyTwo: 'Tech2',
+    technologyThree: 'Tech3'
   });
 
   try {

@@ -137,9 +137,11 @@ export default function ProfileCard() {
               {isFollowing ? "Following" : "Follow"}
             </button>
           ) : (
+            <Link to={'/update'}>
             <button className="profile-btn">
-              <Link to={"/update"}>Edit Profile</Link>
+              Edit Profile
             </button>
+            </Link>
           )}
         </div>
       </div>
