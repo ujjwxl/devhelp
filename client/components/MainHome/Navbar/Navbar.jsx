@@ -242,13 +242,15 @@ export default function Navbar() {
           <div onClick={toggleProfileModal} className="overlay"></div>
           <div className="profile-modal-content">
             <div className="profile-options">
+              <Link to={`/profile/${userId}`}>
               <p
-                onClick={() => handleProfileClick(`/profile/${userId}`)}
+                // onClick={() => handleProfileClick(`/profile/${userId}`)}
                 className="user-options profile-option"
                 id="profile-option"
               >
                 Profile
               </p>
+              </Link>
               <div className="animated-line" id="profile-line"></div>
               <p
                 onClick={handleSignOut}

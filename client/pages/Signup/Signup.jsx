@@ -19,7 +19,30 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password != confirmpassword) alert('Please enter the same password in both fields')
+    // if (password != confirmpassword) alert('Please enter the same password in both fields')
+
+    if (
+      !firstname || !lastname || !username || !email || !password || !confirmpassword
+    ) {
+      alert('Please fill in all fields');
+      return;
+    }
+  
+    if (password !== confirmpassword) {
+      alert('Passwords do not match');
+      return;
+    }
+  
+    if (password.length < 8) {
+      alert('Password should be at least 8 characters');
+      return;
+    }
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
 
     else {
       const capitalizedFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1);

@@ -457,17 +457,19 @@ body.active-modal {
 
 .profile-modal-content {
   position: absolute;
-  top: 16.5%;
-  left: 93%;
-  height: 80px;
+  top: 18%;
+  left: 90%;
+  height: 100px;
   transform: translate(-50%, -50%);
   line-height: 1;
   background: #f1f1f1;
   padding: 14px 14px;
   /* border-radius: 3px; */
-  border-radius: 10px;
+  border-radius: 5px;
   max-width: 300px;
-  min-width: 100px;
+  min-width: 120px;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 
@@ -482,14 +484,20 @@ body.active-modal {
 
 .user-options{
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-size: 20px;
   cursor: pointer;
   font-weight: bold;
+  /* background-color: red; */
+}
+
+.user-options:hover {
+  background-color: #e1e1e1;
+  border-radius: 7px;
 }
 
 
-.profile-options button {
+/* .profile-options button {
   padding: 10px;
   background-color: #007bff;
   color: #fff;
@@ -497,23 +505,22 @@ body.active-modal {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out;
-}
+} */
 
-.profile-options button:hover {
+/* .profile-options button:hover {
   background-color: #0056b3;
-}
+} */
 
-.animated-line {
+/* .animated-line {
   width: 0;
   height: 2px;
-  background-color: #007bff; /* Adjust color as needed */
+  background-color: #007bff;
   transition: width 0.3s ease;
-}
+} */
 
-/* Add this style for the hover effect on the "Sign Out" option */
-#sign-out-option:hover + .animated-line {
+/* #sign-out-option:hover + .animated-line {
   width: 100%;
 }
 #profile-option:hover + .animated-line {
   width: 100%;
-}
+} */
