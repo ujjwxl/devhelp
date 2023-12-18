@@ -140,7 +140,7 @@ cursor: pointer;
 
 .icon-notification:hover {
   color: #e9e68d;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 .icon-chat {
@@ -153,7 +153,7 @@ cursor: pointer;
 
 .icon-chat:hover {
   color: #e1c2c2;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 .icon-profile {
@@ -165,7 +165,7 @@ cursor: pointer;
 }
 .icon-profile:hover {
   color: #9cc9fa;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 body.active-modal {
@@ -248,7 +248,7 @@ body.active-modal {
   align-items: center;
   margin-top: 7px;
   &:hover{
-    background-color: #e1e1e1;
+    background-color: #d7d7d7;
     border-radius: 7px;
   }
 }
@@ -448,7 +448,7 @@ body.active-modal {
 
 .user-name-chat{
   &:hover{
-    background-color: #e1e1e1;
+    background-color: #d7d7d7;
     border-radius: 7px;
   }
 }
@@ -458,7 +458,7 @@ body.active-modal {
 .profile-modal-content {
   position: absolute;
   top: 18%;
-  left: 90%;
+  left: 91%;
   height: 100px;
   transform: translate(-50%, -50%);
   line-height: 1;
@@ -476,7 +476,7 @@ body.active-modal {
 .profile-options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 .profile-options a{
   margin: 0;
@@ -492,7 +492,7 @@ body.active-modal {
 }
 
 .user-options:hover {
-  background-color: #e1e1e1;
+  background-color: #d7d7d7;
   border-radius: 7px;
 }
 

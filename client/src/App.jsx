@@ -14,6 +14,7 @@ import EditProfile from "../pages/EditProfile/EditProfile";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 import SavedProjects from "../pages/SavedProjects/SavedProjects";
 import Chat from "../pages/Chat/Chat";
+import About from "../pages/About/About";
 import NotFound from "../pages/NotFound/NotFound";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path="/chat/:chatUserId" element={<Chat />}></Route>
             <Route path="/abandon" element={<MainHome />}></Route>
             <Route path="/collaborate" element={<MainHome />}></Route>
+            <Route path="/about" element={<About />}></Route>
           </Route>
 
           {/* <Route path="/home" element={<MainHome />}></Route>
