@@ -17,7 +17,7 @@ export default function Home() {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        navigate('/login');
+        navigate('/signup');
     }
 
     return (
@@ -25,7 +25,6 @@ export default function Home() {
             {loading ? (
                 <Loading />
             ) : (
-                // Render your main content when loading is complete
                 <div className="home-page page-with-background">
                     <div className="home-page-overlay">
 
@@ -43,29 +42,16 @@ export default function Home() {
 
                         <div className="home-about-section">
                             <p>
-                                The perfect place for developers to list their abandoned projects. <br></br>
+                                The perfect place for developers find collaborators for their projects. <br></br>
                                 Join the largest community of developers and see your ideas come to life.
                             </p>
-                            <button className="home-about-section-button" onClick={handleClick}>Get Started</button>
+                            <button className="home-about-section-button" onClick={handleClick}>GET STARTED</button>
                         </div>
 
                     </div>
 
                     <Spline scene="https://prod.spline.design/YQmdLbRmbZk5NM6Q/scene.splinecode" className="spline-video" />
 
-                    {/* <div className="home-page-footer">
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                        <p>Follow us on</p>
-                    </div> */}
                 </div>
             )}
         </div>

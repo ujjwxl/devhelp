@@ -22,7 +22,8 @@
     border: none;
     /* background-color: #cfd0d1; */
     color: #000000;
-    font-family: "McLaren", cursive;
+    /* font-family: "McLaren", cursive; */
+    /* font-weight: bold; */
     font-size: 18px;
     /* font-weight: 400; */
     border-radius: 10px;
@@ -62,3 +63,11 @@
     justify-content: space-evenly;
     
   } */
+
+  .sidebar-text {
+    color: white;
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    bottom: 8px;
+  }

@@ -12,12 +12,18 @@ export default function About() {
           <SideBar />
         </div>
         <div className="home-work-space workspce">
-          <h1 className="ws-h1">Welcome to DevHelp!</h1>
-          <h2 className="ws-h2">Who We Are</h2>
-          <p>
+          <h1 className="project-yellow-heading">Welcome to DevHelp!</h1>
+          <h2 className="ws-h2 project-yellow-heading">Who We Are</h2>
+          {/* <p>
             DevHelp is a collaborative platform founded by Aman Agarwal and
             Ujjwal Kumar, dedicated to bringing developers together to share,
             discover, and continue each other's projects.
+          </p> */}
+          <p>
+            DevHelp is a collaborative platform founded by&nbsp;
+            <a href="https://github.com/agrawalaman775" target="_blank" className="developer-profile-link">Aman Agarwal</a>&nbsp;and&nbsp;
+            <a href="https://github.com/ujjwxl" target="_blank" className="developer-profile-link">Ujjwal Kumar</a>,
+            dedicated to bringing developers together to share, discover, and continue each other's projects.
           </p>
           <h2 className="ws-h2">Our Mission</h2>
           <p>

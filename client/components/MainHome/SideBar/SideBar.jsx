@@ -54,17 +54,18 @@ export default function Sidebar() {
       </Link>
       
       <Link to="/abandon" className="sidebar-button">
-        Abandon Projects
+        Abandoned Projects
       </Link>
       <Link to="/collaborate" className="sidebar-button">
         Collaborate Projects
       </Link>
       <Link to="/saved" className="sidebar-button">
-        Saved
+        Saved Items
       </Link>
       <Link to="/about" className="sidebar-button">
         About
       </Link>
+      <p className='sidebar-text'>© 2024 DevHelp, Inc.</p>
     </div>
   );
 }

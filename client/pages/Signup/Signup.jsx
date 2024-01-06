@@ -88,7 +88,7 @@ export default function Signup() {
         
 
         <div className="signup-page-container-btn">
-          <button onClick={handleSubmit} className="login-signup-button">Sign Up</button>
+          <button onClick={handleSubmit} className="login-signup-button">SIGN UP</button>
         </div>
         
         

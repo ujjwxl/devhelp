@@ -63,26 +63,29 @@
 }
 
 .login-signup-button {
-    background: linear-gradient(to right, #03217b 0%, #14163c 79%);
-    text-transform: uppercase;
+    /* background: linear-gradient(to right, #03217b 0%, #14163c 79%); */
+    background-color: #1d4ed8;
     letter-spacing: 0.2rem;
-    width: 65%;
+    width: 50%;
     height: 3rem;
     border: none;
     color: white;
-    border-radius: 2rem;
+    border-radius: 20px;
     cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
     transition: transform 0.2s ease-in-out;
     position: relative;
     overflow: hidden;
 }
 
 .login-signup-button:hover {
-    letter-spacing: 0.4rem;
+    /* letter-spacing: 0.4rem;
     background: rgb(0, 0, 0);
     transform: scale(1.02);
-    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7); /* Neon glow effect */
-    text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* Neon text glow effect */
+    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7);
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); */
+    background-color: #1e40af;
+    transition: 0.5s;
 }
 
 

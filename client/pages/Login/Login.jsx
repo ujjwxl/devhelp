@@ -10,9 +10,6 @@
     export default function Login() {
       const ButtonBackground = "linear-gradient(45deg, #0C1015, #0C1015)";
       const navigate=useNavigate();
-      // const handleClick = async()=>{
-      //   navigate("/");
-      // }
 
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
@@ -169,7 +166,7 @@
                 <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></Input>
               
                 <div className="login-page-contain-btn">
-                  <button onClick={handleSubmit} className="login-signup-button">Sign In</button>
+                  <button onClick={handleSubmit} className="login-signup-button">SIGN IN</button>
                 </div>
               </form>
               

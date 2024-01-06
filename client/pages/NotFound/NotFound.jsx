@@ -15,14 +15,20 @@ const NotFound = () => {
                     {/* <Sidebar></Sidebar> */}
                 </div>
                 <div className='home-work-space not-found-page'>
-                    <h2>Looks like this page was abandoned!</h2>
-                    <h2>(pun totally intended xD)</h2>
-                    <h1>404! T T</h1>
-                    <img src={computerImage} alt="" className='computer-image' /> <br/>
-                    <Link to={'/home'}><button>Explore our website</button></Link>
+                    <div className="not-found-page-left">
+                        <h2>Uh oh!, looks like this page was abandoned!</h2>
+                        <h2>(pun totally intended xD)</h2>
+                        <h1>404! T T</h1>
+                    </div>
+                    <div className="not-found-page-right">
+                        <img src={computerImage} alt="" className='computer-image' /> <br />
+                        <Link to={'/home'}><button>Explore our website</button></Link>
+                    </div>
+
                 </div>
 
             </div>
+            <p className='not-found-page-copyright-text'>© 2024 DevHelp, Inc.</p>
         </div>
     )
 }

@@ -11,12 +11,21 @@
   margin-bottom: 20px;
 }
 
+.project-yellow-heading {
+  /* color: #00FFFF; */
+  /* color: #57a5f7; */
+  color: #6eb4ff;
+}
+
 .project-details-header {
   display: flex;
   justify-content: space-between;
   color: white;
   /* background-color: blue; */
   margin-top: 80px;
+  padding: 0 20px;
+  background-color: #28293D;
+  border-radius: 20px;
 }
 
 .project-details-header img {
@@ -32,8 +41,36 @@
   display: flex;
 }
 
+.project-notes {
+  margin: 0;
+}
+
 .project-details-project-notes {
   white-space: pre-wrap;
+}
+
+.project-description {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.project-main-details, .tech-stack, .project-images {
+  background-color: #28293D;
+  margin-top: 20px;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.github-file-or-folder {
+  text-decoration: none;
+  color: #00FFFF;
+}
+
+.project-details-footer {
+  background-color: #28293D;
+  margin-top: 20px;
+  padding: 5px 20px 5px 20px;
+  border-radius: 20px;
 }
 
 .foter {
@@ -46,6 +83,7 @@
 
 .footer-r-button-1 {
   margin-left: 0;
+  margin-bottom: 10px;
 }
 
 /* Add the following styles to your CSS file */

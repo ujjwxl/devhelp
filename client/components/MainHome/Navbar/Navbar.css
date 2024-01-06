@@ -31,9 +31,10 @@
   margin: 0 0 0 30px;
 }
 .nav a {
+  /* color: #000000; */
+  /* font-family: "McLaren", cursive; */
   color: #000000;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-weight: bold;
   margin: 0 0 0 30px;
   text-decoration: none;
   font-size: 35px;
@@ -81,7 +82,7 @@ cursor: pointer;
   font-weight: 500;
   transition: 0.9s;
   background: transparent;
-  font-family: "McLaren", cursive;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   width: 240px;
   background: white;
