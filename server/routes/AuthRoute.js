@@ -17,6 +17,12 @@ router.post('/follow', verifyToken, followUser)
 router.get('/search', verifyToken, searchUsers)
 router.get('/chats/:userId', verifyToken, getUserChats)
 
+router.get('/keep-alive', (req, res) => {
+    console.log('Keep alive request received at', new Date());
+    res.status(200).send('Keep alive request successful');
+});
+
+
 router.get("/login/failed", (req, res)=> {
     res.status(401).json({
         success: false,
@@ -55,5 +61,7 @@ router.get('/google/callback', passport.authenticate('google', {
     });
   });
   
+
+
 
 export default router

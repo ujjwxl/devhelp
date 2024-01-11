@@ -36,6 +36,8 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import multer from 'multer'
+import cron from 'node-cron'
+import axios from 'axios'
 import cors from 'cors'
 import AuthRoute from './routes/AuthRoute.js'
 import ProjectRoute from './routes/ProjectRoute.js'
@@ -127,6 +129,18 @@ io.on('connection', (socket) => {
     })
 });
 
+const keepBackendAwake = async () => {
+  try {
+      const response = await axios.get('http://localhost:5000/auth/keep-alive');
+      console.log(response.data);
+  } catch (error) {
+      console.error('Error making keep-alive request:', error.message);
+  }
+};
+
+cron.schedule('*/10 * * * *', keepBackendAwake);
+// cron.schedule('*/30 * * * * *', keepBackendAwake);
+
 server.listen(process.env.PORT, () => {
     console.log("Listening");
   });
@@ -140,6 +154,7 @@ app.use('/project/image', upload.array('projectImagesArray', 3), (req, res) => {
   // Process and store the images in your database or file system
   // Respond with success or error messages as needed
 });
+
 
 app.use('/auth', AuthRoute)
 app.use('/project', ProjectRoute)

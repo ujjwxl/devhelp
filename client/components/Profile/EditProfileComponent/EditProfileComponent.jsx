@@ -84,7 +84,7 @@ const EditProfileComponent = () => {
 
       <form action="POST" onSubmit={handleSubmit}>
         <input type="text" placeholder="Add/update your bio" className="add-project" onChange={(e) => setBio(e.target.value)} /> <br />
-        <input type="text" placeholder="Add GithHub link : github.com/user" className="add-project" onChange={(e) => setGitHub(e.target.value)} /> <br />
+        <input type="text" placeholder="Add GithHub username" className="add-project" onChange={(e) => setGitHub(e.target.value)} /> <br />
         <input type="text" placeholder="Add your website" className="add-project" onChange={(e) => setWebsite(e.target.value)} /> <br />
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyOne(e.target.value)} /> <br />
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyTwo(e.target.value)} /> <br />

@@ -34,7 +34,7 @@ export default function Home() {
                             </div>
 
                             <div className="navbar-links">
-                                <Link className='navbar-link' to='/home'>About</Link>
+                                <Link className='navbar-link' to='/signup'>Register</Link>
                                 <Link className='navbar-link' to='/login'>Sign In</Link>
                             </div>
                         </div>

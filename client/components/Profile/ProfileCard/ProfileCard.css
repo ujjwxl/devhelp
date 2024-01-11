@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 2%;
+  /* background-color: red; */
 }
 .profile-techstack {
   display: flex;
@@ -26,9 +27,10 @@
 .profile-card-techstack {
   background-color: #007bff;
   color: #fff;
-  padding: 5px 15%;
+  /* padding: 2% 7%; */
+  padding: 5px 10px;
   border-radius: 20px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .profile-links {
@@ -52,8 +54,11 @@
 .profile-card-btn {
   /* display: flex; */
   /* flex-direction: column; */
-  margin-left: 35%;
-  margin-right: 2%;
+  margin-left: 10%;
+  /* margin-right: 2%; */
+  width: 100%;
+  /* background-color: blue; */
+  text-align: center;
 }
 .profile-card-btn button a {
   text-decoration: none;
@@ -62,7 +67,7 @@
 
 .profile-btn {
   background-color: #f6ff00;
-  width: 300%;
+  width: 60%;
   height: 40px;
   color: #060606;
   /* padding: 8px 20px; */
@@ -81,6 +86,7 @@
 .profile-card-link-btn {
   display: flex;
   margin-left: 30%;
+  width: 70%;
 }
 
 .profile-photo{
@@ -121,4 +127,8 @@
   font-weight: bold;
   margin-right: 30px;
   margin-top: 5px;
+}
+
+.profile-follow-button {
+  width: 170px; 
 }

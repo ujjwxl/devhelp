@@ -287,7 +287,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                     className="bookmark-icon"
                     onClick={() => saveProject(project._id)}
                   />
-                  <a href={project.projectGithubLink}><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
+                  <a href={project.projectGithubLink} target="__blank"><FontAwesomeIcon icon={faGithub} className="github-icon"/></a>
                 </span>
                 {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
                 <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>

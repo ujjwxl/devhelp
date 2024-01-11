@@ -96,7 +96,7 @@ export default function ProfileCard() {
               {userDetails.technologyTwo}
             </p>
             <p className="profile-card-techstack">
-              {userDetails.technologyThree}
+            {userDetails.technologyThree}
             </p>
           </div>
 
@@ -105,11 +105,11 @@ export default function ProfileCard() {
               <FontAwesomeIcon icon={faGithub} className="profile-icon" />
             </span>
             <p>/</p>
-            <a href={`https://github.com/` + userDetails.github}>{userDetails.github}</a>
+            <a href={`https://github.com/` + userDetails.github} target="__blank">{userDetails.github}</a>
             <span className="profile-footer-icons">
               <FontAwesomeIcon icon={faLink} className="profile-icon" />
             </span>
-            <a href="#">{userDetails.website}</a>
+            <a href={`https://` + userDetails.website} target="__blank">{userDetails.website}</a>
             <span className="profile-footer-icons">
               {!isCurrentUser ? (
                 <Link to={`/chat/${userDetails._id}`}>
@@ -124,23 +124,20 @@ export default function ProfileCard() {
             </span>
           </div>
         </div>
-        {/* <div className="profile-card-btn">
-        <button className="profile-btn" onClick={() => followUser(userDetails._id)}>Follow</button>
-        <button className="profile-btn"><Link to={'/update'}>Update Profile</Link></button>
-      </div> */}
+
         <div className="profile-card-btn">
           {!isCurrentUser ? (
             <button
-              className="profile-btn"
+              className="profile-btn profile-follow-button"
               onClick={() => followUser(userDetails._id)}
             >
               {isFollowing ? "Following" : "Follow"}
             </button>
           ) : (
             <Link to={'/update'}>
-            <button className="profile-btn">
-              Edit Profile
-            </button>
+              <button className="profile-btn">
+                Edit Profile
+              </button>
             </Link>
           )}
         </div>
@@ -151,7 +148,7 @@ export default function ProfileCard() {
       ></img> */}
       <img
         src={`http://localhost:5000/assets/` + userDetails.profile_picture}
-        className="profile-photo" 
+        className="profile-photo"
       ></img>
       <div className="user-details">
         <p className="user-details-p-name">

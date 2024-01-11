@@ -23,7 +23,9 @@ body {
 .Navbar {
     margin: 0;
     margin-top: 10px;
-    color: #FCE22A;
+    font-size: 2.5rem;
+    /* color: #FCE22A; */
+    color: #CCCCCC;
     text-align: center;
     margin-left: 60px;
 }
@@ -42,6 +44,7 @@ body {
 .navbar-links {
     display: flex;
     margin-top: 10px;
+    margin-right: 20px;
 }
 
 .navbar-link {
@@ -51,7 +54,7 @@ body {
     text-decoration: none;
     color: white;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }
 
 .home-about-section {
