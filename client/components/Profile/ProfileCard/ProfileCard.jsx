@@ -8,6 +8,8 @@ import { faLink, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import io from 'socket.io-client';
 export const socket = io('http://localhost:5000');
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default function ProfileCard() {
   const { userId } = useParams();
@@ -80,6 +82,14 @@ export default function ProfileCard() {
   const loggedInUserId = sessionStorage.getItem("id");
   const isCurrentUser = loggedInUserId === userId;
 
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  // console.log(userDetails)
+  let img = myCld.image(userDetails.profile_picture);
+
   return (
     <div className="profile-card">
       <img
@@ -146,10 +156,11 @@ export default function ProfileCard() {
         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
         className="profile-photo"
       ></img> */}
-      <img
+      {/* <img
         src={`http://localhost:5000/assets/` + userDetails.profile_picture}
         className="profile-photo"
-      ></img>
+      ></img> */}
+      <AdvancedImage cldImg={img} className="profile-photo"/>
       <div className="user-details">
         <p className="user-details-p-name">
           {userDetails.firstname + " " + userDetails.lastname}

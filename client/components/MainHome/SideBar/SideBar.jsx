@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default function Sidebar() {
 
@@ -28,13 +30,22 @@ export default function Sidebar() {
   //   window.location.href = profileLink;
   // };
 
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  console.log(userDetails)
+  let img = myCld.image(userDetails.profile_picture);
+
   return (
     <div className='sidebar'>
 
       <div className="sidebar-user-details">
         {/* <img src="src\assets\default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
         {/* <img src="../../../src/assets/default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
-        <Link to={`/profile/${userId}`}><img src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' /></Link>
+        {/* <Link to={`/profile/${userId}`}><img src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' /></Link> */}
+        <Link to={`/profile/${userId}`}><AdvancedImage cldImg={img} className='sidebar-profile-picture'/></Link>
         {/* <img onClick={() => handleProfileClick(`/profile/${userId}`)} src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' /> */}
         <p>{userDetails.firstname + " " + userDetails.lastname}</p>
         <p>{`@`+userDetails.username}</p>

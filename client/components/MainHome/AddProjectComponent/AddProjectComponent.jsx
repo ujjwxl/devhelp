@@ -82,6 +82,8 @@ const AddProjectComponent = () => {
 
     console.log(project_image_one)
 
+    let projectId = '';
+
     try {
       const response = await axios.post("http://localhost:5000/project/add", {
         projectName,
@@ -106,6 +108,7 @@ const AddProjectComponent = () => {
       });
 
       console.log("Project added successfully:", response.data);
+      projectId = response.data.project._id;
       alert("Project added successfully");
       // Optionally, you can reset the form fields here
     } catch (error) {
@@ -127,7 +130,7 @@ const AddProjectComponent = () => {
 
       // formData.append("projectImagesArray", projectImagesArray)
 
-      const result = await axios.post('http://localhost:5000/project/image', formData, {
+      const result = await axios.post(`http://localhost:5000/project/image/${projectId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

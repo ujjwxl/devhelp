@@ -25,6 +25,8 @@
 import React from 'react';
 import axios from 'axios'
 import { useLocation } from 'react-router-dom';
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 import Navbar from '../../components/MainHome/Navbar/Navbar';
 import SideBar from '../../components/MainHome/SideBar/SideBar';
 import Workspace from '../../components/MainHome/Workspace/Workspace';
@@ -50,9 +52,18 @@ export default function MainHome() {
   // Get the current location (route)
   const location = useLocation();
 
+  // const myCld = new Cloudinary({
+  //   cloud: {
+  //     cloudName: "dv2z4lhfz",
+  //   },
+  // });
+  
+  // let img = myCld.image('vqdgtvmbmcgmpg8fs2pe');
+
   return (
     <>
       <Navbar />
+      {/* <AdvancedImage cldImg={img}/> */}
       <div className="main-home">
         <div className="home-side-bar">
           <SideBar />

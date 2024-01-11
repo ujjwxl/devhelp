@@ -65,7 +65,7 @@ const EditProfileComponent = () => {
       formData.append("profilePicture", profilePicture);
 
       const result = await axios.post(
-        "http://localhost:5000/auth/image",
+        `http://localhost:5000/auth/image/${userId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

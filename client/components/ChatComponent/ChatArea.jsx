@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import MessageOthers from "./MessageOthers";
 import MessageSelf from "./MessageSelf";
 import { socket } from "../Profile/ProfileCard/ProfileCard";
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default function ChatArea() {
   const chatContainerRef = useRef();
@@ -100,17 +102,26 @@ export default function ChatArea() {
     });
   }, [socket]);
 
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  // console.log(userDetails)
+  // let img = myCld.image(userDetails.profile_picture);
+
   return (
     <div className="chatArea-container">
       <div className="chatArea-header">
       <Link to={`/profile/${chatUserId}`} className="chatArea-header-a">
-        <img
+        {/* <img
           src={
             `http://localhost:5000/assets/` + receiverDetails.profile_picture
           }
           alt=""
           className="chatArea-profile-picture"
-        />
+        /> */}
+        <AdvancedImage cldImg={myCld.image(receiverDetails.profile_picture)} className="chatArea-profile-picture"/>
         </Link>
           <p className="chatArea-header-p">
             {receiverDetails.firstname + " " + receiverDetails.lastname}

@@ -13,6 +13,8 @@ import {
 import Notifications from "../../Notifications/Notifications";
 import LoadingBar from "react-top-loading-bar";
 import userimg from '../../../src/assets/user.png';
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default function Navbar() {
   const userId = sessionStorage.getItem("id");
@@ -106,6 +108,14 @@ export default function Navbar() {
       });
     }
   }, [searchQuery]);
+
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  // console.log(userDetails)
+  // let img = myCld.image(userDetails.profile_picture);
 
 
   return (
@@ -279,12 +289,13 @@ export default function Navbar() {
               <div className="chat-links">
                 {userChats.map((chat) => (
                   <div className="chat-link user-name-chat" key={chat._id}>
-                    <img
+                    {/* <img
                       src={
                         `http://localhost:5000/assets/` + chat.profile_picture
                       }
                       alt=""
-                    />
+                    /> */}
+                    <AdvancedImage cldImg={myCld.image(chat.profile_picture)}/>
                     <Link to={`/chat/${chat._id}`} className="light-link">
                     {chat.firstname + " "+ chat.lastname}
                     </Link>

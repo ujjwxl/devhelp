@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { format, render, cancel, register } from 'timeago.js';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default function Card({ userProfilePage, user, listed, saved, isAbandoned, toCollaborate }) {
   const [projects, setProjects] = useState([]);
@@ -153,7 +155,15 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
       return 'red';
     }
   }
-  
+
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  // console.log(userDetails)
+  // let img = myCld.image(userDetails.profile_picture);
+
   return (
     <div>
       {/* {projects.map((project, index) => (
@@ -261,24 +271,31 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
           <div className="card" key={index}>
             <div className="card-header">
               <div className="header-l">
-                <Link to={`/profile/${project.developerUserId?._id}`}><img
+                {/* <Link to={`/profile/${project.developerUserId?._id}`}><img
                   src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
                   className="header-l-img"
                   alt="profile"
+                /></Link> */}
+
+                <Link to={`/profile/${project.developerUserId?._id}`}><AdvancedImage
+                  // src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
+                  cldImg={myCld.image(project.developerUserId?.profile_picture)}
+                  className="header-l-img"
+                  alt="profile"
                 /></Link>
-  
-  
+
+
                 <Link to={`/profile/${project.developerUserId?._id}`} className="header-l-a">
                   {project.developerUserName}
                 </Link>
-  
+
                 <p className="header-l-p">/</p>
-  
+
                 <Link to={`/project/${project._id}`} className="header-l-a">
                   {project.projectName}
                 </Link>
               </div>
-  
+
               <div className="header-r">
                 <p className="header-date">{format(project.createdAt)}</p>
                 <span className="header-r-icons">
@@ -287,7 +304,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                     className="bookmark-icon"
                     onClick={() => saveProject(project._id)}
                   />
-                  <a href={project.projectGithubLink} target="__blank"><FontAwesomeIcon icon={faGithub} className="github-icon"/></a>
+                  <a href={project.projectGithubLink} target="__blank"><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
                 </span>
                 {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
                 <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
@@ -295,7 +312,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 </p>
               </div>
             </div>
-  
+
             <div className="card-content">
               <p className="card-content-p">{project.projectDescription}</p>
             </div>
@@ -305,7 +322,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                 <p className="footer-l-p">{project.technologiesUsedTwo}</p>
                 <p className="footer-l-p">{project.technologiesUsedThree}</p>
               </div>
-  
+
               <div className="footer-r"><Link to={`/project/${project._id}`}>
                 <button className="footer-r-button no-decor">
                   View More

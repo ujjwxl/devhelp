@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   profile_picture: {
     type: String,
-    default: 'default-pfp.png',
+    default: 'ecknu1ow6hlfudxvs00n',
   },
   email: {
     type: String,

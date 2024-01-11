@@ -6,6 +6,8 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Modal from 'react-modal';
 import './ProjectDetailsComponent.css'
 import { Link } from 'react-router-dom';
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 // import fileIcon from '../../../src/assets/icons8-file-48.png';
 // import folderIcon from '../../../src/assets/icons8-folder-48.png';
 
@@ -208,6 +210,14 @@ export default function ProjectDetailsComponent() {
     },
   };
 
+  const myCld = new Cloudinary({
+    cloud: {
+      cloudName: "dv2z4lhfz",
+    },
+  });
+  // console.log(userDetails)
+  // let img = myCld.image(userDetails.profile_picture);
+
   return (
     <div className='workspace project-details-page'>
 
@@ -220,7 +230,8 @@ export default function ProjectDetailsComponent() {
 
           {projectDetails.developerUserId?._id && (
             <div className="project-details-left-one">
-              <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
+              {/* <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" /> */}
+              <AdvancedImage cldImg={myCld.image(projectDetails.developerUserId.profile_picture)} />
             </div>
           )}
 
@@ -327,21 +338,36 @@ export default function ProjectDetailsComponent() {
 
         <div className="project-images">
           {projectDetails.projectImageOne && (
-            <img
-              src={`http://localhost:5000/assets/` + projectDetails.projectImageOne}
-              alt=""
-              className='project-image'
-              onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageOne)}
+            // <img
+            //   src={`http://localhost:5000/assets/` + projectDetails.projectImageOne}
+            //   alt=""
+            //   className='project-image'
+            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageOne)}
+            // />
+            <AdvancedImage 
+              cldImg={myCld.image(projectDetails.projectImageOne)} 
+              className='project-image' 
+              onClick={() => openImageModal(myCld.image(projectDetails.projectImageOne))} 
             />
           )}
           {projectDetails.projectImageTwo && (
-            <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'
-              onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
+            // <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'
+            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
+            // />
+            <AdvancedImage 
+              cldImg={myCld.image(projectDetails.projectImageTwo)} 
+              className='project-image' 
+              onClick={() => openImageModal(myCld.image(projectDetails.projectImageTwo))} 
             />
           )}
           {projectDetails.projectImageThree && (
-            <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
-              onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
+            // <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
+            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
+            <AdvancedImage 
+              cldImg={myCld.image(projectDetails.projectImageThree)} 
+              className='project-image' 
+              onClick={() => openImageModal(myCld.image(projectDetails.projectImageThree))} 
+            />
           )}
           {!projectDetails.projectImageOne && !projectDetails.projectImageTwo && !projectDetails.projectImageThree && (
             <p>No images available for this project</p>
@@ -353,8 +379,13 @@ export default function ProjectDetailsComponent() {
           contentLabel="Expanded Image"
           style={customStyles}
         >
-          <img
+          {/* <img
             src={expandedImage}
+            alt="Expanded Project Image"
+            className="expanded-image"
+          /> */}
+          <AdvancedImage
+            cldImg={expandedImage}
             alt="Expanded Project Image"
             className="expanded-image"
           />
