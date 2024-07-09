@@ -174,14 +174,14 @@
 
               <hr className="login-page-hr"></hr>
 
-              <div className="login-page-contain-icon">
+              {/* <div className="login-page-contain-icon">
                 <Icon color={ButtonBackground}>
                   <FcGoogle onClick={handleGoogleLogin}/>
                 </Icon>
                 <Icon color={ButtonBackground}>
                   <FaGithub />
                 </Icon>
-              </div>
+              </div> */}
 
               <h5 className="login-signup-links">
                 <span className="link-for-signup-login">

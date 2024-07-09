@@ -94,14 +94,14 @@ export default function Signup() {
         
         <h6 className="signup-h6">Or SignUp With</h6>
 
-        <div className="signup-page-container-icon">
+        {/* <div className="signup-page-container-icon">
           <Icon color={ButtonBackground}>
             <FcGoogle />
           </Icon>
           <Icon color={ButtonBackground}>
             <FaGithub />
           </Icon>
-        </div>
+        </div> */}
 
         <h5 className="login-signup-links">Already have an account? {" "}
           <span className="link-for-signup-login">
