@@ -70,23 +70,6 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// export const updateUserProfile = async (req, res) => {
-//   const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId } = req.body;
-
-//   userModel.findByIdAndUpdate(userId, { bio, github, website, technologyOne, technologyTwo, technologyThree })
-//     .then(updatedUser => {
-//       if (!updatedUser) {
-//         return res.status(404).json({ message: 'User not found' });
-//       }
-
-//       res.status(200).json(updatedUser);
-//     })
-//     .catch(error => {
-//       console.error('Error in updating user profile:', error);
-//       res.status(500).json({ message: 'Error updating profile' });
-//     });
-// };
-
 export const updateUserProfile = async (req, res) => {
   const { bio, github, website, technologyOne, technologyTwo, technologyThree, userId, profile_picture } = req.body;
 
@@ -145,47 +128,8 @@ export const getUserDetails = async (req, res) => {
     });
 };
 
-// export const createRequest = async (req, res) => {
-//   const { requesterUserName, projectName, developerUserId } = req.body;
-//   console.log(req.body)
-
-//   try {
-//     const user = await userModel.findOne({ _id: developerUserId });
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'No user found for this id' });
-//     }
-
-//     const message = `${requesterUserName} has requested to continue ${projectName}`;
-
-//     user.notifications.push(message);
-
-//     // Save the updated user document
-//     await user.save();
-//     res.status(200).json({ message: 'Request sent successfully.' });
-    
-//   } catch (error) {
-//     console.error("Error fetching user projects:", error);
-//     res.status(500).json({ error: "Failed to fetch user projects" });
-//   }
-// };
-
-// export const getNotifications = async (req, res) => {
-//   const { userId } = req.params;
-
-//   try {
-   
-//     res.status(200).json({ message: 'Request sent successfully.' });
-    
-//   } catch (error) {
-//     console.error("Error fetching user notifications:", error);
-//     res.status(500).json({ error: "Failed to fetch user notifications" });
-//   }
-// };
-
 export const createRequest = async (req, res) => {
   const { requesterUserName, projectName, developerUserId, projectId, requesterUserId } = req.body;
-  // console.log(req.body)
 
   try {
     const user = await userModel.findOne({ _id: developerUserId });
@@ -220,20 +164,15 @@ export const createRequest = async (req, res) => {
   }
 };
 
-
-
 export const getNotifications = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    // Use the `populate` method to populate the 'notifications' field
     const user = await userModel.findOne({ _id: userId }).populate('notifications');
 
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
-
-    // Now 'user.notifications' contains an array of notification documents with all fields populated
     res.status(200).json(user.notifications.reverse());
   } catch (error) {
     console.error("Error fetching user notifications:", error);
@@ -273,11 +212,9 @@ export const followUser = async (req, res) => {
       isRequest: false
     })
 
-    // Save the updated user document
     await notification.save();
     targetUser.notifications.push(notification);
 
-    // Save the updated user document
     await targetUser.save();
 
     return res.status(200).json({ message: 'You are now following this user.' });
@@ -311,9 +248,9 @@ export const searchUsers = async (req, res) => {
         { technologiesUsedThree: { $regex: new RegExp(query, 'i') } },
         { projectDescription: { $regex: new RegExp(query, 'i') } },
         { projectNotes: { $regex: new RegExp(query, 'i') } },
-        { developerFirstName: { $regex: new RegExp(query, 'i') } }, // Add developerFirstName
-        { developerLastName: { $regex: new RegExp(query, 'i') } }, // Add developerLastName
-        { developerUserName: { $regex: new RegExp(query, 'i') } }, // Add developerUserName
+        { developerFirstName: { $regex: new RegExp(query, 'i') } },
+        { developerLastName: { $regex: new RegExp(query, 'i') } },
+        { developerUserName: { $regex: new RegExp(query, 'i') } },
       ],
     });
 
@@ -323,20 +260,6 @@ export const searchUsers = async (req, res) => {
     res.status(500).json({ message: 'An error occurred while searching for users and projects.' });
   }
 };
-
-// export const getUserChats = async (req, res) => {
-//   const { userId } = req.params;
-
-//   userModel
-//   .findOne({ _id:userId})
-//   .then((user) => {
-//     res.status(200).json(user);
-//   })
-//   .catch((error) => {
-//     console.error("Error fetching user:", error);
-//     res.status(500).json({ error: "Failed to fetch user" });
-//   });
-// }
 
 export const getUserChats = async (req, res) => {
   const { userId } = req.params;

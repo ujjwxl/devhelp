@@ -73,7 +73,7 @@ const abandonedProjectSchema = new mongoose.Schema({
   projectImageThree: {
     type: String,
   }
-}, { timestamps: true }); // Add this line to enable timestamps
+}, { timestamps: true });
 
 const projectModel = mongoose.model('projects', abandonedProjectSchema);
 export default projectModel;

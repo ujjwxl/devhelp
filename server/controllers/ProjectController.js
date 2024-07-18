@@ -91,28 +91,6 @@ export const getProjectsByUser = async (req, res) => {
   }
 };
 
-// export const getWorkingProjectsByUser = async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-
-//     // Find the user by their ID and populate the 'workingOn' field with project details
-//     const user = await userModel.findById(userId).populate("workingOn");
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // The 'workingOn' field will now contain project details
-//     const workingProjects = user.workingOn;
-
-//     // Return the list of working projects
-//     res.status(200).json(workingProjects);
-//   } catch (error) {
-//     console.error("Error fetching working projects:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
-
 export const getWorkingProjectsByUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -269,25 +247,6 @@ export const saveProject = async (req, res) => {
     res.status(500).json({ error: "Failed to save project" });
   }
 };
-
-// export const getSavedProjects = async (req, res) => {
-//   const { userId } = req.params;
-
-//   try {
-//     // Find the user by their ID and populate the savedProjects field
-//     const user = await userModel.findById(userId).populate("savedProjects");
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // The 'user.savedProjects' field will now contain populated project documents
-//     res.status(200).json(user.savedProjects);
-//   } catch (error) {
-//     console.error("Error fetching saved projects for the user:", error);
-//     res.status(500).json({ error: "Failed to fetch saved projects" });
-//   }
-// };
 
 export const getSavedProjects = async (req, res) => {
   const { userId } = req.params;

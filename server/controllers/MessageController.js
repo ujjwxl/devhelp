@@ -5,8 +5,6 @@ export const sendMessage = async (req, res) => {
   const { sender, receiver, content } = req.body;
 
   try {
-    //   const user = await userModel.findOne({ _id: developerUserId });
-
     const message = new messageModel({
       sender,
       receiver,
@@ -40,9 +38,6 @@ export const sendMessage = async (req, res) => {
       receiverUser.userChats.push(sender);
       await receiverUser.save();
     }
-
-    //   await message.populate('sender receiver', 'firstname lastname').execPopulate();
-
     res.status(201).json(message);
   } catch (error) {
     console.error(error);
