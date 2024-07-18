@@ -17,10 +17,6 @@ export default function ProfileCard() {
 
   const loginUserId = sessionStorage.getItem('id');
 
-  // useEffect(() => {
-  //   socket.emit("add_user", loginUserId)
-  // },[])
-
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -44,7 +40,6 @@ export default function ProfileCard() {
   async function followUser(anotherUserId) {
     const loggedInUserId = sessionStorage.getItem("id");
     const loggedInUserName = sessionStorage.getItem("username");
-    // console.log(anotherUserId)
 
     try {
       await axios
@@ -56,7 +51,6 @@ export default function ProfileCard() {
         .then((res) => {
           if (res.status == 200) {
             console.log("Followed succesfully");
-            // alert('Followed')
             setIsFollowing(true);
             axios
               .post("http://localhost:5000/auth/find", { userId })
@@ -87,7 +81,6 @@ export default function ProfileCard() {
       cloudName: "dv2z4lhfz",
     },
   });
-  // console.log(userDetails)
   let img = myCld.image(userDetails.profile_picture);
 
   return (
@@ -152,14 +145,6 @@ export default function ProfileCard() {
           )}
         </div>
       </div>
-      {/* <img
-        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
-        className="profile-photo"
-      ></img> */}
-      {/* <img
-        src={`http://localhost:5000/assets/` + userDetails.profile_picture}
-        className="profile-photo"
-      ></img> */}
       <AdvancedImage cldImg={img} className="profile-photo"/>
       <div className="user-details">
         <p className="user-details-p-name">

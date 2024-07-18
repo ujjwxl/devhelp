@@ -21,9 +21,8 @@ export default function Navbar() {
 
   const [notificationModal, setNotificationModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
-  const [chatModal, setChatModal] = useState(false); // New state for chat modal
+  const [chatModal, setChatModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [searchResults, setSearchResults] = useState([]);
   const [searchResults, setSearchResults] = useState({
     users: [],
     projects: [],
@@ -44,11 +43,10 @@ export default function Navbar() {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
 
-    // Clean up the event listener when component unmounts
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []); // Empty dependency array ensures the effect runs only once (on mount)
+  }, []);
 
   const toggleProfileModal = () => {
     setProfileModal(!profileModal);
@@ -101,7 +99,6 @@ export default function Navbar() {
       handleSearch();
       setSearchModal(true)
     } else {
-      // Clear the search results if the search query is empty
       setSearchResults({
         users: [],
         projects: [],
@@ -114,8 +111,6 @@ export default function Navbar() {
       cloudName: "dv2z4lhfz",
     },
   });
-  // console.log(userDetails)
-  // let img = myCld.image(userDetails.profile_picture);
 
 
   return (
@@ -125,20 +120,10 @@ export default function Navbar() {
         color="#28293D"
         progress={100}
         height={4}
-        // onLoaderFinished={() => setProgress(0)}
       />
-      {/* <a href="/home">DevHelp</a> */}
       <Link to={"/home"}>DevHelp</Link>
       <div className="nav-r">
         <div className="search">
-          {/* <input type="text" placeholder="Search..." /> */}
-          {/* <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          /> */}
-
           <input
             type="text"
             placeholder="Click or press / to search"
@@ -176,76 +161,11 @@ export default function Navbar() {
           <div className="icon-notification" onClick={toggleNotificationModal}>
             <FontAwesomeIcon icon={faBell} />
           </div>
-          {/* <div className="icon-profile">
-
-
-            <Link to={`/profile/${userId}`}>
-              <FontAwesomeIcon icon={faUser} />
-            </Link>
-          </div> */}
-
           <div className="icon-profile" onClick={toggleProfileModal}>
             <FontAwesomeIcon icon={faUser} />
           </div>
         </div>
       </div>
-
-      {/* {chatModal && (
-        <div className="modal">
-          <div onClick={toggleChatModal} className="overlay"></div>
-          <div className="search-modal-content">
-            <div className="modal-header">
-              <h2>Chat</h2>
-              <button className="close-modal" onClick={toggleChatModal}>
-                CLOSE
-              </button>
-            </div>
-            <div className="chat-links">
-              {userChats.map((chat) => (
-                <Link to={`/chat/${chat._id}`} className="light-link">{chat.username}</Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      )} */}
-
-      {/* {chatModal && (
-        <div className="modal">
-          <div onClick={toggleChatModal} className="overlay"></div>
-          <div className="search-modal-content">
-            <div className="modal-header">
-              <h2>Chats</h2>
-              <button className="close-modal" onClick={toggleChatModal}>
-                CLOSE
-              </button>
-            </div>
-            {userChats.length === 0 ? (
-              <p>No chats available</p>
-            ) : (
-              <div className="chat-links">
-                {userChats.map((chat) => (
-                  <div className="chat-link">
-                    <img
-                      src={
-                        `http://localhost:5000/assets/` + chat.profile_picture
-                      }
-                      alt=""
-                    />
-                    <Link
-                      to={`/chat/${chat._id}`}
-                      className="light-link"
-                      key={chat._id}
-                    >
-                      {chat.username}
-                    </Link>
-                    <p>{`@` + chat.username}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )} */}
 
       {profileModal && (
         <div className="modal">
@@ -254,7 +174,6 @@ export default function Navbar() {
             <div className="profile-options">
               <Link to={`/profile/${userId}`}>
               <p
-                // onClick={() => handleProfileClick(`/profile/${userId}`)}
                 className="user-options profile-option"
                 id="profile-option"
               >
@@ -289,12 +208,6 @@ export default function Navbar() {
               <div className="chat-links">
                 {userChats.map((chat) => (
                   <div className="chat-link user-name-chat" key={chat._id}>
-                    {/* <img
-                      src={
-                        `http://localhost:5000/assets/` + chat.profile_picture
-                      }
-                      alt=""
-                    /> */}
                     <AdvancedImage cldImg={myCld.image(chat.profile_picture)}/>
                     <Link to={`/chat/${chat._id}`} className="light-link">
                     {chat.firstname + " "+ chat.lastname}
@@ -304,8 +217,7 @@ export default function Navbar() {
                 ))}
               </div>
             }
-
-            {/* Display a message when no chats are available */}
+            
             {userChats.length === 0 && <h3>No chats available</h3>}
           </div>
         </div>

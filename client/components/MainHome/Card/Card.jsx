@@ -12,8 +12,6 @@ import { Cloudinary } from '@cloudinary/url-gen';
 export default function Card({ userProfilePage, user, listed, saved, isAbandoned, toCollaborate }) {
   const [projects, setProjects] = useState([]);
 
-  // console.log(user.workingOn);
-
   const { userId } = useParams();
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
       const loggedInUserId = sessionStorage.getItem("id");
 
       axios
-        .get(`http://localhost:5000/project/saved/${loggedInUserId}`) // Replace userId with the actual user ID
+        .get(`http://localhost:5000/project/saved/${loggedInUserId}`)
         .then((response) => {
           setProjects(response.data);
         })
@@ -30,9 +28,8 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
         });
     }
     else if (userProfilePage && listed) {
-      // Fetch only user's projects
       axios
-        .get(`http://localhost:5000/project/user/${userId}`) // Replace userId with the actual user ID
+        .get(`http://localhost:5000/project/user/${userId}`)
         .then((response) => {
           setProjects(response.data);
         })
@@ -49,7 +46,6 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
           console.error("Error fetching user projects:", error);
         });
     } else if (isAbandoned) {
-      // Fetch only abandoned projects
       axios
         .get("http://localhost:5000/project/abandoned")
         .then((response) => {
@@ -60,7 +56,6 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
         });
     }
     else if (toCollaborate) {
-      // Fetch only abandoned projects
       axios
         .get("http://localhost:5000/project/collab")
         .then((response) => {
@@ -161,109 +156,9 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
       cloudName: "dv2z4lhfz",
     },
   });
-  // console.log(userDetails)
-  // let img = myCld.image(userDetails.profile_picture);
 
   return (
     <div>
-      {/* {projects.map((project, index) => (
-        <div className="card" key={index}>
-          <div className="card-header">
-            <div className="header-l">
-              <Link to={`/profile/${project.developerUserId?._id}`}><img
-                src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
-                className="header-l-img"
-                alt="profile"
-              /></Link>
-
-
-              <Link to={`/profile/${project.developerUserId?._id}`} className="header-l-a">
-                {project.developerUserName}
-              </Link>
-
-              <p className="header-l-p">/</p>
-
-              <Link to={`/project/${project._id}`} className="header-l-a">
-                {project.projectName}
-              </Link>
-            </div>
-
-            <div className="header-r">
-              <p className="header-date">{format(project.createdAt)}</p>
-              <span className="header-r-icons">
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  className="bookmark-icon"
-                  onClick={() => saveProject(project._id)}
-                />
-                <a href={project.projectGithubLink}><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
-              </span>
-              <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
-                {project.completionPercent + "%"}
-              </p>
-            </div>
-          </div>
-
-          <div className="card-content">
-            <p className="card-content-p">{project.projectDescription}</p>
-          </div>
-          <div className="card-footer">
-            <div className="footer-l">
-              <p className="footer-l-p">{project.technologiesUsedOne}</p>
-              <p className="footer-l-p">{project.technologiesUsedTwo}</p>
-              <p className="footer-l-p">{project.technologiesUsedThree}</p>
-            </div>
-
-            <div className="footer-r"><Link to={`/project/${project._id}`}>
-              <button className="footer-r-button no-decor">
-                View More
-              </button></Link>
-              <div className="footer-r">
-                {user &&
-                  user._id !== project.developerUserId?._id && (
-                    // User is not the owner of the project
-                    <>
-                      {user.workingOn &&
-                        user.workingOn.includes(project._id) ? (
-                        // User is already working on the project
-                        <button className="footer-r-button working-button">
-                          Working
-                        </button>
-                      ) : project.projectStatus === "collaborate" ? (
-                        <button
-                          className="footer-r-button"
-                          onClick={() =>
-                            handleContinueRequest(
-                              project.projectName,
-                              project._id,
-                              project.developerUserId?._id
-                            )
-                          }
-                        >
-                          Request to collaborate
-                        </button>
-                      ) : project.projectStatus === "abandoned" ? (
-                        <button
-                          className="footer-r-button"
-                          onClick={() =>
-                            handleContinueRequest(
-                              project.projectName,
-                              project._id,
-                              project.developerUserId?._id
-                            )
-                          }
-                        >
-                          Request to continue
-                        </button>
-                      ) : null}
-                    </>
-                  )}
-              </div>
-            </div>
-          </div>
-        </div>
-      ))} */}
-
       {projects.length === 0 ? (
         <p className="add-project-heading">No projects found.</p>
       ) : (
@@ -271,14 +166,7 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
           <div className="card" key={index}>
             <div className="card-header">
               <div className="header-l">
-                {/* <Link to={`/profile/${project.developerUserId?._id}`}><img
-                  src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
-                  className="header-l-img"
-                  alt="profile"
-                /></Link> */}
-
                 <Link to={`/profile/${project.developerUserId?._id}`}><AdvancedImage
-                  // src={`http://localhost:5000/assets/` + project.developerUserId?.profile_picture}
                   cldImg={myCld.image(project.developerUserId?.profile_picture)}
                   className="header-l-img"
                   alt="profile"
@@ -306,7 +194,6 @@ export default function Card({ userProfilePage, user, listed, saved, isAbandoned
                   />
                   <a href={project.projectGithubLink} target="__blank"><FontAwesomeIcon icon={faGithub} className="github-icon" /></a>
                 </span>
-                {/* <p className="header-r-p">{project.completionPercent + "%"}</p> */}
                 <p className={`header-r-p ${getCompletionClass(project.completionPercent)}`}>
                   {project.completionPercent + "%"}
                 </p>

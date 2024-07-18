@@ -1,9 +1,4 @@
 .nav {
-  /* background-color: #bcb5b5; */
-  /* background-color: #B151F2; */
-  /* background-color: #9400FF; */
-  /* background-color: #6527be; */
-  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,14 +7,9 @@
   position: fixed;
   height: 5%;
   z-index: 1;
-  /* reduced navbar height to make for fixed navbar */
-  /* background: #ffe259; 
-  background: -webkit-linear-gradient(to right, #ffa751, #ffe259);
-  background: linear-gradient(to right, #ffa751, #ffe259); */
-
-  background: #0052D4;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #0052D4;
+  background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);
+  background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);
 
 
 }
@@ -31,8 +21,6 @@
   margin: 0 0 0 30px;
 }
 .nav a {
-  /* color: #000000; */
-  /* font-family: "McLaren", cursive; */
   color: #000000;
   font-weight: bold;
   margin: 0 0 0 30px;
@@ -88,43 +76,10 @@ cursor: pointer;
   background: white;
 }
 
-/* .search:hover input {
-  width: 200px;
-  background: white;
-} */
-
 .search a {
   color: #000000;
   font-size: 18px;
 }
-
-/* .nav-r input {
-    padding: 8px 30px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-left: -70px;
-    outline: none;
-  } */
-
-/* .nav-r button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 10px;
-    cursor: pointer;
-    outline: none;
-    margin-right: 20px; 
-    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-
-  } */
-
-/* .nav-r button:hover {
-    background-color: #0056b3;
-    transform: scale(1.1); 
-
-  } */
 
 .icons {
   display: flex;
@@ -215,13 +170,13 @@ body.active-modal {
   margin-left: 10px;
 }
 .light-link {
-  color: #542020; /* Adjust the color to make it lighter */
+  color: #542020;
   text-decoration: none;
   margin-left: 0px;
 }
 
 .light-link:hover {
-  color: #666; /* Adjust the color for the hover state, if desired */
+  color: #666;
 }
 
 .search-link-a a{
@@ -322,25 +277,6 @@ body.active-modal {
   overflow-y: scroll;
 }
 
-/* .close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 7px;
-} */
-
-/* Keyframes for the button's hover animation */
-/* @keyframes pulse {
-  from {
-    transform: scale(1);
-    background-color: #4CAF50;
-  }
-  to {
-    transform: scale(1.1);
-    background-color: #69F0AE;
-  }
-} */
-
 .close-modal {
   position: absolute;
   top: 15px;
@@ -361,50 +297,7 @@ body.active-modal {
       background-color: #418fe3;
     
   }
-  /* &:active {
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-  } */
 }
-
-/* @keyframes grow {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-} */
-
-/* @keyframes border-grow {
-  from {
-    border-width: 0px;
-  }
-  to {
-    border-width: 3px;
-  }
-} */
-
-/* @keyframes text-pulse {
-  from {
-    color: white;
-    font-size: 16px;
-    opacity: 1;
-  }
-  to {
-    color: #69F0AE;
-    font-size: 18px;
-    opacity: 0.8;
-  }
-} */
-
-/* @keyframes shadow-grow {
-  from {
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
-  }
-  to {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-  }
-} */
 
 @keyframes pulse-color {
   from {
@@ -496,32 +389,3 @@ body.active-modal {
   background-color: #d7d7d7;
   border-radius: 7px;
 }
-
-
-/* .profile-options button {
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.2s ease-in-out;
-} */
-
-/* .profile-options button:hover {
-  background-color: #0056b3;
-} */
-
-/* .animated-line {
-  width: 0;
-  height: 2px;
-  background-color: #007bff;
-  transition: width 0.3s ease;
-} */
-
-/* #sign-out-option:hover + .animated-line {
-  width: 100%;
-}
-#profile-option:hover + .animated-line {
-  width: 100%;
-} */

@@ -107,20 +107,11 @@ export default function ChatArea() {
       cloudName: "dv2z4lhfz",
     },
   });
-  // console.log(userDetails)
-  // let img = myCld.image(userDetails.profile_picture);
 
   return (
     <div className="chatArea-container">
       <div className="chatArea-header">
       <Link to={`/profile/${chatUserId}`} className="chatArea-header-a">
-        {/* <img
-          src={
-            `http://localhost:5000/assets/` + receiverDetails.profile_picture
-          }
-          alt=""
-          className="chatArea-profile-picture"
-        /> */}
         <AdvancedImage cldImg={myCld.image(receiverDetails.profile_picture)} className="chatArea-profile-picture"/>
         </Link>
           <p className="chatArea-header-p">
@@ -128,12 +119,6 @@ export default function ChatArea() {
           </p>
       </div>
       <div className="chatArea-messages" ref={chatContainerRef}>
-        {/* <MessageOthers></MessageOthers>
-        <MessageSelf></MessageSelf>
-        <MessageOthers></MessageOthers>
-        <MessageSelf></MessageSelf>
-        <MessageOthers></MessageOthers>
-        <MessageSelf></MessageSelf> */}
         {messages.map((message) =>
           message.sender === chatUserId ? (
             <MessageOthers

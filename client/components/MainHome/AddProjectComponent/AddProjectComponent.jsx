@@ -57,10 +57,6 @@ const AddProjectComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const project_image_one = projectImages.projectImageOne.name;
-    // const project_image_two = projectImages.projectImageTwo.name;
-    // const project_image_three = projectImages.projectImageThree.name; 
-
     const project_image_one = projectImages.projectImage1 ? projectImages.projectImage1.name : null;
     const project_image_two = projectImages.projectImage2 ? projectImages.projectImage2.name : null;
     const project_image_three = projectImages.projectImage3 ? projectImages.projectImage3.name : null;
@@ -73,7 +69,6 @@ const AddProjectComponent = () => {
       const key = `projectImage${i}`;
       const file = projectImages[key];
       if (file) {
-        // projectImagesArray.push(file); // Add the file to the array
         formData.append(`projectImagesArray`, file);
       }
     }
@@ -110,25 +105,12 @@ const AddProjectComponent = () => {
       console.log("Project added successfully:", response.data);
       projectId = response.data.project._id;
       alert("Project added successfully");
-      // Optionally, you can reset the form fields here
     } catch (error) {
       alert("Project could not be added")
       console.error("Error adding project:", error);
     }
 
     try {
-      // const formData = new FormData();
-
-      // Append all three images to the formData
-      // for (let i = 1; i <= 3; i++) {
-      //   const key = `projectImage${i}`;
-      //   const file = projectImages[key];
-      //   if (file) {
-      //     formData.append(key, file);
-      //   }
-      // }
-
-      // formData.append("projectImagesArray", projectImagesArray)
 
       const result = await axios.post(`http://localhost:5000/project/image/${projectId}`, formData, {
         headers: {
@@ -255,7 +237,6 @@ const AddProjectComponent = () => {
           <br />
 
           <div {...getRootProps()} className="dropzone">
-            {/* <input {...getInputProps()} name="projectImages"/> */}
             <input {...getInputProps({ name: "projectImages" })} />
             <p>Drag and drop images here, or click to select files (up to 3).</p>
           </div>

@@ -3,10 +3,6 @@
     margin: 0;
 }
 
-/* .notify p{
-    margin: 0;
-} */
-
 .respond-btn{
   /* background-color: rgb(149, 175, 76); */
   background-color: #007BFF;
@@ -36,29 +32,6 @@
   0% { transform: scale(1); }
   100% { transform: scale(1.02); }
 }
-
-/* @keyframes pulse-color {
-    from {
-      transform: scale(1);
-      background-color: #4CAF50;
-    }
-    25% {
-      transform: scale(1.1);
-      background-color: #69F0AE;
-    }
-    50% {
-      transform: scale(1);
-      background-color: #69F0AE;
-    }
-    75% {
-      transform: scale(1.1);
-      background-color: #4CAF50;
-    }
-    to {
-      transform: scale(1);
-      background-color: #4CAF50;
-    }
-  } */
 
   .notification-message {
     font-size: 18px;

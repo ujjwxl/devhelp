@@ -8,36 +8,9 @@ import './ProjectDetailsComponent.css'
 import { Link } from 'react-router-dom';
 import { AdvancedImage } from '@cloudinary/react'
 import { Cloudinary } from '@cloudinary/url-gen';
-// import fileIcon from '../../../src/assets/icons8-file-48.png';
-// import folderIcon from '../../../src/assets/icons8-folder-48.png';
 
 import fileIcon from '../../../src/assets/icons8-file.svg';
 import folderIcon from '../../../src/assets/icons8-folder.svg';
-
-// function FileOrFolder(props) {
-//   const { item, onFileClick, onFolderClick } = props;
-
-//   if (item.type === 'file') {
-//     return (
-//       <div>
-//         <a
-//           href="#"
-//           onClick={() => onFileClick(item)}
-//         >
-//           {item.name}
-//         </a>
-//       </div>
-//     );
-//   } else if (item.type === 'dir') {
-//     return (
-//       <div>
-//         <span onClick={() => onFolderClick(item)}>{item.name}</span>
-//       </div>
-//     );
-//   }
-
-//   return null;
-// }
 
 export default function ProjectDetailsComponent() {
   const { projectId } = useParams();
@@ -215,22 +188,14 @@ export default function ProjectDetailsComponent() {
       cloudName: "dv2z4lhfz",
     },
   });
-  // console.log(userDetails)
-  // let img = myCld.image(userDetails.profile_picture);
 
   return (
     <div className='workspace project-details-page'>
 
       <div className="project-details-header">
         <div className="project-details-header-left">
-
-          {/* <div className="project-details-left-one">
-            <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" />
-          </div> */}
-
           {projectDetails.developerUserId?._id && (
             <div className="project-details-left-one">
-              {/* <img src={`http://localhost:5000/assets/` + projectDetails.developerUserId.profile_picture} alt="" /> */}
               <AdvancedImage cldImg={myCld.image(projectDetails.developerUserId.profile_picture)} />
             </div>
           )}
@@ -250,8 +215,6 @@ export default function ProjectDetailsComponent() {
       <div className="project-main-details">
         <h3 className='project-description'>{projectDetails.projectDescription}</h3>
 
-        {/* <h3>{`Project type : ` + projectDetails.projectStatus}</h3> */}
-
         <h3>
           <span className='project-yellow-heading'>Project type :</span> {projectDetails && projectDetails.projectStatus.charAt(0).toUpperCase() + projectDetails.projectStatus.slice(1)}
         </h3>
@@ -259,13 +222,6 @@ export default function ProjectDetailsComponent() {
         <h3 className='project-yellow-heading project-notes'>Project Notes</h3>
         <p className='project-details-project-notes'>{projectDetails.projectNotes}</p>
       </div>
-
-      {/* <h3>{projectDetails.projectDescription}</h3>
-
-      <h3>{`Project type : ` + projectDetails.projectStatus}</h3>
-
-      <h3>Project Notes</h3>
-      <p className='project-details-project-notes'>{projectDetails.projectNotes}</p> */}
 
       <div className="tech-stack">
         <h3 className='project-yellow-heading'>Tech Stack Used</h3>
@@ -300,50 +256,11 @@ export default function ProjectDetailsComponent() {
         )}
       </div>
 
-      {/* <h3>Tech Stack Used : </h3>
-      <div className="footer-l">
-        <p className="foter">{projectDetails.technologiesUsedOne}</p>
-        <p className="foter">{projectDetails.technologiesUsedTwo}</p>
-        <p className="foter">{projectDetails.technologiesUsedThree}</p>
-      </div> */}
-
-
-
-      {/* <h3>Browse Code</h3>
-      <div>
-        <p>
-          Current Path: {currentPath.join('/')}
-        </p>
-        <button onClick={goBack} className='github-back-button'>Go Back</button>
-        {contents.map((item) => (
-          <FileOrFolder
-            key={item.name}
-            item={item}
-            onFileClick={handleFileClick}
-            onFolderClick={handleFolderClick}
-          />
-        ))}
-      </div>
-      {selectedFile && (
-        <div>
-          <h2>File: {selectedFile.name}</h2>
-          <SyntaxHighlighter language="" style={docco}>
-            {selectedFile.content}
-          </SyntaxHighlighter>
-        </div>
-      )} */}
-
       <div className="project-images">
         <h3 className='project-yellow-heading'>Project Images</h3>
 
         <div className="project-images">
           {projectDetails.projectImageOne && (
-            // <img
-            //   src={`http://localhost:5000/assets/` + projectDetails.projectImageOne}
-            //   alt=""
-            //   className='project-image'
-            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageOne)}
-            // />
             <AdvancedImage 
               cldImg={myCld.image(projectDetails.projectImageOne)} 
               className='project-image' 
@@ -351,9 +268,6 @@ export default function ProjectDetailsComponent() {
             />
           )}
           {projectDetails.projectImageTwo && (
-            // <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'
-            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
-            // />
             <AdvancedImage 
               cldImg={myCld.image(projectDetails.projectImageTwo)} 
               className='project-image' 
@@ -361,8 +275,6 @@ export default function ProjectDetailsComponent() {
             />
           )}
           {projectDetails.projectImageThree && (
-            // <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
-            //   onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
             <AdvancedImage 
               cldImg={myCld.image(projectDetails.projectImageThree)} 
               className='project-image' 
@@ -379,11 +291,6 @@ export default function ProjectDetailsComponent() {
           contentLabel="Expanded Image"
           style={customStyles}
         >
-          {/* <img
-            src={expandedImage}
-            alt="Expanded Project Image"
-            className="expanded-image"
-          /> */}
           <AdvancedImage
             cldImg={expandedImage}
             alt="Expanded Project Image"
@@ -393,46 +300,7 @@ export default function ProjectDetailsComponent() {
         </Modal>
       </div>
 
-      {/* <h3>Project Images : </h3>
-
-      <div className="project-images">
-        {projectDetails.projectImageOne && (
-          <img
-            src={`http://localhost:5000/assets/` + projectDetails.projectImageOne}
-            alt=""
-            className='project-image'
-            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageOne)}
-          />
-        )}
-        {projectDetails.projectImageTwo && (
-          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image'
-            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageTwo)}
-          />
-        )}
-        {projectDetails.projectImageThree && (
-          <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image'
-            onClick={() => openImageModal(`http://localhost:5000/assets/` + projectDetails.projectImageThree)} />
-        )}
-        {!projectDetails.projectImageOne && !projectDetails.projectImageTwo && !projectDetails.projectImageThree && (
-          <p>No images available for this project</p>
-        )}
-      </div>
-      <Modal
-        isOpen={isImageModalOpen}
-        onRequestClose={closeImageModal}
-        contentLabel="Expanded Image"
-        style={customStyles}
-      >
-        <img
-          src={expandedImage}
-          alt="Expanded Project Image"
-          className="expanded-image"
-        />
-        <button className='closeImgModal' onClick={closeImageModal}>Close</button>
-      </Modal> */}
-
       <div className="project-details-footer">
-        {/* <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3> */}
 
         <h3>
           <span className='project-yellow-heading'>Owner :</span> {projectDetails.developerFirstName + " " + projectDetails.developerLastName}
@@ -450,67 +318,6 @@ export default function ProjectDetailsComponent() {
         )}
       </div>
 
-
-      {/* <h3>{`Owner : ` + projectDetails.developerFirstName + " " + projectDetails.developerLastName}</h3>
-
-      {!isOwnerLoggedIn && (
-        <Link to={`/chat/${projectDetails.developerUserId?._id}`}><button className="footer-r-button footer-r-button-1">Contact Developer</button></Link>
-
-      )}
-
-      {!isOwnerLoggedIn && (
-        <button className="footer-r-button" onClick={() => handleContinueRequest(projectDetails.projectName, projectDetails._id, projectDetails.developerUserId?._id)}>
-          Request to continue
-        </button>
-      )} */}
     </div>
   );
 }
-
-
-{/* <div className='workspace'>
-  <h1>Hello</h1>
-  <h1>{projectDetails.projectName}</h1>
-  <p>{projectDetails.projectNotes}</p>
-
-  <img src={`http://localhost:5000/assets/` + projectDetails.projectImageOne} alt="" className='project-image' />
-  <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image' />
-  <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image' />
-
-  {projectDetails.projectImageOne && (
-    <img src={`http://localhost:5000/assets/` + projectDetails.projectImageOne} alt="" className='project-image' />
-  )}
-  {projectDetails.projectImageTwo && (
-    <img src={`http://localhost:5000/assets/` + projectDetails.projectImageTwo} alt="" className='project-image' />
-  )}
-  {projectDetails.projectImageThree && (
-    <img src={`http://localhost:5000/assets/` + projectDetails.projectImageThree} alt="" className='project-image' />
-  )}
-  {!projectDetails.projectImageOne && !projectDetails.projectImageTwo && !projectDetails.projectImageThree && (
-    <p>No images available for this project</p>
-  )}
-
-  <h1>GitHub Repository Contents</h1>
-  <div>
-    <p>
-      Current Path: {currentPath.join('/')}
-    </p>
-    <button onClick={goBack}>Go Back</button>
-    {contents.map((item) => (
-      <FileOrFolder
-        key={item.name}
-        item={item}
-        onFileClick={handleFileClick}
-        onFolderClick={handleFolderClick}
-      />
-    ))}
-  </div>
-  {selectedFile && (
-    <div>
-      <h2>File: {selectedFile.name}</h2>
-      <SyntaxHighlighter language="" style={docco}>
-        {selectedFile.content}
-      </SyntaxHighlighter>
-    </div>
-  )}
-</div> */}

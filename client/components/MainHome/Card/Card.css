@@ -1,5 +1,4 @@
 .card {
-  /* background-color: #cfd0d1; */
   background-color: #28293D;
   padding: 10px;
   width: 60em;
@@ -37,7 +36,6 @@
 }
 
 .header-l-a {
-  /* text-decoration: none; */
   color: #000;
   margin-right: 5px;
   font-weight: bold;
@@ -77,10 +75,6 @@
   color: #CCCCCC;
 }
 
-/* .header-r-icons {
-
-  } */
-
 .bookmark-icon {
   margin: 0 15px;
   color: #fff200;     
@@ -91,13 +85,11 @@
 }
 
 .bookmark-icon:hover {
-  /* color: #6a6501; */
   color: #FFFB73;
   transform: scale(1.08);
 }
 
 .github-icon {
-  /* color: #000;x */
   color: white;
   font-size: 22px;
   cursor: pointer;
@@ -106,7 +98,6 @@
 }
 
 .github-icon:hover {
-  /* color: #0a01016c; */
   transform: scale(1.08);
 }
 .header-r-p {

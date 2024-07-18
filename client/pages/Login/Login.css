@@ -79,11 +79,6 @@
 }
 
 .login-signup-button:hover {
-    /* letter-spacing: 0.4rem;
-    background: rgb(0, 0, 0);
-    transform: scale(1.02);
-    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7);
-    text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); */
     background-color: #1e40af;
     transition: 0.5s;
 }
@@ -121,12 +116,6 @@
     margin: 1rem 0 1rem 0;
     width: 80%;
 }
-
-/* span a{
-    letter-spacing: 0.1rem;
-    font-weight: bolder;
-    color: rgb(96, 107, 230);
-} */
 
 .login-page-contain form {
     display: flex;

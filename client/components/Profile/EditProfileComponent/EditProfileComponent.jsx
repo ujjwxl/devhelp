@@ -5,9 +5,6 @@ import './EditProfileComponent.css'
 
 const EditProfileComponent = () => {
 
-  // const [firstname, setFirstName] = useState('');
-  // const [lastname, setLastName] = useState('');
-  // const [username, setUserName] = useState('');
   const [bio, setBio] = useState('');
   const [github, setGitHub] = useState('');
   const [website, setWebsite] = useState('');
@@ -15,12 +12,11 @@ const EditProfileComponent = () => {
   const [technologyTwo, setTechnologyTwo] = useState('');
   const [technologyThree, setTechnologyThree] = useState('');
 
-  const [profilePicture, setProfilePicture] = useState(null); // Store the selected profile picture
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const userId = sessionStorage.getItem('id');
 
   const onDrop = (acceptedFiles) => {
-    // Handle the dropped file(s) here
     if (acceptedFiles.length > 0) {
       setProfilePicture(acceptedFiles[0]);
     }
@@ -31,11 +27,6 @@ const EditProfileComponent = () => {
     accept: 'image/*', // Accept only image files
     multiple: false, // Allow only one file at a time
   });
-
-  //   const firstname = sessionStorage.getItem('firstname');
-  //   const lastname = sessionStorage.getItem('lastname');
-  //   const username = sessionStorage.getItem('username');
-  //   const profile_picture = sessionStorage.getItem('profile_picture');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +45,6 @@ const EditProfileComponent = () => {
 
       console.log('Profile updated successfully:', response.data);
       alert("profile added successfully")
-      // Optionally, you can reset the form fields here
     } catch (error) {
       console.error('Error updating profile:', error);
     }
@@ -90,22 +80,13 @@ const EditProfileComponent = () => {
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyTwo(e.target.value)} /> <br />
         <input type="text" placeholder="Add a technology" className="add-project" onChange={(e) => setTechnologyThree(e.target.value)} /> <br />
 
-        {/* <div {...getRootProps()} className="dropzone">
-          <input {...getInputProps()} />
-          {profilePicture ? (
-            <p>Selected Profile Picture: {profilePicture.name}</p>
-          ) : (
-            <p>Drag & drop your profile picture here, or click to select one</p>
-          )}
-        </div> */}
-
         <div {...getRootProps()} className="dropzone">
           <input {...getInputProps()} />
           {profilePicture ? (
             <div>
               <p>Selected Profile Picture: {profilePicture.name}</p>
               <img
-                src={URL.createObjectURL(profilePicture)} // Display the selected image
+                src={URL.createObjectURL(profilePicture)}
                 alt="Profile Preview"
                 className="profile-picture-preview"
               />

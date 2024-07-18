@@ -14,7 +14,6 @@ export default function ProfileMain() {
   useEffect(() => {
     axios.post("http://localhost:5000/auth/find", { userId })
       .then((response) => {
-        // console.log(response)
         setUser(response.data);
       })
       .catch((error) => {
@@ -32,8 +31,6 @@ export default function ProfileMain() {
 
   return (
     <div className='workspace'>
-      {/* <h1 className='ws-h1'>Welcome back, Varun</h1>
-      <p className='ws-p'>Featured Projects</p> */}
       <div className='ws-card'>
         <ProfileCard></ProfileCard>
         <div className="profile-main-buttons">

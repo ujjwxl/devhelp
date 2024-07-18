@@ -10,7 +10,6 @@
 }
 
 .self-message-box {
-  /* background-color: aqua; */
   background-color:#A2FF86;
   border-radius: 15px;
   margin-top: 10px;
@@ -28,7 +27,7 @@
   font-size: 0.75rem;
   font-weight: lighter;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  display: flex; /* Add flex display to align timestamp */
+  display: flex;
   justify-content: flex-end;
 }
 

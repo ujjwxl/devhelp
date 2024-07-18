@@ -86,7 +86,6 @@
   margin-bottom: 10px;
 }
 
-/* Add the following styles to your CSS file */
 
 /* Styles for the modal */
 .react-modal-overlay {
@@ -97,8 +96,8 @@
 
 /* Styles for the modal content */
 .react-modal-content {
-  max-width: 80%; /* Adjust as needed */
-  max-height: 70vh; /* Adjust as needed */
+  max-width: 80%;
+  max-height: 70vh; 
 }
 
 /* Styles for the expanded image */
@@ -120,10 +119,6 @@
   transition: background-color 0.2s ease-in-out;
   border-radius: 5px;
 }
-
-/* .github-file {
-  background-color: red;
-} */
 
 .github-folder {
   /* background-color: blue; */

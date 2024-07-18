@@ -1,6 +1,6 @@
 // Loading.js
 import React from 'react';
-import './Loading.css'; // You can style your loading screen using CSS
+import './Loading.css';
 
 const Loading = () => {
   return (

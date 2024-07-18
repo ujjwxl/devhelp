@@ -14,11 +14,6 @@ export default function About() {
         <div className="home-work-space workspce">
           <h1 className="project-yellow-heading">Welcome to DevHelp!</h1>
           <h2 className="ws-h2 project-yellow-heading">Who We Are</h2>
-          {/* <p>
-            DevHelp is a collaborative platform founded by Aman Agarwal and
-            Ujjwal Kumar, dedicated to bringing developers together to share,
-            discover, and continue each other's projects.
-          </p> */}
           <p>
             DevHelp is a collaborative platform founded by&nbsp;
             <a href="https://github.com/agrawalaman775" target="_blank" className="developer-profile-link">Aman Agarwal</a>&nbsp;and&nbsp;
@@ -86,7 +81,7 @@ export default function About() {
             </li>
           </ol>
           <h2 className="ws-h2">Contact Us</h2>
-          <p>Have questions or suggestions? Feel free to reach out to us at [contact@devhelp.com].</p>
+          <p>Have questions or suggestions? Feel free to reach out to us.</p>
           <p>Thank you for being a part of DevHelp – where collaboration breathes new life into projects!</p>
         </div>
       </div>

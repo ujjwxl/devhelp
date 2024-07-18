@@ -9,10 +9,8 @@ import './NotFound.css'
 const NotFound = () => {
     return (
         <div>
-            {/* <Navbar /> */}
             <div className='main-home'>
                 <div className='home-side-bar'>
-                    {/* <Sidebar></Sidebar> */}
                 </div>
                 <div className='home-work-space not-found-page'>
                     <div className="not-found-page-left">

@@ -39,16 +39,6 @@ function App() {
             <Route path="/about" element={<About />}></Route>
           </Route>
 
-          {/* <Route path="/home" element={<MainHome />}></Route>
-          <Route path="/add" element={<AddProject />}></Route>
-          <Route path="/update" element={<EditProfile />}></Route>
-          <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/project/:projectId" element={<ProjectDetails />} />
-          <Route path="/saved" element={<SavedProjects />}></Route>
-          <Route path="/chat/:chatUserId" element={<Chat />}></Route>
-          <Route path="/abandon" element={<MainHome />}></Route>
-          <Route path="/collaborate" element={<MainHome />}></Route> */}
-
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Router>

@@ -11,7 +11,6 @@ export default function Sidebar() {
   const [userDetails, setUserDetails] = useState([]);
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
-  // console.log(userDetails)
 
   useEffect(() => {
     axios
@@ -26,10 +25,6 @@ export default function Sidebar() {
       });
   }, [userId]);
 
-  // const handleProfileClick = (profileLink) => {
-  //   window.location.href = profileLink;
-  // };
-
   const myCld = new Cloudinary({
     cloud: {
       cloudName: "dv2z4lhfz",
@@ -42,17 +37,9 @@ export default function Sidebar() {
     <div className='sidebar'>
 
       <div className="sidebar-user-details">
-        {/* <img src="src\assets\default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
-        {/* <img src="../../../src/assets/default-pfp.png" alt="" className='sidebar-profile-picture' /> */}
-        {/* <Link to={`/profile/${userId}`}><img src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' /></Link> */}
         <Link to={`/profile/${userId}`}><AdvancedImage cldImg={img} className='sidebar-profile-picture'/></Link>
-        {/* <img onClick={() => handleProfileClick(`/profile/${userId}`)} src={`http://localhost:5000/assets/` + userDetails.profile_picture} alt="" className='sidebar-profile-picture' /> */}
         <p>{userDetails.firstname + " " + userDetails.lastname}</p>
         <p>{`@`+userDetails.username}</p>
-        {/* <div className="sidebar-user-profiile-follow">
-          <p>{followerCount + ` followers`}</p>
-          <p>{followingCount + `following`}</p>
-        </div> */}
         <p>{followerCount + ` followers ` + followingCount + ` following`}</p>
       </div>
 

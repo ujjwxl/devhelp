@@ -26,17 +26,11 @@
 }
 
 .other-message-box {
-  /* background-color: aqua; */
   background-color: #EEEDED;
   border-radius: 15px;
   margin-top: 10px;
   max-width: 40%;
 }
-
-/* .abc {
-  margin: 5px;
-  margin-left: 10px;
-} */
 
 .other-message-p {
   margin: 5px;
@@ -44,15 +38,6 @@
   font-size: 15px;
   word-wrap: break-word;
 }
-
-/* .other-timeStamp {
-  margin: 5px;
-  align-self: flex-end;
-  font-size: 0.75rem;
-  font-weight: lighter;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 80%;
-} */
 
 .other-timeStamp {
   margin: 5px;

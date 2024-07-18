@@ -10,7 +10,6 @@ export default function Workspace() {
   useEffect(() => {
     axios.post("http://localhost:5000/auth/find", { userId })
       .then((response) => {
-        // console.log(response)
         setUser(response.data);
       })
       .catch((error) => {
